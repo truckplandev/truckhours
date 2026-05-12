@@ -42,14 +42,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 /* ── LAYOUT ── */
 .container{max-width:820px;margin:0 auto;padding:1.75rem 1rem 5rem;}
 
-/* ── DONATE CARD ── */
-.donate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-top:.75rem;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--shadow);}
-.donate-text{flex:1;min-width:180px;}
-.donate-title{font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:3px;}
-.donate-sub{font-size:12px;color:var(--text-3);line-height:1.5;}
-.donate-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:#FFDD00;color:#1a1a1a;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .12s,box-shadow .12s;white-space:nowrap;flex-shrink:0;}
-.donate-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(255,221,0,.4);}
-
 /* ── CREDITS DOTS ── */
 .credits-grid{display:flex;flex-direction:column;gap:0;margin-bottom:1rem;}
 .credit-row{display:flex;align-items:center;gap:14px;padding:.85rem 0;flex-wrap:wrap;}
@@ -195,21 +187,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
   .reg-badge{display:none;}
 }
 
-/* ── SUPPORT / STRIPE CARD ── */
-.support-card{background:var(--bg-card);border:1.5px solid var(--blue-b);border-radius:14px;padding:1.4rem 1.5rem;margin-top:.75rem;box-shadow:var(--shadow);}
-.support-header{display:flex;align-items:flex-start;gap:13px;margin-bottom:1.1rem;}
-.support-icon{width:42px;height:42px;border-radius:11px;background:var(--blue-l);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
-.support-title{font-size:15px;font-weight:600;color:var(--text-1);margin-bottom:3px;}
-.support-sub{font-size:12px;color:var(--text-3);line-height:1.5;}
-.support-amounts{display:flex;gap:8px;margin-bottom:.9rem;flex-wrap:wrap;}
-.amount-btn{padding:8px 18px;border:1.5px solid var(--border2);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:var(--bg-card);color:var(--text-2);transition:all .15s;font-family:'DM Sans',sans-serif;}
-.amount-btn:hover{border-color:var(--blue);color:var(--blue);}
-.amount-btn.active{border:2px solid var(--blue);background:var(--blue-l);color:var(--blue-d);}
-.amount-custom{font-size:12px;padding:8px 14px;}
-.stripe-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:13px;background:var(--blue);color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;box-shadow:0 4px 16px rgba(26,86,219,.3);font-family:'DM Sans',sans-serif;margin-bottom:.65rem;}
-.stripe-btn:hover{opacity:.92;transform:translateY(-1px);}
-.stripe-badge{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-4);justify-content:center;font-family:'DM Mono',monospace;}
-
 /* ── RATING ── */
 .rating-section{margin-top:.75rem;}
 .stars-row{display:flex;gap:4px;margin-bottom:.4rem;}
@@ -251,7 +228,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
   flex-shrink:0;
 }
 .dock-btn:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,.25);}
-.dock-btn.btn-support{background:var(--blue);}
 .dock-btn.btn-rating{background:#F59E0B;}
 .dock-btn.btn-suggest{background:var(--green);}
 .dock-btn svg{color:white;}
@@ -314,16 +290,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 }
 .popup-close:hover{background:var(--border);}
 .popup-body{padding:1rem 1.25rem 1.25rem;}
-
-/* ── Suporte/Stripe no popup ── */
-.support-amounts{display:flex;gap:8px;margin-bottom:.9rem;flex-wrap:wrap;}
-.amount-btn{padding:8px 16px;border:1.5px solid var(--border2);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:var(--bg-card);color:var(--text-2);transition:all .15s;font-family:'DM Sans',sans-serif;}
-.amount-btn:hover{border-color:var(--blue);color:var(--blue);}
-.amount-btn.active{border:2px solid var(--blue);background:var(--blue-l);color:var(--blue-d);}
-.amount-custom{font-size:12px;padding:8px 12px;}
-.stripe-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:12px;background:var(--blue);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;box-shadow:0 4px 16px rgba(26,86,219,.28);font-family:'DM Sans',sans-serif;margin-bottom:.6rem;}
-.stripe-btn:hover{opacity:.9;transform:translateY(-1px);}
-.stripe-badge{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-4);justify-content:center;font-family:'DM Mono',monospace;}
 
 /* ── Estrelas no popup ── */
 .stars-row{display:flex;gap:4px;margin-bottom:.4rem;}
@@ -632,9 +598,6 @@ const T={
     info_start_at:' · A contar a partir de: ',
     info_rest_start_a:'Descanso iniciado: ',info_rest_start_b:'. Tempo restante: ',info_rest_start_c:'. Viagem prevista para: ',
     info_rest_done_a:'Descanso feito: ',info_rest_done_b:'. Falta ainda: ',info_rest_done_c:'. Viagem inicia em: ',
-    donate_title:'☕ Esta ferramenta poupou-te tempo?',
-    donate_sub:'É gratuita e sem anúncios. Se achaste útil, um café ajuda a mantê-la viva e a melhorá-la.',
-    donate_btn:'Comprar um café',
     cst_avail:'disponíveis',locale:'pt-PT'
   },
   en:{
@@ -676,9 +639,6 @@ const T={
     info_start_at:' · Counting from: ',
     info_rest_start_a:'Rest started: ',info_rest_start_b:'. Remaining: ',info_rest_start_c:'. Journey starts: ',
     info_rest_done_a:'Rest done: ',info_rest_done_b:'. Still needed: ',info_rest_done_c:'. Journey starts in: ',
-    donate_title:'☕ Did this save you time?',
-    donate_sub:'Free and ad-free. If it helped, a coffee keeps it alive and growing.',
-    donate_btn:'Buy me a coffee',
     cst_avail:'available',locale:'en-GB'
   },
   es:{
@@ -720,9 +680,6 @@ const T={
     info_start_at:' · A contar desde: ',
     info_rest_start_a:'Descanso iniciado: ',info_rest_start_b:'. Tiempo restante: ',info_rest_start_c:'. Viaje previsto: ',
     info_rest_done_a:'Descanso realizado: ',info_rest_done_b:'. Falta aún: ',info_rest_done_c:'. Viaje inicia en: ',
-    donate_title:'☕ ¿Te ha ahorrado tiempo?',
-    donate_sub:'Es gratuita y sin anuncios. Si te fue útil, un café ayuda a mantenerla y mejorarla.',
-    donate_btn:'Invítame a un café',
     cst_avail:'disponibles',locale:'es-ES'
   }
 };
@@ -1141,61 +1098,7 @@ function calcAndShow(){
   document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ── STRIPE PAYMENT LINKS ─────────────────────────────────────────
-// Substitui pelos teus Payment Links reais do Stripe
-// Cria em: dashboard.stripe.com → Payment Links → + Criar
-// Cria 3 produtos: "Apoio TruckPlan €2", "...€5", "...€10"
-const STRIPE_LINKS = {
-  '2': 'https://buy.stripe.com/SEU_LINK_2EUR',
-  '5': 'https://buy.stripe.com/SEU_LINK_5EUR',
-  '10': 'https://buy.stripe.com/SEU_LINK_10EUR',
-  'custom': 'https://buy.stripe.com/SEU_LINK_CUSTOM' // link com valor variável (Stripe tip jar)
-};
-
-let selectedAmount = '2';
-
-function selectAmount(btn, amount) {
-  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  selectedAmount = amount;
-  const wrap = document.getElementById('customAmountWrap');
-  wrap.style.display = amount === 'custom' ? 'block' : 'none';
-  updateStripeBtn();
-}
-
-function updateStripeBtn() {
-  const t = T[lang];
-  const btn = document.getElementById('stripeBtn');
-  const btnText = document.getElementById('stripeBtnText');
-  if (!btn || !btnText) return;
-  if (selectedAmount === 'custom') {
-    const val = document.getElementById('customAmount')?.value || '3';
-    btnText.textContent = (t.stripe_btn || 'Apoiar com €2 via cartão').replace('€2', '€' + val);
-    btn.href = STRIPE_LINKS['custom'] || STRIPE_LINKS['2'];
-  } else {
-    btnText.textContent = (t.stripe_btn || 'Apoiar com €2 via cartão').replace('€2', '€' + selectedAmount);
-    btn.href = STRIPE_LINKS[selectedAmount] || STRIPE_LINKS['2'];
-  }
-}
-
-function handleStripeClick(e) {
-  // Se os links ainda são placeholder, avisa o utilizador
-  if (document.getElementById('stripeBtn').href.includes('SEU_LINK')) {
-    e.preventDefault();
-    alert('⚠️ Configura os teus Payment Links do Stripe no código antes de ativar os pagamentos.');
-  }
-  // Tracking analytics
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'stripe_click', { amount: selectedAmount });
-  }
-}
-
-// Atualizar botão quando custom amount muda
-document.addEventListener('DOMContentLoaded', () => {
-  const ca = document.getElementById('customAmount');
-  if (ca) ca.addEventListener('input', updateStripeBtn);
-  updateStripeBtn();
-});
+// Doação removida em v1 — ver issue futura para reativação com Stripe
 
 // ── RATING ───────────────────────────────────────────────────────
 let currentRating = 0;
@@ -1306,49 +1209,6 @@ const _origSetLang = setLang;
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
   </button>
 
-  <!-- Botão Apoio/Stripe -->
-  <button class="dock-btn btn-support" id="dockSupport" onclick="togglePopup('popupSupport')" data-tip="Apoiar">
-    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-  </button>
-
-</div>
-
-<!-- ══ POPUP: APOIO / STRIPE ══ -->
-<div class="float-popup" id="popupSupport">
-  <div class="popup-header">
-    <div class="popup-header-left">
-      <div class="popup-header-icon blue">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      </div>
-      <div>
-        <div class="popup-header-title" data-i="support_title">Esta ferramenta poupou-te tempo?</div>
-        <div class="popup-header-sub" data-i="support_sub">Gratuita e sem anúncios. Apoia o projeto.</div>
-      </div>
-    </div>
-    <button class="popup-close" onclick="closePopup('popupSupport')">×</button>
-  </div>
-  <div class="popup-body">
-    <div class="support-amounts">
-      <button class="amount-btn active" onclick="selectAmount(this,'2')" data-amount="2">€2</button>
-      <button class="amount-btn" onclick="selectAmount(this,'5')" data-amount="5">€5</button>
-      <button class="amount-btn" onclick="selectAmount(this,'10')" data-amount="10">€10</button>
-      <button class="amount-btn amount-custom" onclick="selectAmount(this,'custom')" data-amount="custom" data-i="amount_custom">Outro</button>
-    </div>
-    <div id="customAmountWrap" style="display:none;margin-bottom:.75rem;">
-      <div class="field">
-        <label data-i="lbl_custom_amount">Valor personalizado (€)</label>
-        <input type="number" id="customAmount" min="1" max="500" value="3" placeholder="ex: 3" oninput="updateStripeBtn()">
-      </div>
-    </div>
-    <a class="stripe-btn" id="stripeBtn" href="https://buy.stripe.com/SEU_LINK_AQUI" target="_blank" rel="noopener" onclick="handleStripeClick(event)">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      <span id="stripeBtnText" data-i="stripe_btn">Apoiar com €2 via cartão</span>
-    </a>
-    <div class="stripe-badge">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span data-i="stripe_secure">Pagamento seguro via Stripe · Sem conta necessária</span>
-    </div>
-  </div>
 </div>
 
 <!-- ══ POPUP: AVALIAÇÃO ══ -->
