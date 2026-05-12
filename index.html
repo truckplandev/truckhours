@@ -504,15 +504,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
     <div class="divider"></div>
     <div class="section-title" style="margin-bottom:.9rem;margin-top:.9rem;">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      <span data-i="card_breaks_title">Pausas personalizadas</span>
+      <span data-i="lbl_pause_section_title">Pausas durante a condução</span>
     </div>
-    <div class="form-2">
-      <div class="field"><label data-i="lbl_break1">1.ª pausa (min) — mín. legal: 15</label><input type="number" id="shortBreak" min="15" max="60" value="15"></div>
-      <div class="field"><label data-i="lbl_break2">2.ª pausa (min) — mín. legal: 30</label><input type="number" id="longBreak" min="30" max="90" value="30"></div>
+    <div class="form-2" style="margin-bottom:.75rem;">
+      <div class="field"><label data-i="lbl_pause_single">Pausa única (min)</label><input type="number" id="singleBreak" min="1" max="120" value="60"></div>
     </div>
-    <div class="notice notice-info">
+    <div class="notice notice-info" style="margin-bottom:.75rem;">
       <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span data-i="notice_breaks">Após cada 4h30 de condução, é obrigatória uma pausa de 45 min — pode ser dividida em 15+30 min (nessa ordem).</span>
+      <span data-i="note_legal_breaks">Mínimo legal: 45 min (CE 561/2006). Pode ser dividida em 15+30 min (1.ª pausa mín 15, 2.ª mín 30, nessa ordem).</span>
+    </div>
+    <div class="mode-toggle">
+      <button class="mode-btn" id="customBreaksBtn" onclick="toggleCustomBreaks()" data-i="btn_customize_breaks">Personalizar pausas</button>
+    </div>
+    <div id="customBreaksWrap" style="display:none;margin-top:.5rem;">
+      <div class="form-2">
+        <div class="field"><label data-i="lbl_break1">1.ª pausa (min)</label><input type="number" id="shortBreak" min="15" max="60" value="15"></div>
+        <div class="field"><label data-i="lbl_break2">2.ª pausa (min)</label><input type="number" id="longBreak" min="30" max="90" value="30"></div>
+      </div>
     </div>
   </div>
 
@@ -578,9 +586,7 @@ const T={
     lbl_reduced_rests:'Descansos reduzidos (9h)',lbl_ext10:'Extensões de 10h',
     notice_limits:'Regulamento CE 561/2006: até 3 descansos reduzidos de 9h e 2 jornadas de 10h por semana. A compensação deve ser feita antes do fim da 3.ª semana seguinte.',
     card_trip_title:'Parâmetros da viagem',lbl_km:'Distância total (km)',lbl_speed:'Velocidade média (km/h)',
-    card_breaks_title:'Pausas personalizadas',
-    lbl_break1:'1.ª pausa (min) — mín. legal: 15',lbl_break2:'2.ª pausa (min) — mín. legal: 30',
-    notice_breaks:'Após cada 4h30 de condução, é obrigatória uma pausa de 45 min — pode ser dividida em 15+30 min (nessa ordem).',
+    lbl_break1:'1.ª pausa (min)',lbl_break2:'2.ª pausa (min)',
     btn_calc:'Calcular jornada',btn_new_sim:'Nova simulação',
     footer_text:'TruckPlan · CE 561/2006 · Apenas para planeamento — confirme sempre com o tacógrafo digital',
     res_summary:'Resumo da jornada',res_plan:'Plano detalhado da jornada',
@@ -598,6 +604,24 @@ const T={
     info_start_at:' · A contar a partir de: ',
     info_rest_start_a:'Descanso iniciado: ',info_rest_start_b:'. Tempo restante: ',info_rest_start_c:'. Viagem prevista para: ',
     info_rest_done_a:'Descanso feito: ',info_rest_done_b:'. Falta ainda: ',info_rest_done_c:'. Viagem inicia em: ',
+    rating_title:'Avalia a ferramenta',rating_sub_short:'A tua opinião ajuda a melhorar',
+    rating_thanks:'Obrigado pela tua avaliação!',
+    rating_low:'Fraco',rating_high:'Excelente',
+    lbl_rating_comment:'Comentário (opcional)',btn_submit_rating:'Enviar avaliação',
+    suggestions_title:'Tens uma sugestão?',suggestions_sub_short:'Ideia, problema ou feedback',
+    suggestion_thanks:'Sugestão enviada — obrigado!',
+    lbl_suggest_type:'Tipo',lbl_suggest_msg:'Mensagem',lbl_suggest_email:'Email (opcional)',
+    btn_submit_suggest:'Enviar sugestão',
+    opt_feature:'💡 Nova funcionalidade',opt_bug:'🐛 Reportar problema',opt_other:'💬 Outro',
+    ph_suggest_msg:'Descreve a tua ideia ou problema...',
+    dsc_max:'Máx:',dsc_rem:'Resta:',info_max_ext:' (máx ',
+    ev_drive_cur_block:'(bloco atual)',
+    ext_used:'✓ Extensão 10h usada ({x} mais rápido)',
+    ext_skip:'Extensão 10h não compensa (chegaria {x} mais tarde)',
+    lbl_pause_section_title:'Pausas durante a condução',
+    lbl_pause_single:'Pausa única (min)',
+    note_legal_breaks:'Mínimo legal: 45 min (CE 561/2006). Pode ser dividida em 15+30 min (1.ª pausa mín 15, 2.ª mín 30, nessa ordem).',
+    btn_customize_breaks:'Personalizar pausas',
     cst_avail:'disponíveis',locale:'pt-PT'
   },
   en:{
@@ -620,9 +644,7 @@ const T={
     lbl_reduced_rests:'Reduced rests (9h)',lbl_ext10:'10h extensions',
     notice_limits:'Regulation EC 561/2006: up to 3 reduced daily rests of 9h and 2 extended shifts of 10h per week.',
     card_trip_title:'Trip parameters',lbl_km:'Total distance (km)',lbl_speed:'Average speed (km/h)',
-    card_breaks_title:'Custom breaks',
-    lbl_break1:'1st break (min) — legal min: 15',lbl_break2:'2nd break (min) — legal min: 30',
-    notice_breaks:'After every 4h30 of driving, a 45-min break is mandatory — it may be split into 15+30 min (in that order).',
+    lbl_break1:'1st break (min)',lbl_break2:'2nd break (min)',
     btn_calc:'Calculate journey',btn_new_sim:'New simulation',
     footer_text:'TruckPlan · EC 561/2006 · For planning only — always verify with digital tachograph',
     res_summary:'Journey summary',res_plan:'Detailed journey plan',
@@ -639,6 +661,24 @@ const T={
     info_start_at:' · Counting from: ',
     info_rest_start_a:'Rest started: ',info_rest_start_b:'. Remaining: ',info_rest_start_c:'. Journey starts: ',
     info_rest_done_a:'Rest done: ',info_rest_done_b:'. Still needed: ',info_rest_done_c:'. Journey starts in: ',
+    rating_title:'Rate this tool',rating_sub_short:'Your feedback helps us improve',
+    rating_thanks:'Thanks for your rating!',
+    rating_low:'Poor',rating_high:'Excellent',
+    lbl_rating_comment:'Comment (optional)',btn_submit_rating:'Submit rating',
+    suggestions_title:'Have a suggestion?',suggestions_sub_short:'Idea, issue or feedback',
+    suggestion_thanks:'Suggestion sent — thank you!',
+    lbl_suggest_type:'Type',lbl_suggest_msg:'Message',lbl_suggest_email:'Email (optional)',
+    btn_submit_suggest:'Send suggestion',
+    opt_feature:'💡 New feature',opt_bug:'🐛 Report an issue',opt_other:'💬 Other',
+    ph_suggest_msg:'Describe your idea or issue...',
+    dsc_max:'Max:',dsc_rem:'Left:',info_max_ext:' (max ',
+    ev_drive_cur_block:'(current block)',
+    ext_used:'✓ 10h extension used ({x} faster)',
+    ext_skip:'10h extension not worth it (would arrive {x} later)',
+    lbl_pause_section_title:'Driving breaks',
+    lbl_pause_single:'Break (min)',
+    note_legal_breaks:'Legal minimum: 45 min (EC 561/2006). May be split into 15+30 min (first break ≥15 min, second ≥30 min, in that order).',
+    btn_customize_breaks:'Customize breaks',
     cst_avail:'available',locale:'en-GB'
   },
   es:{
@@ -661,9 +701,7 @@ const T={
     lbl_reduced_rests:'Descansos reducidos (9h)',lbl_ext10:'Extensiones de 10h',
     notice_limits:'Reglamento CE 561/2006: hasta 3 descansos reducidos de 9h y 2 jornadas de 10h por semana.',
     card_trip_title:'Parámetros del viaje',lbl_km:'Distancia total (km)',lbl_speed:'Velocidad media (km/h)',
-    card_breaks_title:'Pausas personalizadas',
-    lbl_break1:'1.ª pausa (min) — mín. legal: 15',lbl_break2:'2.ª pausa (min) — mín. legal: 30',
-    notice_breaks:'Tras cada 4h30 de conducción, es obligatoria una pausa de 45 min — puede dividirse en 15+30 min.',
+    lbl_break1:'1.ª pausa (min)',lbl_break2:'2.ª pausa (min)',
     btn_calc:'Calcular jornada',btn_new_sim:'Nueva simulación',
     footer_text:'TruckPlan · CE 561/2006 · Solo para planificación — confirme siempre con el tacógrafo digital',
     res_summary:'Resumen de la jornada',res_plan:'Plan detallado de la jornada',
@@ -680,18 +718,37 @@ const T={
     info_start_at:' · A contar desde: ',
     info_rest_start_a:'Descanso iniciado: ',info_rest_start_b:'. Tiempo restante: ',info_rest_start_c:'. Viaje previsto: ',
     info_rest_done_a:'Descanso realizado: ',info_rest_done_b:'. Falta aún: ',info_rest_done_c:'. Viaje inicia en: ',
+    rating_title:'Valora esta herramienta',rating_sub_short:'Tu opinión nos ayuda a mejorar',
+    rating_thanks:'¡Gracias por tu valoración!',
+    rating_low:'Deficiente',rating_high:'Excelente',
+    lbl_rating_comment:'Comentario (opcional)',btn_submit_rating:'Enviar valoración',
+    suggestions_title:'¿Tienes una sugerencia?',suggestions_sub_short:'Idea, problema o feedback',
+    suggestion_thanks:'¡Sugerencia enviada — gracias!',
+    lbl_suggest_type:'Tipo',lbl_suggest_msg:'Mensaje',lbl_suggest_email:'Email (opcional)',
+    btn_submit_suggest:'Enviar sugerencia',
+    opt_feature:'💡 Nueva funcionalidad',opt_bug:'🐛 Reportar problema',opt_other:'💬 Otro',
+    ph_suggest_msg:'Describe tu idea o problema...',
+    dsc_max:'Máx:',dsc_rem:'Resta:',info_max_ext:' (máx ',
+    ev_drive_cur_block:'(bloque actual)',
+    ext_used:'✓ Extensión 10h usada ({x} más rápido)',
+    ext_skip:'Extensión 10h no compensa (llegarías {x} más tarde)',
+    lbl_pause_section_title:'Pausas durante la conducción',
+    lbl_pause_single:'Pausa única (min)',
+    note_legal_breaks:'Mínimo legal: 45 min (CE 561/2006). Puede dividirse en 15+30 min (1.ª pausa mín 15, 2.ª mín 30, en ese orden).',
+    btn_customize_breaks:'Personalizar pausas',
     cst_avail:'disponibles',locale:'es-ES'
   }
 };
 
 // ── STATE ──────────────────────────────────────────────────────
 let lang='pt', darkMode=false, restTotalMins=660, restMode='start', driveMode='now';
+let customBreaksActive=false;
 const BLOCK_MAX=270, DAY_MAX=540, DAY_EXT=600;
 
 const pad=n=>String(n).padStart(2,'0');
 function addMin(d,m){return new Date(d.getTime()+m*60000);}
 function fmtT(d){return d.toLocaleString(T[lang].locale,{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});}
-function fmtD(m){const h=Math.floor(m/60),mn=m%60;return h>0&&mn>0?h+'h '+mn+'m':h>0?h+'h':mn+'m';}
+function fmtD(m){const h=Math.floor(m/60),mn=m%60;return h>0&&mn>0?h+'h '+mn+'min':h>0?h+'h':mn+'min';}
 
 // ── HELPERS: ler bloco e dia dos inputs time ───────────────────
 function getBlockMins(){
@@ -730,6 +787,10 @@ function setLang(l){
   document.querySelectorAll('[data-i]').forEach(el=>{
     const k=el.getAttribute('data-i');
     if(T[l][k]!==undefined)el.textContent=T[l][k];
+  });
+  document.querySelectorAll('[data-i-placeholder]').forEach(el=>{
+    const k=el.getAttribute('data-i-placeholder');
+    if(T[l][k]!==undefined)el.placeholder=T[l][k];
   });
   updateRestInfo();updateDriveInfo();
 }
@@ -805,23 +866,24 @@ function updateDriveInfo(){
   document.getElementById('driveInfoText').textContent=
     t.info_block+fmtD(blockMins)+' '+t.info_rem_block.trim()+' '+fmtD(remBlock)
     +'   |   '+t.info_day+fmtD(safeDay)+' '+t.info_rem_day.trim()+' '+fmtD(remDay)
-    +(extraTenAvail>0?' (máx '+fmtD(dayMaxNow)+')':'');
+    +(extraTenAvail>0?t.info_max_ext+fmtD(dayMaxNow)+')':'');
 }
 
 function updateDriveCards(blockMins, dayMins, remBlock, remDay, dayMax){
+  const t=T[lang];
   const _dayMax=dayMax||540;
   // Card bloco
   const bPct=Math.min(100,Math.round((blockMins/BLOCK_MAX)*100));
-  document.getElementById('dscBlockVal').textContent=fmtD(blockMins)||'0m';
-  document.getElementById('dscBlockSub').textContent='Máx: 4h 30m · Resta: '+fmtD(remBlock);
+  document.getElementById('dscBlockVal').textContent=fmtD(blockMins);
+  document.getElementById('dscBlockSub').textContent=t.dsc_max+' '+fmtD(BLOCK_MAX)+' · '+t.dsc_rem+' '+fmtD(remBlock);
   const bBar=document.getElementById('dscBlockBar');
   bBar.style.width=bPct+'%';
   bBar.className='drive-state-bar-fill '+(bPct>=100?'fill-red':bPct>=80?'fill-amber':'fill-blue');
 
   // Card dia — label dinâmico consoante extensões
   const dPct=Math.min(100,Math.round((dayMins/_dayMax)*100));
-  document.getElementById('dscDayVal').textContent=fmtD(dayMins)||'0m';
-  document.getElementById('dscDaySub').textContent='Máx: '+fmtD(_dayMax)+' · Resta: '+fmtD(remDay);
+  document.getElementById('dscDayVal').textContent=fmtD(dayMins);
+  document.getElementById('dscDaySub').textContent=t.dsc_max+' '+fmtD(_dayMax)+' · '+t.dsc_rem+' '+fmtD(remDay);
   const dBar=document.getElementById('dscDayBar');
   dBar.style.width=dPct+'%';
   dBar.className='drive-state-bar-fill '+(dPct>=100?'fill-red':dPct>=80?'fill-amber':'fill-blue');
@@ -840,6 +902,11 @@ function setRestMode(mode){
   document.getElementById('restModeStartFields').style.display=mode==='start'?'':'none';
   document.getElementById('restModeDoneFields').style.display=mode==='done'?'':'none';
   updateRestInfo();
+}
+function toggleCustomBreaks(){
+  customBreaksActive=!customBreaksActive;
+  document.getElementById('customBreaksWrap').style.display=customBreaksActive?'':'none';
+  document.getElementById('customBreaksBtn').classList.toggle('active',customBreaksActive);
 }
 function updateRestInfo(){
   const t=T[lang];
@@ -879,8 +946,15 @@ function calcAndShow(){
   const status=document.querySelector('.status-btn.active').dataset.val;
   const totalKm=parseFloat(document.getElementById('totalKm').value)||850;
   const speed=parseFloat(document.getElementById('avgSpeed').value)||80;
-  const sb=Math.max(15,parseInt(document.getElementById('shortBreak').value)||15);
-  const lb=Math.max(30,parseInt(document.getElementById('longBreak').value)||30);
+  let sb, lb;
+  if(customBreaksActive){
+    sb=Math.max(15,parseInt(document.getElementById('shortBreak').value)||15);
+    lb=Math.max(30,parseInt(document.getElementById('longBreak').value)||30);
+  } else {
+    sb=Math.max(1,parseInt(document.getElementById('singleBreak').value)||60);
+    lb=0;
+  }
+  const pauseLabel=lb>0?sb+'+'+lb:String(sb);
   const reducedRests=parseInt(document.getElementById('reducedRests').value)||0;
   const extraTen=parseInt(document.getElementById('extraTenHour').value)||0;
 
@@ -932,7 +1006,7 @@ function calcAndShow(){
         events.push({
           type:'drive-prev',
           label:t.ev_drive_prev,
-          detail:kmBloco+t.ev_drive_prev_det+' (bloco atual)',
+          detail:kmBloco+t.ev_drive_prev_det+' '+t.ev_drive_cur_block,
           start:blockStart,end:now,dur:blockMins
         });
       }
@@ -985,7 +1059,7 @@ function calcAndShow(){
       if(canDrive<=0){
         if(_block>=BLOCK){
           const bm=sb+lb;
-          _events.push({type:'pause',label:t.ev_pause+' '+sb+'+'+lb+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
+          _events.push({type:'pause',label:t.ev_pause+' '+pauseLabel+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
           _now=addMin(_now,bm);_block=0;continue;
         }
         if(_day>=dayMax){
@@ -1004,7 +1078,7 @@ function calcAndShow(){
       _day+=canDrive;_block+=canDrive;_remain-=canDrive;
       if(_block>=BLOCK&&_remain>0){
         const bm=sb+lb;
-        _events.push({type:'pause',label:t.ev_pause+' '+sb+'+'+lb+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
+        _events.push({type:'pause',label:t.ev_pause+' '+pauseLabel+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
         _now=addMin(_now,bm);_block=0;
       }
     }
@@ -1031,10 +1105,10 @@ function calcAndShow(){
   if(extraTen>0){
     const savedMins=Math.round((simSem.arrival-simCom.arrival)/60000);
     if(usedExt && savedMins>0){
-      events[events.length-1].detail+=` · ✓ Extensão 10h usada (${fmtD(savedMins)} mais rápido)`;
+      events[events.length-1].detail+=' · '+t.ext_used.replace('{x}',fmtD(savedMins));
     } else if(!usedExt && extraTen>0){
       const lost=Math.round((simCom.arrival-simSem.arrival)/60000);
-      events[events.length-1].detail+=` · Extensão 10h não compensa (chegaria ${fmtD(lost)} mais tarde)`;
+      events[events.length-1].detail+=' · '+t.ext_skip.replace('{x}',fmtD(lost));
     }
   }
 
@@ -1276,14 +1350,14 @@ const _origSetLang = setLang;
       <div class="field" style="margin-bottom:.65rem;">
         <label data-i="lbl_suggest_type">Tipo</label>
         <select id="suggestType">
-          <option value="feature">💡 Nova funcionalidade</option>
-          <option value="bug">🐛 Reportar problema</option>
-          <option value="other">💬 Outro</option>
+          <option value="feature" data-i="opt_feature">💡 Nova funcionalidade</option>
+          <option value="bug" data-i="opt_bug">🐛 Reportar problema</option>
+          <option value="other" data-i="opt_other">💬 Outro</option>
         </select>
       </div>
       <div class="field" style="margin-bottom:.65rem;">
         <label data-i="lbl_suggest_msg">Mensagem</label>
-        <textarea id="suggestMsg" rows="3" style="padding:9px 12px;border:1.5px solid var(--border2);border-radius:9px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--bg-input);outline:none;resize:vertical;width:100%;transition:border .15s;" placeholder="Descreve a tua ideia ou problema..."></textarea>
+        <textarea id="suggestMsg" rows="3" style="padding:9px 12px;border:1.5px solid var(--border2);border-radius:9px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--bg-input);outline:none;resize:vertical;width:100%;transition:border .15s;" placeholder="Descreve a tua ideia ou problema..." data-i-placeholder="ph_suggest_msg"></textarea>
       </div>
       <div class="field" style="margin-bottom:.75rem;">
         <label data-i="lbl_suggest_email">Email (opcional)</label>
