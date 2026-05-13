@@ -612,6 +612,7 @@ const T={
     suggestion_thanks:'Sugestão enviada — obrigado!',
     lbl_suggest_type:'Tipo',lbl_suggest_msg:'Mensagem',lbl_suggest_email:'Email (opcional)',
     btn_submit_suggest:'Enviar sugestão',
+    submit_error:'Erro ao enviar — tenta novamente',submitting:'A enviar...',
     opt_feature:'💡 Nova funcionalidade',opt_bug:'🐛 Reportar problema',opt_other:'💬 Outro',
     ph_suggest_msg:'Descreve a tua ideia ou problema...',
     dsc_max:'Máx:',dsc_rem:'Resta:',info_max_ext:' (máx ',
@@ -669,6 +670,7 @@ const T={
     suggestion_thanks:'Suggestion sent — thank you!',
     lbl_suggest_type:'Type',lbl_suggest_msg:'Message',lbl_suggest_email:'Email (optional)',
     btn_submit_suggest:'Send suggestion',
+    submit_error:'Submission error — please try again',submitting:'Submitting...',
     opt_feature:'💡 New feature',opt_bug:'🐛 Report an issue',opt_other:'💬 Other',
     ph_suggest_msg:'Describe your idea or issue...',
     dsc_max:'Max:',dsc_rem:'Left:',info_max_ext:' (max ',
@@ -726,6 +728,7 @@ const T={
     suggestion_thanks:'¡Sugerencia enviada — gracias!',
     lbl_suggest_type:'Tipo',lbl_suggest_msg:'Mensaje',lbl_suggest_email:'Email (opcional)',
     btn_submit_suggest:'Enviar sugerencia',
+    submit_error:'Error al enviar — inténtalo de nuevo',submitting:'Enviando...',
     opt_feature:'💡 Nueva funcionalidad',opt_bug:'🐛 Reportar problema',opt_other:'💬 Otro',
     ph_suggest_msg:'Describe tu idea o problema...',
     dsc_max:'Máx:',dsc_rem:'Resta:',info_max_ext:' (máx ',
@@ -1190,25 +1193,46 @@ function setRating(val) {
   }
 }
 
-function submitRating() {
+async function submitRating() {
   if (currentRating === 0) return;
   const comment = document.getElementById('ratingComment')?.value || '';
-  // INTEGRAÇÃO: aqui podes enviar para o teu backend, Formspree, etc.
-  // Exemplo com Formspree (substitui o endpoint):
-  // fetch('https://formspree.io/f/SEU_ID', {
-  //   method:'POST', headers:{'Content-Type':'application/json'},
-  //   body: JSON.stringify({ rating: currentRating, comment, lang })
-  // });
-  console.log('Rating:', currentRating, comment);
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'rating_submitted', { value: currentRating });
+  const btn = document.querySelector('.submit-rating-btn');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = T[lang].submitting;
+  try {
+    const r = await fetch('https://formspree.io/f/xpqbnvye', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        rating: currentRating, comment,
+        timestamp: new Date().toISOString(),
+        language: lang, userAgent: navigator.userAgent
+      })
+    });
+    if (!r.ok) throw new Error(r.status);
+    if (typeof gtag !== 'undefined') gtag('event', 'rating_submitted', { value: currentRating });
+    document.getElementById('ratingForm').style.display = 'none';
+    document.getElementById('ratingDone').style.display = 'flex';
+    setTimeout(() => {
+      closePopup('popupRating');
+      currentRating = 0;
+      document.querySelectorAll('.star-btn').forEach(s => s.classList.remove('active'));
+      document.getElementById('ratingComment').value = '';
+      document.getElementById('ratingForm').style.display = '';
+      document.getElementById('ratingDone').style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = T[lang].btn_submit_rating;
+    }, 1500);
+  } catch {
+    alert(T[lang].submit_error);
+    btn.disabled = false;
+    btn.textContent = originalText;
   }
-  document.getElementById('ratingForm').style.display = 'none';
-  document.getElementById('ratingDone').style.display = 'flex';
 }
 
 // ── SUGGESTIONS ──────────────────────────────────────────────────
-function submitSuggestion() {
+async function submitSuggestion() {
   const msg = document.getElementById('suggestMsg')?.value?.trim();
   if (!msg) {
     document.getElementById('suggestMsg').style.borderColor = '#dc2626';
@@ -1217,23 +1241,39 @@ function submitSuggestion() {
   }
   const type = document.getElementById('suggestType')?.value || 'other';
   const email = document.getElementById('suggestEmail')?.value || '';
-
-  // INTEGRAÇÃO: envia para o teu backend ou Formspree
-  // Opção mais fácil — Formspree (gratuito até 50 respostas/mês):
-  // 1. Vai a formspree.io, cria uma form, copia o ID
-  // 2. Descomenta e substitui SEU_FORM_ID:
-  // fetch('https://formspree.io/f/SEU_FORM_ID', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-  //   body: JSON.stringify({ type, message: msg, email, lang })
-  // }).then(r => { if (!r.ok) console.error('Erro ao enviar sugestão'); });
-
-  console.log('Sugestão:', { type, msg, email, lang });
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'suggestion_submitted', { type });
+  const btn = document.querySelector('.submit-suggest-btn');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = T[lang].submitting;
+  try {
+    const r = await fetch('https://formspree.io/f/mykovrbn', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        type, message: msg, email,
+        timestamp: new Date().toISOString(),
+        language: lang, userAgent: navigator.userAgent
+      })
+    });
+    if (!r.ok) throw new Error(r.status);
+    if (typeof gtag !== 'undefined') gtag('event', 'suggestion_submitted', { type });
+    document.getElementById('suggestionForm').style.display = 'none';
+    document.getElementById('suggestionDone').style.display = 'flex';
+    setTimeout(() => {
+      closePopup('popupSuggest');
+      document.getElementById('suggestMsg').value = '';
+      document.getElementById('suggestEmail').value = '';
+      document.getElementById('suggestType').selectedIndex = 0;
+      document.getElementById('suggestionForm').style.display = '';
+      document.getElementById('suggestionDone').style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = T[lang].btn_submit_suggest;
+    }, 1500);
+  } catch {
+    alert(T[lang].submit_error);
+    btn.disabled = false;
+    btn.textContent = originalText;
   }
-  document.getElementById('suggestionForm').style.display = 'none';
-  document.getElementById('suggestionDone').style.display = 'flex';
 }
 
 
