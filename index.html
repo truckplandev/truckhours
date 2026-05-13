@@ -120,7 +120,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 
 /* ── NOTICE ── */
 .notice{display:flex;gap:9px;align-items:flex-start;background:var(--amber-l);border-radius:9px;padding:10px 14px;margin-top:.9rem;font-size:12px;color:var(--amber);line-height:1.6;}
-[data-theme="dark"] .notice{color:#C49A3C;}
+[data-theme="dark"] .notice{color:#C49A3C;background:#1E1A12;border:1px solid #7A5C28;}
 .notice svg{flex-shrink:0;margin-top:1px;}
 .notice-info{background:var(--blue-l);color:var(--blue-d);}
 .notice-info svg{color:var(--blue);}
@@ -137,9 +137,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 .results{display:none;margin-top:1rem;}
 .results.show{display:block;}
 .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;}
-.metric{background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
-.metric-label{font-size:10px;font-weight:700;color:var(--text-4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;}
-.metric-val{font-size:18px;font-weight:600;color:var(--text-1);font-family:'DM Mono',monospace;white-space:nowrap;}
+.metric{background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;}
+.metric-label{font-size:10px;font-weight:700;color:var(--text-4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;min-height:26px;display:flex;align-items:center;}
+.metric-val{font-size:18px;font-weight:600;color:var(--text-1);font-family:'DM Mono',monospace;white-space:nowrap;margin-top:auto;}
 .metric-val.arrival{color:var(--blue);font-size:14px;font-family:'DM Sans',sans-serif;font-weight:600;}
 .metric.highlight{background:var(--blue-l);border-color:var(--blue-b);}
 .metric.highlight .metric-label{color:var(--blue);}
@@ -487,7 +487,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
     </div>
     <input type="hidden" id="reducedRests" value="3">
     <input type="hidden" id="extraTenHour" value="2">
-    <div class="notice">
+    <div class="notice notice-info">
       <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span data-i="notice_limits">Regulamento CE 561/2006: até 3 descansos reduzidos de 9h e 2 jornadas de 10h por semana. A compensação deve ser feita antes do fim da 3.ª semana seguinte.</span>
     </div>
