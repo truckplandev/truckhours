@@ -1,4 +1,4 @@
-# TruckPlan — Contexto do projeto
+# TruckHours — Contexto do projeto
 
 ## O que é
 Planeador de jornada para motoristas de camião profissionais. Single-file HTML/CSS/JS. Trilingue: PT/EN/ES (i18n via T[lang] + atributos data-i no DOM, mais data-i-placeholder).
