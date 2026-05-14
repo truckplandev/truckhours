@@ -10,6 +10,7 @@
 <meta name="description" content="Calcula pausas, descansos e jornada máxima de camião em segundos. Conforme CE 561/2006 e tacógrafo digital. Gratuito, sem registo.">
 <meta name="keywords" content="calcular pausas camião, tempo descanso camionista, tacógrafo CE 561/2006, planeador jornada camião, calculadora jornada motorista, calcular pausas camión, tiempo descanso camionero">
 <link rel="canonical" href="https://truckhours.com/">
+<script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/">
 <link rel="alternate" hreflang="es" href="https://truckhours.com/">
@@ -840,6 +841,12 @@ function getDayMins(){
   document.getElementById('driveStartTime').value=pad(n.getHours())+':'+pad(n.getMinutes());
   updateRestInfo();
   updateDriveInfo();
+  const VALID_LANGS=['pt','en','es'];
+  const savedLang=localStorage.getItem('truckhours.lang');
+  const navLang=(navigator.language||'').slice(0,2).toLowerCase();
+  setLang(VALID_LANGS.includes(savedLang)?savedLang:VALID_LANGS.includes(navLang)?navLang:'pt');
+  const savedDark=localStorage.getItem('truckhours.darkMode');
+  if(savedDark!==null?savedDark==='true':window.matchMedia('(prefers-color-scheme: dark)').matches)toggleDark();
 })();
 
 // ── DARK / LANG ─────────────────────────────────────────────────
@@ -848,9 +855,11 @@ function toggleDark(){
   document.documentElement.setAttribute('data-theme',darkMode?'dark':'light');
   document.getElementById('iconSun').style.display=darkMode?'block':'none';
   document.getElementById('iconMoon').style.display=darkMode?'none':'block';
+  localStorage.setItem('truckhours.darkMode',darkMode);
 }
 function setLang(l){
   lang=l;
+  localStorage.setItem('truckhours.lang',l);
   ['PT','EN','ES'].forEach(x=>document.getElementById('btn'+x).className='pill-btn'+(l===x.toLowerCase()?' active':''));
   document.querySelectorAll('[data-i]').forEach(el=>{
     const k=el.getAttribute('data-i');
