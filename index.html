@@ -179,6 +179,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 .field label{font-size:12px;font-weight:600;color:var(--text-3);}
 .field input,.field select{padding:9px 12px;border:1.5px solid var(--border2);border-radius:9px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text-1);background:var(--bg-input);outline:none;transition:border .15s,box-shadow .15s;width:100%;}
 .field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.13);}
+.input-error{border-color:#EF4444!important;box-shadow:0 0 0 3px rgba(239,68,68,.15)!important;}
+.field-error{font-size:11px;color:#EF4444;margin-top:3px;}
 
 /* ── INFO BOX ── */
 .info-box{background:var(--blue-l);border:1px solid var(--blue-b);border-radius:9px;padding:10px 14px;margin-top:10px;font-size:13px;color:var(--blue-d);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
@@ -691,7 +693,17 @@ const T={
     lbl_pause_single:'Pausa única (min)',
     note_legal_breaks:'Mínimo legal: 45 min (CE 561/2006). Pode ser dividida em 15+30 min (1.ª pausa mín 15, 2.ª mín 30, nessa ordem).',
     btn_customize_breaks:'Personalizar pausas',
-    cst_avail:'disponíveis',locale:'pt-PT'
+    cst_avail:'disponíveis',locale:'pt-PT',
+    err_km:'Distância deve estar entre 1 e 5000 km',
+    err_speed:'Velocidade deve estar entre 30 e 120 km/h',
+    err_single_break:'Pausa única deve estar entre 60 e 120 min',
+    err_short_break:'1.ª pausa deve estar entre 15 e 60 min',
+    err_long_break:'2.ª pausa deve estar entre 30 e 90 min',
+    err_drive_time_empty:'Indica a hora de início do bloco',
+    err_drive_time_range:'Hora fora do intervalo — máx 24h no passado ou futuro',
+    err_rest_time_empty:'Indica a hora de início do descanso',
+    err_rest_time_range:'Hora fora do intervalo (±24h)',
+    err_rest_done_invalid:'Tempo de descanso deve estar entre 0 e 12h'
   },
   en:{
     card_status_title:'Current driver status',
@@ -749,7 +761,17 @@ const T={
     lbl_pause_single:'Break (min)',
     note_legal_breaks:'Legal minimum: 45 min (EC 561/2006). May be split into 15+30 min (first break ≥15 min, second ≥30 min, in that order).',
     btn_customize_breaks:'Customize breaks',
-    cst_avail:'available',locale:'en-GB'
+    cst_avail:'available',locale:'en-GB',
+    err_km:'Distance must be between 1 and 5000 km',
+    err_speed:'Speed must be between 30 and 120 km/h',
+    err_single_break:'Single break must be between 60 and 120 min',
+    err_short_break:'1st break must be between 15 and 60 min',
+    err_long_break:'2nd break must be between 30 and 90 min',
+    err_drive_time_empty:'Enter the block start time',
+    err_drive_time_range:'Time out of range — max 24h in the past or future',
+    err_rest_time_empty:'Enter the rest start time',
+    err_rest_time_range:'Time out of range (±24h)',
+    err_rest_done_invalid:'Rest time must be between 0 and 12h'
   },
   es:{
     card_status_title:'Situación actual del conductor',
@@ -807,7 +829,17 @@ const T={
     lbl_pause_single:'Pausa única (min)',
     note_legal_breaks:'Mínimo legal: 45 min (CE 561/2006). Puede dividirse en 15+30 min (1.ª pausa mín 15, 2.ª mín 30, en ese orden).',
     btn_customize_breaks:'Personalizar pausas',
-    cst_avail:'disponibles',locale:'es-ES'
+    cst_avail:'disponibles',locale:'es-ES',
+    err_km:'La distancia debe estar entre 1 y 5000 km',
+    err_speed:'La velocidad debe estar entre 30 y 120 km/h',
+    err_single_break:'La pausa única debe estar entre 60 y 120 min',
+    err_short_break:'La 1.ª pausa debe estar entre 15 y 60 min',
+    err_long_break:'La 2.ª pausa debe estar entre 30 y 90 min',
+    err_drive_time_empty:'Indica la hora de inicio del bloque',
+    err_drive_time_range:'Hora fuera de rango — máx 24h en el pasado o futuro',
+    err_rest_time_empty:'Indica la hora de inicio del descanso',
+    err_rest_time_range:'Hora fuera de rango (±24h)',
+    err_rest_done_invalid:'El tiempo de descanso debe estar entre 0 y 12h'
   }
 };
 
@@ -850,6 +882,73 @@ function getDayMins(){
   const savedDark=localStorage.getItem('truckhours.darkMode');
   if(savedDark!==null?savedDark==='true':window.matchMedia('(prefers-color-scheme: dark)').matches)toggleDark();
 })();
+
+// ── VALIDATION ──────────────────────────────────────────────────
+function validateInputs(){
+  const t=T[lang];
+  const errors=[];
+  const status=document.querySelector('.status-btn.active').dataset.val;
+
+  function chk(id,test,key){
+    const el=document.getElementById(id);
+    if(!test(parseFloat(el.value)))errors.push({el,msg:t[key]});
+  }
+
+  chk('totalKm',  v=>v>0&&v<=5000,  'err_km');
+  chk('avgSpeed', v=>v>=30&&v<=120, 'err_speed');
+
+  if(customBreaksActive){
+    chk('shortBreak', v=>v>=15&&v<=60, 'err_short_break');
+    chk('longBreak',  v=>v>=30&&v<=90, 'err_long_break');
+  } else {
+    chk('singleBreak', v=>v>=60&&v<=120, 'err_single_break');
+  }
+
+  if(status==='driving' && driveMode==='pick'){
+    const d=document.getElementById('driveStartDate').value;
+    const ti=document.getElementById('driveStartTime').value;
+    if(!d||!ti){
+      errors.push({el:document.getElementById('driveStartTime'),msg:t.err_drive_time_empty});
+    } else if(Math.abs(Date.now()-new Date(d+'T'+ti).getTime())>86400000){
+      errors.push({el:document.getElementById('driveStartTime'),msg:t.err_drive_time_range});
+    }
+  }
+
+  if(status==='resting'){
+    if(restMode==='start'){
+      const d=document.getElementById('restStartDate').value;
+      const ti=document.getElementById('restStartTime').value;
+      if(!d||!ti){
+        errors.push({el:document.getElementById('restStartTime'),msg:t.err_rest_time_empty});
+      } else if(Math.abs(Date.now()-new Date(d+'T'+ti).getTime())>86400000){
+        errors.push({el:document.getElementById('restStartTime'),msg:t.err_rest_time_range});
+      }
+    } else {
+      const dtVal=document.getElementById('restDoneTime').value||'00:00';
+      const [dH,dM]=dtVal.split(':').map(Number);
+      const totalMins=dH*60+dM;
+      if(totalMins<=0||totalMins>720){
+        errors.push({el:document.getElementById('restDoneTime'),msg:t.err_rest_done_invalid});
+      }
+    }
+  }
+
+  return {valid:errors.length===0,errors};
+}
+
+function showFieldErrors(errors){
+  errors.forEach(({el,msg})=>{
+    el.classList.add('input-error');
+    const prev=el.parentElement.querySelector('.field-error');
+    if(prev)prev.remove();
+    const div=document.createElement('div');
+    div.className='field-error';
+    div.textContent=msg;
+    el.parentElement.appendChild(div);
+    setTimeout(()=>{el.classList.remove('input-error');div.remove();},3500);
+  });
+  errors[0].el.focus();
+}
 
 // ── DARK / LANG ─────────────────────────────────────────────────
 function toggleDark(){
@@ -1021,6 +1120,8 @@ function resetForm(){
 // não apenas os do bloco atual. O ponto de partida "now" é sempre
 // o momento atual (fim do bloco em curso), e dayDriven inclui TODO o dia.
 function calcAndShow(){
+  const v=validateInputs();
+  if(!v.valid){showFieldErrors(v.errors);return;}
   const t=T[lang];
   const status=document.querySelector('.status-btn.active').dataset.val;
   const totalKm=parseFloat(document.getElementById('totalKm').value)||850;
