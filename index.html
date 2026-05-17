@@ -573,7 +573,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
       <span data-i="card_trip_title">Parâmetros da viagem</span>
     </div>
     <div class="form-2" style="margin-bottom:1rem;">
-      <div class="field"><label data-i="lbl_km">Distância total (km)</label><input type="number" id="totalKm" min="1" value="850"></div>
+      <div class="field"><label data-i="lbl_km">Distância total (km)</label><input type="number" id="totalKm" min="1"></div>
       <div class="field"><label data-i="lbl_speed">Velocidade média (km/h)</label><input type="number" id="avgSpeed" min="40" max="90" value="80"></div>
     </div>
     <div class="divider"></div>
@@ -1116,6 +1116,7 @@ function updateRestInfo(){
 }
 
 function resetForm(){
+  document.getElementById('totalKm').value='';
   document.getElementById('results').className='results';
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -1129,7 +1130,7 @@ function calcAndShow(){
   if(!v.valid){showFieldErrors(v.errors);return;}
   const t=T[lang];
   const status=document.querySelector('.status-btn.active').dataset.val;
-  const totalKm=parseFloat(document.getElementById('totalKm').value)||850;
+  const totalKm=parseFloat(document.getElementById('totalKm').value);
   const speed=parseFloat(document.getElementById('avgSpeed').value)||80;
   let sb, lb;
   if(customBreaksActive){
