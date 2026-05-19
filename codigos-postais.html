@@ -1,312 +1,451 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Códigos Postais — França, Espanha &amp; Alemanha</title>
+<script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[data-theme="light"] {
+  --bg-page: #F0F4FA; --bg-card: #FFFFFF; --bg-card2: #F1F5F9; --bg-input: #FFFFFF;
+  --border: #E2E8F0; --border2: #CBD5E1; --text-1: #1E293B; --text-2: #334155;
+  --text-3: #64748B; --text-4: #94A3B8;
+  --blue: #1A56DB; --blue-l: #EBF2FF; --blue-d: #1039A8; --blue-b: #BFDBFE;
+  --green: #059669; --green-l: #D1FAE5; --amber: #D97706; --amber-l: #FEF3C7;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+}
+[data-theme="dark"] {
+  --bg-page: #0A0F1E; --bg-card: #131C2E; --bg-card2: #1A2540; --bg-input: #131C2E;
+  --border: #1E2D45; --border2: #2A3F5E; --text-1: #F0F6FF; --text-2: #C8D8F0;
+  --text-3: #7A9ABE; --text-4: #4A6A8E;
+  --blue: #4B8EF7; --blue-l: #0F2040; --blue-d: #93C5FD; --blue-b: #1D3A6E;
+  --green: #10B981; --green-l: #052E1C; --amber: #F59E0B; --amber-l: #2A1800;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+}
 
-  :root {
-    --bg: #f5f3ef;
-    --surface: #ffffff;
-    --border: #e0dbd2;
-    --text: #1a1816;
-    --muted: #7a746c;
-    --accent-fr: #2d6a4f;
-    --accent-fr-light: #d8f3dc;
-    --accent-fr-mid: #52b788;
-    --accent-es: #8b1a1a;
-    --accent-es-light: #fde8e8;
-    --accent-es-mid: #c0392b;
-    --accent-de: #1a3a5c;
-    --accent-de-light: #ddeeff;
-    --accent-de-mid: #2e6da4;
-    --danger: #c0392b;
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-    --radius: 12px;
-  }
+:root {
+  --accent-fr: #2d6a4f;
+  --accent-fr-light: #d8f3dc;
+  --accent-fr-mid: #52b788;
+  --accent-es: #8b1a1a;
+  --accent-es-light: #fde8e8;
+  --accent-es-mid: #c0392b;
+  --accent-de: #1a3a5c;
+  --accent-de-light: #ddeeff;
+  --accent-de-mid: #2e6da4;
+  --radius: 12px;
+}
 
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  header {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-1);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background .2s, color .2s;
+}
 
-  .header-title { flex: 1; min-width: 180px; }
-  .header-title h1 {
-    font-family: var(--mono);
-    font-size: clamp(1rem, 2.5vw, 1.35rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-  }
-  .header-title p {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-top: 3px;
-    font-weight: 300;
-  }
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--blue);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(26,86,219,.35);
+}
+.logo em { color: var(--blue); font-style: normal; }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+.pill-group { display: flex; border: 1px solid var(--border2); border-radius: 7px; overflow: hidden; }
+.pill-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-3);
+  transition: all .15s;
+}
+.pill-btn.active { background: var(--blue); color: white; }
+.dark-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.dark-btn:hover { background: var(--bg-card2); }
 
-  .controls { display: flex; flex-direction: column; gap: 10px; }
+/* ── SUBHEADER (tabs + search + pills) ── */
+.subheader {
+  padding: 0.65rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem 1.5rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.sh-section {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.sh-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 6px;
+}
+.sh-section-aux { opacity: 0.85; }
 
-  .country-tabs {
-    display: flex;
-    gap: 6px;
-  }
+.country-tabs {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
 
-  .tab {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: 1.5px solid var(--border);
-    background: var(--bg);
-    cursor: pointer;
-    transition: all 0.15s;
-    color: var(--muted);
-    font-weight: 400;
-  }
+.tab {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-page);
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--text-3);
+  font-weight: 400;
+}
+.tab.active-fr {
+  background: var(--accent-fr-light);
+  border-color: var(--accent-fr-mid);
+  color: var(--accent-fr);
+  font-weight: 500;
+}
+.tab.active-es {
+  background: var(--accent-es-light);
+  border-color: var(--accent-es-mid);
+  color: var(--accent-es);
+  font-weight: 500;
+}
+.tab.active-de {
+  background: var(--accent-de-light);
+  border-color: var(--accent-de-mid);
+  color: var(--accent-de);
+  font-weight: 500;
+}
 
-  .tab.active-fr {
-    background: var(--accent-fr-light);
-    border-color: var(--accent-fr-mid);
-    color: var(--accent-fr);
-    font-weight: 500;
-  }
-  .tab.active-es {
-    background: var(--accent-es-light);
-    border-color: var(--accent-es-mid);
-    color: var(--accent-es);
-    font-weight: 500;
-  }
-  .tab.active-de {
-    background: var(--accent-de-light);
-    border-color: var(--accent-de-mid);
-    color: var(--accent-de);
-    font-weight: 500;
-  }
+.search-area { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 
-  .search-area { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.input-wrap { position: relative; }
 
-  .input-wrap { position: relative; }
+.prefix-label {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  pointer-events: none;
+  user-select: none;
+}
 
-  .prefix-label {
-    position: absolute;
-    left: 12px; top: 50%;
-    transform: translateY(-50%);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--muted);
-    pointer-events: none;
-    user-select: none;
-    transition: color 0.2s;
-  }
+input[type="text"] {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 10px 14px 10px 46px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  color: var(--text-1);
+  width: 175px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  letter-spacing: 0.05em;
+}
+input[type="text"]:focus {
+  background: var(--bg-card);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.13);
+}
 
-  input[type="text"] {
-    font-family: var(--mono);
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 10px 14px 10px 46px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--bg);
-    color: var(--text);
-    width: 175px;
-    outline: none;
-    transition: border-color 0.15s, background 0.15s;
-    letter-spacing: 0.05em;
-  }
-  input[type="text"]:focus { background: var(--surface); }
-  input.fr:focus { border-color: var(--accent-fr); }
-  input.es:focus { border-color: var(--accent-es); }
-  input.de:focus { border-color: var(--accent-de); }
+#searchBtn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+#searchBtn:hover { opacity: 0.88; }
+#searchBtn:active { transform: scale(0.97); }
 
-  #searchBtn {
-    font-family: var(--sans);
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 10px 20px;
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
-    white-space: nowrap;
-  }
-  #searchBtn:hover { opacity: 0.88; }
-  #searchBtn:active { transform: scale(0.97); }
-  #searchBtn.fr { background: var(--accent-fr); }
-  #searchBtn.es { background: var(--accent-es); }
-  #searchBtn.de { background: var(--accent-de); }
+.hint-pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.hint-label { font-size: 0.7rem; color: var(--text-3); font-weight: 300; }
 
-  .hint-pills { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
-  .hint-label { font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+.pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+  color: var(--text-1);
+}
+.pill.fr:hover { background: var(--accent-fr-light); border-color: var(--accent-fr-mid); color: var(--accent-fr); }
+.pill.es:hover { background: var(--accent-es-light); border-color: var(--accent-es-mid); color: var(--accent-es); }
+.pill.de:hover { background: var(--accent-de-light); border-color: var(--accent-de-mid); color: var(--accent-de); }
 
-  .pill {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    padding: 3px 9px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.1s, border-color 0.1s;
-    color: var(--text);
-  }
-  .pill.fr:hover { background: var(--accent-fr-light); border-color: var(--accent-fr-mid); color: var(--accent-fr); }
-  .pill.es:hover { background: var(--accent-es-light); border-color: var(--accent-es-mid); color: var(--accent-es); }
-  .pill.de:hover { background: var(--accent-de-light); border-color: var(--accent-de-mid); color: var(--accent-de); }
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 2rem 1rem;
+  gap: 0.75rem;
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 0.75rem 2rem 1rem;
-    gap: 0.75rem;
-    max-width: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
+#statusBar { min-height: 32px; display: flex; align-items: center; }
+.status-msg { font-size: 0.78rem; color: var(--text-3); font-weight: 300; }
+.status-msg.error { color: #EF4444; }
 
-  #statusBar { min-height: 32px; display: flex; align-items: center; }
-  .status-msg { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
-  .status-msg.error { color: var(--danger); }
+#infoCard {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
-  #infoCard {
-    display: none;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px 16px;
-    flex-direction: row;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
+.info-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+}
+.info-badge.fr { background: var(--accent-fr-light); color: var(--accent-fr); }
+.info-badge.es { background: var(--accent-es-light); color: var(--accent-es); }
+.info-badge.de { background: var(--accent-de-light); color: var(--accent-de); }
 
-  .info-badge {
-    font-family: var(--mono);
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding: 7px 14px;
-    border-radius: 8px;
-    letter-spacing: 0.05em;
-  }
-  .info-badge.fr { background: var(--accent-fr-light); color: var(--accent-fr); }
-  .info-badge.es { background: var(--accent-es-light); color: var(--accent-es); }
-  .info-badge.de { background: var(--accent-de-light); color: var(--accent-de); }
+.info-text { flex: 1; }
+.info-text strong { font-size: 0.92rem; font-weight: 500; }
+.info-text span { font-size: 0.78rem; color: var(--text-3); display: block; margin-top: 2px; font-weight: 300; }
 
-  .info-text { flex: 1; }
-  .info-text strong { font-size: 0.92rem; font-weight: 500; }
-  .info-text span { font-size: 0.78rem; color: var(--muted); display: block; margin-top: 2px; font-weight: 300; }
+.communes-list { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+.commune-tag {
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+}
 
-  .communes-list { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
-  .commune-tag {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-  }
+#mapWrap {
+  flex: 1;
+  min-height: 300px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg-card);
+  position: relative;
+}
+#map { width: 100%; height: 100%; }
 
-  #mapWrap {
-    flex: 1;
-    height: calc(100vh - 220px);
-    min-height: 400px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    background: var(--surface);
-    position: relative;
-  }
-  #map { width: 100%; height: 100%; }
+.loading-map {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-card); z-index: 500;
+  flex-direction: column; gap: 10px;
+}
+.loading-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-fr);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.loading-map p { font-size: 0.76rem; color: var(--text-4); font-weight: 300; }
 
-  .loading-map {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--surface); z-index: 500;
-    flex-direction: column; gap: 10px;
-  }
-  .loading-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent-fr);
-    animation: pulse 1.2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-  }
-  .loading-map p { font-size: 0.76rem; color: var(--muted); font-weight: 300; }
+.plz-label,
+.leaflet-tooltip.plz-label {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--text-1) !important;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 600;
+  pointer-events: none;
+}
+.plz-label::before { display: none; }
 
-  .plz-label {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    color: #222;
-    font-family: monospace;
-    font-size: 10px;
-    font-weight: 600;
-    pointer-events: none;
-  }
-  .plz-label::before { display: none; }
+/* ── FOOTER ── */
+.page-footer {
+  text-align: center;
+  padding: 0.55rem 1rem;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-weight: 400;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+.page-footer .footer-credits {
+  margin-top: 3px;
+  font-size: 0.65rem;
+  color: var(--text-4);
+}
+.page-footer a { color: var(--blue); text-decoration: none; }
 
-  footer {
-    text-align: center;
-    padding: 0.75rem;
-    font-size: 0.7rem;
-    color: var(--muted);
-    font-weight: 300;
-    border-top: 1px solid var(--border);
-  }
-  footer a { color: var(--accent-fr); text-decoration: none; }
+/* ── LEAFLET DARK MODE ── */
+[data-theme="dark"] .leaflet-tile-pane {
+  filter: brightness(1.35) saturate(0.85);
+}
+[data-theme="dark"] .leaflet-popup-content-wrapper,
+[data-theme="dark"] .leaflet-popup-tip {
+  background: var(--bg-card);
+  color: var(--text-1);
+  box-shadow: var(--shadow);
+}
+[data-theme="dark"] .leaflet-popup-content-wrapper a {
+  color: var(--blue);
+}
+[data-theme="dark"] .leaflet-control-zoom a {
+  background: var(--bg-card);
+  color: var(--text-1);
+  border-color: var(--border2);
+}
+[data-theme="dark"] .leaflet-control-zoom a:hover {
+  background: var(--bg-card2);
+}
+[data-theme="dark"] .leaflet-bar {
+  border-color: var(--border2);
+}
 
-  @media (max-width: 600px) {
-    header { padding: 1rem; gap: 1rem; }
-    main { padding: 0.75rem 1rem; }
-    input[type="text"] { width: 140px; }
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .topbar { padding: 0 1rem; }
+  .subheader { padding: 0.5rem 1rem; gap: 0.5rem 0.75rem; }
+  main { padding: 0.75rem 1rem; }
+  input[type="text"] { width: 130px; }
+}
+@media (max-width: 480px) {
+  /* pills são atalhos, não funcionalidade essencial */
+  .hint-pills { display: none; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-title">
-    <h1>Códigos Postais</h1>
-    <p>França, Espanha &amp; Alemanha — localiza qualquer código no mapa</p>
+<div class="topbar">
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    Truck<em>Hours</em>
+  </a>
+  <div class="topbar-right">
+    <div class="pill-group">
+      <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
+      <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+    </div>
+    <button class="dark-btn" id="darkToggle" onclick="toggleDark()" title="Modo escuro">
+      <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="iconMoon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
   </div>
-  <div class="controls">
+</div>
+
+<div class="subheader">
+  <div class="sh-section">
+    <span class="sh-label">País</span>
     <div class="country-tabs">
       <button class="tab" id="tabES" onclick="switchCountry('es')">🇪🇸 Espanha</button>
       <button class="tab active-fr" id="tabFR" onclick="switchCountry('fr')">🇫🇷 França</button>
       <button class="tab" id="tabDE" onclick="switchCountry('de')">🇩🇪 Alemanha</button>
     </div>
+  </div>
+  <div class="sh-section">
+    <span class="sh-label">Código postal</span>
     <div class="search-area">
       <div class="input-wrap">
         <span class="prefix-label" id="prefixLabel">FR</span>
-        <input type="text" id="cpInput" class="fr" placeholder="75, 69, 75001…" maxlength="5" autocomplete="off" inputmode="numeric"/>
+        <input type="text" id="cpInput" placeholder="75, 69, 75001…" maxlength="5" autocomplete="off" inputmode="numeric"/>
       </div>
-      <button id="searchBtn" class="fr" onclick="searchPostal()">Localizar</button>
+      <button id="searchBtn" onclick="searchPostal()">Localizar</button>
     </div>
+  </div>
+  <div class="sh-section sh-section-aux">
+    <span class="sh-label">Exemplos</span>
     <div class="hint-pills" id="hintPills">
-      <span class="hint-label">Ex:</span>
       <span class="pill fr" onclick="searchQuick('75')">75 Paris</span>
       <span class="pill fr" onclick="searchQuick('69')">69 Lyon</span>
       <span class="pill fr" onclick="searchQuick('13')">13 Marseille</span>
@@ -314,7 +453,7 @@
       <span class="pill fr" onclick="searchQuick('77')">77 S-et-Marne</span>
     </div>
   </div>
-</header>
+</div>
 
 <main>
   <div id="statusBar">
@@ -337,17 +476,21 @@
   </div>
 </main>
 
-<footer>
-  Dados FR: <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
-  Dados ES: <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
-  Dados DE 2-digit: <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
+<footer class="page-footer">
+  TruckHours · CE 561/2006 · Apenas para planeamento — confirme sempre com o tacógrafo digital
+  <div class="footer-credits">
+    Dados FR: <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
+    Dados ES: <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
+    Dados DE: <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
+  </div>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-let map, currentLayer = null, currentMarker = null, baseLayer = null;
+let map, currentLayer = null, currentMarker = null, baseLayer = null, tileLayer = null;
 let country = 'fr';
 let baseLayerLoading = false;
+let darkMode = document.documentElement.getAttribute('data-theme') === 'dark';
 
 const VIEWS = {
   fr: { center: [46.6, 2.3], zoom: 6 },
@@ -395,11 +538,12 @@ const ES_PROVINCES = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  // sync dark mode icons with initial state
+  document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = darkMode ? 'none' : 'block';
+
   map = L.map('map', { center: VIEWS.fr.center, zoom: VIEWS.fr.zoom, zoomControl: true });
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd', maxZoom: 19
-  }).addTo(map);
+  applyMapTheme();
   document.getElementById('loadingMap').style.display = 'none';
   loadBaseLayer('fr');
 });
@@ -407,6 +551,34 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('cpInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') searchPostal();
 });
+
+function toggleDark() {
+  darkMode = !darkMode;
+  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = darkMode ? 'none' : 'block';
+  localStorage.setItem('truckhours.darkMode', darkMode);
+  applyMapTheme();
+}
+
+function applyMapTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const url = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+  if (tileLayer) map.removeLayer(tileLayer);
+  tileLayer = L.tileLayer(url, {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 19
+  }).addTo(map);
+}
+
+function setLang(l) {
+  // i18n ligado na 2.3
+  document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
+  document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
+  document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+}
 
 function switchCountry(c) {
   country = c;
@@ -418,18 +590,13 @@ function switchCountry(c) {
 
   // input styling
   const inp = document.getElementById('cpInput');
-  inp.className = c;
   inp.placeholder = c === 'fr' ? '75, 69, 75001…' : c === 'es' ? '28, 08, 28001…' : '86, 10115…';
-  inp.maxLength = c === 'de' ? 5 : 5;
+  inp.maxLength = 5;
   document.getElementById('prefixLabel').textContent = c.toUpperCase();
-
-  // button
-  const btn = document.getElementById('searchBtn');
-  btn.className = c;
 
   // pills
   const pillsDiv = document.getElementById('hintPills');
-  pillsDiv.innerHTML = '<span class="hint-label">Ex:</span>';
+  pillsDiv.innerHTML = '';
   PILLS[c].forEach(p => {
     const span = document.createElement('span');
     span.className = `pill ${c}`;
@@ -613,7 +780,6 @@ async function searchESProvince(prov) {
   let found = null;
 
   if (esData) {
-    // Usar coordenadas conhecidas de cada província para encontrar a região certa
     const provCoords = {
       '01':[-2.67,42.85],'02':[-1.85,39.15],'03':[-0.68,38.35],'04':[-2.46,37.15],
       '05':[-4.70,40.65],'06':[-6.17,38.72],'07':[2.90,39.60],'08':[2.10,41.60],
@@ -632,7 +798,6 @@ async function searchESProvince(prov) {
 
     const [lon, lat] = provCoords[prov] || [0, 0];
 
-    // Encontrar a feature mais próxima
     let minDist = Infinity;
     for (const feat of esData.features) {
       try {
@@ -644,7 +809,6 @@ async function searchESProvince(prov) {
       } catch(e) {}
     }
 
-    // Se a distância for muito grande (ex: Canárias), não pintar região errada
     if (minDist > 8) found = null;
   }
 
@@ -656,12 +820,26 @@ async function searchESProvince(prov) {
     const b = L.geoJSON(found).getBounds();
     const clat = (b.getSouth() + b.getNorth()) / 2;
     const clon = (b.getWest() + b.getEast()) / 2;
-    currentMarker = createMarker([clat, clon], 'es')  // corrigido: lat,lon
+    currentMarker = createMarker([clat, clon], 'es')
       .addTo(map).bindPopup(`<b>${prov}</b> — ${provName}`);
 
     showInfo(prov, `Província ${prov} — ${provName}`, `Região: ${found.properties.name || ''}`, [], 'es');
   } else {
-    // Canárias ou território sem polígono — mostrar só o pin na posição correta
+    const provCoords = {
+      '01':[-2.67,42.85],'02':[-1.85,39.15],'03':[-0.68,38.35],'04':[-2.46,37.15],
+      '05':[-4.70,40.65],'06':[-6.17,38.72],'07':[2.90,39.60],'08':[2.10,41.60],
+      '09':[-3.70,42.35],'10':[-6.08,39.85],'11':[-5.85,36.50],'12':[-0.07,40.00],
+      '13':[-3.90,38.98],'14':[-4.77,37.88],'15':[-8.40,43.00],'16':[-2.10,40.05],
+      '17':[2.82,41.98],'18':[-3.60,37.18],'19':[-2.85,40.72],'20':[-2.10,43.10],
+      '21':[-6.95,37.52],'22':[-0.08,42.08],'23':[-3.78,37.78],'24':[-5.57,42.60],
+      '25':[1.10,41.88],'26':[-2.45,42.28],'27':[-7.55,43.00],'28':[-3.70,40.42],
+      '29':[-4.57,36.72],'30':[-1.13,37.98],'31':[-1.65,42.82],'32':[-7.87,42.35],
+      '33':[-5.85,43.35],'34':[-4.53,42.85],'35':[-15.42,28.12],'36':[-8.65,42.45],
+      '37':[-5.67,40.97],'38':[-16.25,28.30],'39':[-4.03,43.18],'40':[-4.12,41.07],
+      '41':[-5.97,37.38],'42':[-2.47,41.77],'43':[1.25,41.12],'44':[-1.10,40.35],
+      '45':[-4.02,39.87],'46':[-0.38,39.47],'47':[-4.72,41.38],'48':[-2.93,43.25],
+      '49':[-5.75,41.50],'50':[-1.00,41.65],'51':[-5.35,35.88],'52':[-2.93,35.28]
+    };
     const [lon, lat] = provCoords[prov] || [0, 0];
     currentMarker = createMarker([lat, lon], 'es')
       .addTo(map).bindPopup(`<b>${prov}</b> — ${provName}`);
@@ -673,7 +851,6 @@ async function searchESPostal(code) {
   const prov = code.slice(0, 2);
   const provName = ES_PROVINCES[prov] || '';
 
-  // Search Nominatim for the postal code in Spain
   const url = `https://nominatim.openstreetmap.org/search?postalcode=${code}&countrycodes=es&format=geojson&limit=5&polygon_geojson=1`;
   const res = await fetch(url, { headers: { 'Accept-Language': 'pt', 'User-Agent': 'PostalCodeFinder/1.0' } });
   if (!res.ok) throw new Error('Erro ao contactar Nominatim.');
@@ -683,7 +860,6 @@ async function searchESPostal(code) {
 
   const names = [...new Set(data.features.map(f => f.properties.display_name?.split(',')[0]).filter(Boolean))];
 
-  // Draw polygons where available
   const validPolys = data.features.filter(f => f.geometry && ['Polygon','MultiPolygon'].includes(f.geometry.type));
 
   if (validPolys.length) {
@@ -702,7 +878,6 @@ async function searchESPostal(code) {
     showInfo(code, title, provName ? `Província: ${provName} (${prov})` : `CP ${code}`, names.length > 1 ? names : [], 'es');
 
   } else {
-    // Sem polígono — usar coordenadas para encontrar a região na camada base
     const bb = data.features[0].bbox;
     const lat = bb ? (bb[1] + bb[3]) / 2 : parseFloat(data.features[0].properties.lat);
     const lon = bb ? (bb[0] + bb[2]) / 2 : parseFloat(data.features[0].properties.lon);
@@ -710,7 +885,6 @@ async function searchESPostal(code) {
     const esData = baseGeoData['es'];
     let found = null;
     if (esData) {
-      // Encontrar a feature mais próxima pelo centro do bounding box
       let minDist = Infinity;
       for (const feat of esData.features) {
         try {
