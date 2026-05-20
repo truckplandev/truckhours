@@ -1274,7 +1274,7 @@ function calcAndShow(){
       _events.push({type:'drive',label:t.ev_drive,detail:segKm+' km · '+fmtD(canDrive),start:new Date(_now),end:addMin(_now,canDrive),dur:canDrive});
       _now=addMin(_now,canDrive);
       _day+=canDrive;_block+=canDrive;_remain-=canDrive;
-      if(_block>=BLOCK&&_remain>0){
+      if(_block>=BLOCK&&_remain>0&&_day<dayMax){
         const bm=sb+lb;
         _events.push({type:'pause',label:t.ev_pause+' '+pauseLabel+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
         _now=addMin(_now,bm);_block=0;
