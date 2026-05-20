@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Códigos Postais — França, Espanha &amp; Alemanha</title>
+<title data-i="page_title">Códigos Postais — França, Espanha &amp; Alemanha</title>
 <script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -417,7 +417,7 @@ main {
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
     </div>
-    <button class="dark-btn" id="darkToggle" onclick="toggleDark()" title="Modo escuro">
+    <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <svg id="iconMoon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
@@ -426,25 +426,25 @@ main {
 
 <div class="subheader">
   <div class="sh-section">
-    <span class="sh-label">País</span>
+    <span class="sh-label" data-i="lbl_country">País</span>
     <div class="country-tabs">
-      <button class="tab" id="tabES" onclick="switchCountry('es')">🇪🇸 Espanha</button>
-      <button class="tab active-fr" id="tabFR" onclick="switchCountry('fr')">🇫🇷 França</button>
-      <button class="tab" id="tabDE" onclick="switchCountry('de')">🇩🇪 Alemanha</button>
+      <button class="tab" id="tabES" onclick="switchCountry('es')" data-i="tab_es">🇪🇸 Espanha</button>
+      <button class="tab active-fr" id="tabFR" onclick="switchCountry('fr')" data-i="tab_fr">🇫🇷 França</button>
+      <button class="tab" id="tabDE" onclick="switchCountry('de')" data-i="tab_de">🇩🇪 Alemanha</button>
     </div>
   </div>
   <div class="sh-section">
-    <span class="sh-label">Código postal</span>
+    <span class="sh-label" data-i="lbl_postal_code">Código postal</span>
     <div class="search-area">
       <div class="input-wrap">
         <span class="prefix-label" id="prefixLabel">FR</span>
         <input type="text" id="cpInput" placeholder="75, 69, 75001…" maxlength="5" autocomplete="off" inputmode="numeric"/>
       </div>
-      <button id="searchBtn" onclick="searchPostal()">Localizar</button>
+      <button id="searchBtn" onclick="searchPostal()" data-i="btn_search">Localizar</button>
     </div>
   </div>
   <div class="sh-section sh-section-aux">
-    <span class="sh-label">Exemplos</span>
+    <span class="sh-label" data-i="lbl_examples">Exemplos</span>
     <div class="hint-pills" id="hintPills">
       <span class="pill fr" onclick="searchQuick('75')">75 Paris</span>
       <span class="pill fr" onclick="searchQuick('69')">69 Lyon</span>
@@ -457,7 +457,7 @@ main {
 
 <main>
   <div id="statusBar">
-    <span class="status-msg" id="statusMsg">Escolhe o país e introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).</span>
+    <span class="status-msg" id="statusMsg" data-i="status_initial">Escolhe o país e introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).</span>
   </div>
   <div id="infoCard">
     <div class="info-badge fr" id="infoBadge"></div>
@@ -470,18 +470,18 @@ main {
   <div id="mapWrap">
     <div class="loading-map" id="loadingMap">
       <div class="loading-dot"></div>
-      <p>A carregar mapa…</p>
+      <p data-i="loading_map_text">A carregar mapa…</p>
     </div>
     <div id="map"></div>
   </div>
 </main>
 
 <footer class="page-footer">
-  TruckHours · CE 561/2006 · Apenas para planeamento — confirme sempre com o tacógrafo digital
+  TruckHours · CE 561/2006 · <span data-i="footer_disclaimer">Apenas para planeamento — confirme sempre com o tacógrafo digital</span>
   <div class="footer-credits">
-    Dados FR: <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
-    Dados ES: <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
-    Dados DE: <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
+    <span data-i="footer_data_fr">Dados FR:</span> <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
+    <span data-i="footer_data_es">Dados ES:</span> <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
+    <span data-i="footer_data_de">Dados DE:</span> <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
   </div>
 </footer>
 
@@ -491,6 +491,7 @@ let map, currentLayer = null, currentMarker = null, baseLayer = null, tileLayer 
 let country = 'fr';
 let baseLayerLoading = false;
 let darkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+let lang = 'pt';
 
 const VIEWS = {
   fr: { center: [46.6, 2.3], zoom: 6 },
@@ -522,7 +523,6 @@ const PILLS = {
   ]
 };
 
-// Province names for Spain (first 2 digits of CP)
 const ES_PROVINCES = {
   '01':'Álava','02':'Albacete','03':'Alicante','04':'Almería','05':'Ávila',
   '06':'Badajoz','07':'Illes Balears','08':'Barcelona','09':'Burgos','10':'Cáceres',
@@ -537,8 +537,170 @@ const ES_PROVINCES = {
   '51':'Ceuta','52':'Melilla'
 };
 
+const T = {
+  pt: {
+    page_title:            'Códigos Postais — França, Espanha & Alemanha',
+    btn_dark_title:        'Modo escuro',
+    lbl_country:           'País',
+    lbl_postal_code:       'Código postal',
+    lbl_examples:          'Exemplos',
+    tab_es:                '🇪🇸 Espanha',
+    tab_fr:                '🇫🇷 França',
+    tab_de:                '🇩🇪 Alemanha',
+    btn_search:            'Localizar',
+    loading_map_text:      'A carregar mapa…',
+    status_initial:        'Escolhe o país e introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).',
+    status_ready:          'Introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).',
+    status_loading_map:    'A carregar divisões do mapa…',
+    status_searching:      'A pesquisar…',
+    err_generic:           'Código não encontrado.',
+    err_api:               'Erro ao contactar o servidor.',
+    err_fr_load:           'Erro ao carregar departamentos FR.',
+    err_de_load:           'Erro ao carregar zonas postais DE.',
+    err_code_nf:           'Código "{0}" não encontrado.',
+    err_fr_dept_nf:        'Departamento "{0}" não encontrado.',
+    err_es_prov_nf:        'Província "{0}" não encontrada.',
+    err_de_zone_nf:        'Zona postal "{0}" não encontrada.',
+    err_es_postal_nf:      'Código postal "{0}" não encontrado em Espanha.',
+    err_de_postal_nf:      'Código postal "{0}" não encontrado na Alemanha.',
+    info_fr_dept:          'Departamento {0} — {1}',
+    info_fr_dept_sub:      'Departamento: {0}',
+    info_es_prov:          'Província {0} — {1}',
+    info_es_prov_sub_reg:  'Região: {0}',
+    info_es_approx_sub:    'Localização aproximada (sem fronteiras disponíveis)',
+    info_es_prov_sub_full: 'Região: {0} · Província: {1} ({2})',
+    info_es_postal_prov:   'Província: {0} ({1})',
+    info_de_prefix_title:  'Zona postal {0}',
+    info_de_prefix_sub:    'Introduz 5 dígitos para localidade específica',
+    info_de_popup:         'Zona postal',
+    info_de_state_sub:     'Estado: {0}',
+    footer_disclaimer:     'Apenas para planeamento — confirme sempre com o tacógrafo digital',
+    footer_data_fr:        'Dados FR:',
+    footer_data_es:        'Dados ES:',
+    footer_data_de:        'Dados DE:',
+  },
+  en: {
+    page_title:            'Postal Codes — France, Spain & Germany',
+    btn_dark_title:        'Dark mode',
+    lbl_country:           'Country',
+    lbl_postal_code:       'Postal code',
+    lbl_examples:          'Examples',
+    tab_es:                '🇪🇸 Spain',
+    tab_fr:                '🇫🇷 France',
+    tab_de:                '🇩🇪 Germany',
+    btn_search:            'Search',
+    loading_map_text:      'Loading map…',
+    status_initial:        'Select a country and enter a 2-digit (region) or 5-digit (city) postal code.',
+    status_ready:          'Enter a 2-digit (region) or 5-digit (city) postal code.',
+    status_loading_map:    'Loading map regions…',
+    status_searching:      'Searching…',
+    err_generic:           'Code not found.',
+    err_api:               'Error contacting server.',
+    err_fr_load:           'Error loading FR departments.',
+    err_de_load:           'Error loading DE postal zones.',
+    err_code_nf:           'Code "{0}" not found.',
+    err_fr_dept_nf:        'Department "{0}" not found.',
+    err_es_prov_nf:        'Province "{0}" not found.',
+    err_de_zone_nf:        'Postal zone "{0}" not found.',
+    err_es_postal_nf:      'Postal code "{0}" not found in Spain.',
+    err_de_postal_nf:      'Postal code "{0}" not found in Germany.',
+    info_fr_dept:          'Department {0} — {1}',
+    info_fr_dept_sub:      'Department: {0}',
+    info_es_prov:          'Province {0} — {1}',
+    info_es_prov_sub_reg:  'Region: {0}',
+    info_es_approx_sub:    'Approximate location (no boundaries available)',
+    info_es_prov_sub_full: 'Region: {0} · Province: {1} ({2})',
+    info_es_postal_prov:   'Province: {0} ({1})',
+    info_de_prefix_title:  'Postal zone {0}',
+    info_de_prefix_sub:    'Enter 5 digits for a specific locality',
+    info_de_popup:         'Postal zone',
+    info_de_state_sub:     'State: {0}',
+    footer_disclaimer:     'For planning purposes only — always confirm with the digital tachograph',
+    footer_data_fr:        'FR data:',
+    footer_data_es:        'ES data:',
+    footer_data_de:        'DE data:',
+  },
+  es: {
+    page_title:            'Códigos Postales — Francia, España y Alemania',
+    btn_dark_title:        'Modo oscuro',
+    lbl_country:           'País',
+    lbl_postal_code:       'Código postal',
+    lbl_examples:          'Ejemplos',
+    tab_es:                '🇪🇸 España',
+    tab_fr:                '🇫🇷 Francia',
+    tab_de:                '🇩🇪 Alemania',
+    btn_search:            'Localizar',
+    loading_map_text:      'Cargando mapa…',
+    status_initial:        'Selecciona un país e introduce un código postal de 2 dígitos (región) o 5 dígitos (ciudad).',
+    status_ready:          'Introduce un código postal de 2 dígitos (región) o 5 dígitos (ciudad).',
+    status_loading_map:    'Cargando regiones del mapa…',
+    status_searching:      'Buscando…',
+    err_generic:           'Código no encontrado.',
+    err_api:               'Error al contactar el servidor.',
+    err_fr_load:           'Error al cargar departamentos FR.',
+    err_de_load:           'Error al cargar zonas postales DE.',
+    err_code_nf:           'Código "{0}" no encontrado.',
+    err_fr_dept_nf:        'Departamento "{0}" no encontrado.',
+    err_es_prov_nf:        'Provincia "{0}" no encontrada.',
+    err_de_zone_nf:        'Zona postal "{0}" no encontrada.',
+    err_es_postal_nf:      'Código postal "{0}" no encontrado en España.',
+    err_de_postal_nf:      'Código postal "{0}" no encontrado en Alemania.',
+    info_fr_dept:          'Departamento {0} — {1}',
+    info_fr_dept_sub:      'Departamento: {0}',
+    info_es_prov:          'Provincia {0} — {1}',
+    info_es_prov_sub_reg:  'Región: {0}',
+    info_es_approx_sub:    'Ubicación aproximada (sin fronteras disponibles)',
+    info_es_prov_sub_full: 'Región: {0} · Provincia: {1} ({2})',
+    info_es_postal_prov:   'Provincia: {0} ({1})',
+    info_de_prefix_title:  'Zona postal {0}',
+    info_de_prefix_sub:    'Introduce 5 dígitos para una localidad específica',
+    info_de_popup:         'Zona postal',
+    info_de_state_sub:     'Estado: {0}',
+    footer_disclaimer:     'Solo para planificación — confirme siempre con el tacógrafo digital',
+    footer_data_fr:        'Datos FR:',
+    footer_data_es:        'Datos ES:',
+    footer_data_de:        'Datos DE:',
+  }
+};
+
+function tr(key, ...args) {
+  let s = (T[lang] || T.pt)[key] || key;
+  args.forEach((a, i) => { s = s.replaceAll(`{${i}}`, a); });
+  return s;
+}
+
+function setLang(l) {
+  if (!T[l]) return;
+  lang = l;
+  localStorage.setItem('truckhours.lang', l);
+  document.documentElement.lang = l;
+  document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
+  document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
+  document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.getAttribute('data-i');
+    if (T[l][key] !== undefined) el.textContent = T[l][key];
+  });
+  document.querySelectorAll('[data-i-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i-placeholder');
+    if (T[l][key] !== undefined) el.placeholder = T[l][key];
+  });
+  document.querySelectorAll('[data-i-title]').forEach(el => {
+    const key = el.getAttribute('data-i-title');
+    if (T[l][key] !== undefined) el.title = T[l][key];
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // sync dark mode icons with initial state
+  const stored = localStorage.getItem('truckhours.lang');
+  if (stored && T[stored]) {
+    lang = stored;
+  } else {
+    const nav = (navigator.language || '').toLowerCase();
+    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+  }
+  setLang(lang);
+
   document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
   document.getElementById('iconMoon').style.display = darkMode ? 'none' : 'block';
 
@@ -573,28 +735,18 @@ function applyMapTheme() {
   }).addTo(map);
 }
 
-function setLang(l) {
-  // i18n ligado na 2.3
-  document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
-  document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
-  document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
-}
-
 function switchCountry(c) {
   country = c;
 
-  // tabs
   document.getElementById('tabFR').className = 'tab' + (c === 'fr' ? ' active-fr' : '');
   document.getElementById('tabES').className = 'tab' + (c === 'es' ? ' active-es' : '');
   document.getElementById('tabDE').className = 'tab' + (c === 'de' ? ' active-de' : '');
 
-  // input styling
   const inp = document.getElementById('cpInput');
   inp.placeholder = c === 'fr' ? '75, 69, 75001…' : c === 'es' ? '28, 08, 28001…' : '86, 10115…';
   inp.maxLength = 5;
   document.getElementById('prefixLabel').textContent = c.toUpperCase();
 
-  // pills
   const pillsDiv = document.getElementById('hintPills');
   pillsDiv.innerHTML = '';
   PILLS[c].forEach(p => {
@@ -605,14 +757,12 @@ function switchCountry(c) {
     pillsDiv.appendChild(span);
   });
 
-  // info badge color
   document.getElementById('infoBadge').className = `info-badge ${c}`;
 
-  // clear map, reset view
   clearMap();
   document.getElementById('infoCard').style.display = 'none';
   document.getElementById('statusMsg').className = 'status-msg';
-  document.getElementById('statusMsg').textContent = 'Introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).';
+  document.getElementById('statusMsg').textContent = tr('status_ready');
   map.setView(VIEWS[c].center, VIEWS[c].zoom);
   loadBaseLayer(c);
 }
@@ -648,7 +798,7 @@ const LABEL_FIELD = { fr: 'code', de: 'postcode2', es: 'cod_prov' };
 async function loadBaseLayer(c) {
   clearBaseLayer();
   const status = document.getElementById('statusMsg');
-  status.textContent = 'A carregar divisões do mapa…';
+  status.textContent = tr('status_loading_map');
 
   try {
     let geoData;
@@ -690,9 +840,9 @@ async function loadBaseLayer(c) {
       }
     }).addTo(map);
 
-    status.textContent = 'Introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).';
+    status.textContent = tr('status_ready');
   } catch(e) {
-    status.textContent = 'Introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).';
+    status.textContent = tr('status_ready');
   }
 }
 
@@ -707,7 +857,7 @@ async function searchPostal() {
 
   const status = document.getElementById('statusMsg');
   status.className = 'status-msg';
-  status.textContent = 'A pesquisar…';
+  status.textContent = tr('status_searching');
   document.getElementById('infoCard').style.display = 'none';
   clearMap();
 
@@ -722,7 +872,7 @@ async function searchPostal() {
     status.textContent = '';
   } catch (err) {
     status.className = 'status-msg error';
-    status.textContent = '⚠ ' + (err.message || 'Código não encontrado.');
+    status.textContent = '⚠ ' + (err.message || tr('err_generic'));
   }
 }
 
@@ -730,10 +880,10 @@ async function searchPostal() {
 
 async function searchFRDept(dept) {
   const res = await fetch('/data/departements-fr.geojson');
-  if (!res.ok) throw new Error('Erro ao carregar departamentos FR.');
+  if (!res.ok) throw new Error(tr('err_fr_load'));
   const fc = await res.json();
   const feature = fc.features.find(f => f.properties.code === dept);
-  if (!feature) throw new Error(`Departamento "${dept}" não encontrado.`);
+  if (!feature) throw new Error(tr('err_fr_dept_nf', dept));
   const nom = feature.properties.nom;
 
   currentLayer = L.geoJSON(feature, { style: HIGHLIGHT_STYLES['fr'] }).addTo(map);
@@ -744,14 +894,14 @@ async function searchFRDept(dept) {
   currentMarker = createMarker([lat, lon], 'fr')
     .addTo(map).bindPopup(`<b>${dept}</b> — ${nom}`);
 
-  showInfo(dept, `Departamento ${dept} — ${nom}`, '', [], 'fr');
+  showInfo(dept, tr('info_fr_dept', dept, nom), '', [], 'fr');
 }
 
 async function searchFRCommune(code) {
   const res = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${code}&fields=nom,centre,contour,departement&format=geojson&geometry=contour`);
-  if (!res.ok) throw new Error('Erro ao contactar a API.');
+  if (!res.ok) throw new Error(tr('err_api'));
   const data = await res.json();
-  if (!data.features?.length) throw new Error(`Código "${code}" não encontrado.`);
+  if (!data.features?.length) throw new Error(tr('err_code_nf', code));
 
   currentLayer = L.geoJSON(data, {
     style: HIGHLIGHT_STYLES['fr'],
@@ -767,14 +917,14 @@ async function searchFRCommune(code) {
       .addTo(map).bindPopup(`<b>${code}</b> — ${names[0]}`);
   }
   const title = names.length === 1 ? names[0] : `${names[0]} +${names.length - 1}`;
-  showInfo(code, title, `Departamento: ${deptStr}`, names.length > 1 ? names : [], 'fr');
+  showInfo(code, title, tr('info_fr_dept_sub', deptStr), names.length > 1 ? names : [], 'fr');
 }
 
 /* ---- SPAIN ---- */
 
 async function searchESProvince(prov) {
   const provName = ES_PROVINCES[prov];
-  if (!provName) throw new Error(`Província "${prov}" não encontrada.`);
+  if (!provName) throw new Error(tr('err_es_prov_nf', prov));
 
   const esData = baseGeoData['es'];
   let found = null;
@@ -823,7 +973,7 @@ async function searchESProvince(prov) {
     currentMarker = createMarker([clat, clon], 'es')
       .addTo(map).bindPopup(`<b>${prov}</b> — ${provName}`);
 
-    showInfo(prov, `Província ${prov} — ${provName}`, `Região: ${found.properties.name || ''}`, [], 'es');
+    showInfo(prov, tr('info_es_prov', prov, provName), tr('info_es_prov_sub_reg', found.properties.name || ''), [], 'es');
   } else {
     const provCoords = {
       '01':[-2.67,42.85],'02':[-1.85,39.15],'03':[-0.68,38.35],'04':[-2.46,37.15],
@@ -843,7 +993,7 @@ async function searchESProvince(prov) {
     const [lon, lat] = provCoords[prov] || [0, 0];
     currentMarker = createMarker([lat, lon], 'es')
       .addTo(map).bindPopup(`<b>${prov}</b> — ${provName}`);
-    showInfo(prov, `Província ${prov} — ${provName}`, 'Localização aproximada (sem fronteiras disponíveis)', [], 'es');
+    showInfo(prov, tr('info_es_prov', prov, provName), tr('info_es_approx_sub'), [], 'es');
   }
 }
 
@@ -852,11 +1002,11 @@ async function searchESPostal(code) {
   const provName = ES_PROVINCES[prov] || '';
 
   const url = `https://nominatim.openstreetmap.org/search?postalcode=${code}&countrycodes=es&format=geojson&limit=5&polygon_geojson=1`;
-  const res = await fetch(url, { headers: { 'Accept-Language': 'pt', 'User-Agent': 'PostalCodeFinder/1.0' } });
-  if (!res.ok) throw new Error('Erro ao contactar Nominatim.');
+  const res = await fetch(url, { headers: { 'Accept-Language': lang, 'User-Agent': 'PostalCodeFinder/1.0' } });
+  if (!res.ok) throw new Error(tr('err_api'));
   const data = await res.json();
 
-  if (!data.features?.length) throw new Error(`Código postal "${code}" não encontrado em Espanha.`);
+  if (!data.features?.length) throw new Error(tr('err_es_postal_nf', code));
 
   const names = [...new Set(data.features.map(f => f.properties.display_name?.split(',')[0]).filter(Boolean))];
 
@@ -875,7 +1025,7 @@ async function searchESPostal(code) {
       .addTo(map).bindPopup(`<b>${code}</b> — ${names[0] || provName}`);
 
     const title = names.length === 1 ? names[0] : `${names[0]} +${names.length - 1}`;
-    showInfo(code, title, provName ? `Província: ${provName} (${prov})` : `CP ${code}`, names.length > 1 ? names : [], 'es');
+    showInfo(code, title, provName ? tr('info_es_postal_prov', provName, prov) : `CP ${code}`, names.length > 1 ? names : [], 'es');
 
   } else {
     const bb = data.features[0].bbox;
@@ -907,7 +1057,7 @@ async function searchESPostal(code) {
       .addTo(map).bindPopup(`<b>${code}</b> — ${names[0] || provName}`);
     const title = names.length === 1 ? names[0] : `${names[0]} +${names.length - 1}`;
     const regionName = found?.properties?.name || provName;
-    showInfo(code, title, `Região: ${regionName} · Província: ${provName} (${prov})`, names.length > 1 ? names : [], 'es');
+    showInfo(code, title, tr('info_es_prov_sub_full', regionName, provName, prov), names.length > 1 ? names : [], 'es');
   }
 }
 
@@ -916,11 +1066,11 @@ async function searchESPostal(code) {
 async function searchDEPrefix(prefix) {
   if (!deGeoCache) {
     const res = await fetch('/data/leitzonen-de.geojson');
-    if (!res.ok) throw new Error('Erro ao carregar zonas postais DE.');
+    if (!res.ok) throw new Error(tr('err_de_load'));
     deGeoCache = await res.json();
   }
   const feature = deGeoCache.features.find(f => f.properties.postcode2 === prefix);
-  if (!feature) throw new Error(`Zona postal "${prefix}" não encontrada.`);
+  if (!feature) throw new Error(tr('err_de_zone_nf', prefix));
 
   currentLayer = L.geoJSON(feature, { style: HIGHLIGHT_STYLES['de'] }).addTo(map);
 
@@ -928,18 +1078,18 @@ async function searchDEPrefix(prefix) {
   const lat = (b.getSouth() + b.getNorth()) / 2;
   const lon = (b.getWest() + b.getEast()) / 2;
   currentMarker = createMarker([lat, lon], 'de')
-    .addTo(map).bindPopup(`<b>${prefix}…</b> — Zona postal`);
+    .addTo(map).bindPopup(`<b>${prefix}…</b> — ${tr('info_de_popup')}`);
 
-  showInfo(`${prefix}…`, `Zona postal ${prefix}`, 'Introduz 5 dígitos para localidade específica', [], 'de');
+  showInfo(`${prefix}…`, tr('info_de_prefix_title', prefix), tr('info_de_prefix_sub'), [], 'de');
 }
 
 async function searchDEPostal(code) {
   const url = `https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(code)}&countrycodes=de&format=geojson&limit=5&polygon_geojson=1&addressdetails=1`;
-  const res = await fetch(url, { headers: { 'Accept-Language': 'pt', 'User-Agent': 'PostalCodeFinder/1.0' } });
-  if (!res.ok) throw new Error('Erro ao contactar Nominatim.');
+  const res = await fetch(url, { headers: { 'Accept-Language': lang, 'User-Agent': 'PostalCodeFinder/1.0' } });
+  if (!res.ok) throw new Error(tr('err_api'));
   const data = await res.json();
 
-  if (!data.features?.length) throw new Error(`Código postal "${code}" não encontrado na Alemanha.`);
+  if (!data.features?.length) throw new Error(tr('err_de_postal_nf', code));
 
   const names = [...new Set(data.features.map(f => {
     const addr = f.properties.address;
@@ -968,7 +1118,7 @@ async function searchDEPostal(code) {
     .addTo(map).bindPopup(`<b>${code}</b> — ${names[0] || ''}`);
 
   const title = names.length === 1 ? names[0] : names.length > 1 ? `${names[0]} +${names.length - 1}` : `PLZ ${code}`;
-  showInfo(code, title, state ? `Estado: ${state}` : `PLZ ${code}`, names.length > 1 ? names : [], 'de');
+  showInfo(code, title, state ? tr('info_de_state_sub', state) : `PLZ ${code}`, names.length > 1 ? names : [], 'de');
 }
 
 /* ---- SHARED ---- */
