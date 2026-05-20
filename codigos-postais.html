@@ -924,6 +924,11 @@ async function loadBaseLayer(c) {
         if (code) l.bindTooltip(code, { permanent: true, direction: 'center', className: 'plz-label' });
         l.on('mouseover', () => l.setStyle({ fillOpacity: 0.15, weight: 1.5 }));
         l.on('mouseout', () => l.setStyle(BASE_STYLES[c]));
+        l.on('click', (e) => {
+        L.DomEvent.stopPropagation(e);
+        document.getElementById('cpInput').value = code;
+        searchPostal();
+      });
       }
     }).addTo(map);
 
