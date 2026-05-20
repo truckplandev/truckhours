@@ -3,7 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i="page_title">Códigos Postais — França, Espanha &amp; Alemanha</title>
+<title data-i="page_title">Códigos Postais Camionistas — FR · ES · DE | TruckHours</title>
+<!-- SEO -->
+<meta name="description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta name="keywords" content="códigos postais camião, code postal France département, código postal España provincia, Postleitzahl Deutschland, PLZ, motorista camionista, TruckHours">
+<link rel="canonical" href="https://truckhours.com/codigos-postais">
+<link rel="alternate" hreflang="pt" href="https://truckhours.com/codigos-postais">
+<link rel="alternate" hreflang="en" href="https://truckhours.com/codigos-postais">
+<link rel="alternate" hreflang="es" href="https://truckhours.com/codigos-postais">
+<link rel="alternate" hreflang="x-default" href="https://truckhours.com/codigos-postais">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#1A56DB">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TruckHours">
+<meta property="og:url" content="https://truckhours.com/codigos-postais">
+<meta property="og:title" content="Códigos Postais Camionistas — FR · ES · DE | TruckHours">
+<meta property="og:description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:image" content="https://truckhours.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Códigos Postais Camionistas — FR · ES · DE | TruckHours">
+<meta name="twitter:description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta name="twitter:image" content="https://truckhours.com/og-image.png">
 <script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -400,7 +429,60 @@ main {
   /* pills são atalhos, não funcionalidade essencial */
   .hint-pills { display: none; }
 }
+
+/* ── SUB-NAV ── */
+.sub-nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 1.5rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+.sub-nav .nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-3);
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.sub-nav .nav-link:hover { background: var(--bg-card2); color: var(--text-1); }
+.sub-nav .nav-link.active { color: var(--blue); background: var(--blue-l); font-weight: 600; }
+@media (max-width: 600px) {
+  .sub-nav { padding: 8px 1rem; }
+}
 </style>
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TruckHours Postal Codes",
+  "url": "https://truckhours.com/codigos-postais",
+  "image": "https://truckhours.com/og-image.png",
+  "description": "Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "inLanguage": ["pt", "en", "es"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "featureList": [
+    "Departamentos FR por código 2 dígitos — polígonos reais via france-geojson",
+    "Comunas FR por código postal 5 dígitos — API geo.api.gouv.fr",
+    "Províncias ES por código 2 dígitos — polígonos via OpenStreetMap",
+    "Códigos postais ES por 5 dígitos — Nominatim / OSM",
+    "Leitzonen DE por prefixo 2 dígitos — dados yetzt/postleitzahlen (ODbL)",
+    "PLZ DE por 5 dígitos — Nominatim / OSM",
+    "Mapa interativo Leaflet com polígonos reais",
+    "Interface trilingue — Português, English, Español"
+  ],
+  "author": { "@type": "Person", "name": "Rui Lopes" }
+}
+</script>
 </head>
 <body>
 
@@ -422,6 +504,11 @@ main {
       <svg id="iconMoon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
     </button>
   </div>
+</div>
+
+<div class="sub-nav">
+  <a class="nav-link" href="/">Calculadora</a>
+  <a class="nav-link active" href="/codigos-postais">Códigos Postais</a>
 </div>
 
 <div class="subheader">
@@ -539,7 +626,7 @@ const ES_PROVINCES = {
 
 const T = {
   pt: {
-    page_title:            'Códigos Postais — França, Espanha & Alemanha',
+    page_title:            'Códigos Postais Camionistas — FR · ES · DE | TruckHours',
     btn_dark_title:        'Modo escuro',
     lbl_country:           'País',
     lbl_postal_code:       'Código postal',
@@ -580,7 +667,7 @@ const T = {
     footer_data_de:        'Dados DE:',
   },
   en: {
-    page_title:            'Postal Codes — France, Spain & Germany',
+    page_title:            'Postal Codes for Truckers — FR · ES · DE | TruckHours',
     btn_dark_title:        'Dark mode',
     lbl_country:           'Country',
     lbl_postal_code:       'Postal code',
@@ -621,7 +708,7 @@ const T = {
     footer_data_de:        'DE data:',
   },
   es: {
-    page_title:            'Códigos Postales — Francia, España y Alemania',
+    page_title:            'Códigos Postales Camionistas — FR · ES · DE | TruckHours',
     btn_dark_title:        'Modo oscuro',
     lbl_country:           'País',
     lbl_postal_code:       'Código postal',
