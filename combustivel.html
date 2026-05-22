@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i="page_title">Calculadora de Autonomia — Litros, Consumo e KM | TruckHours</title>
+<!-- SEO -->
+<meta name="description" content="Calcula quantos km podes fazer com X litros de combustível. Calculadora gratuita para motoristas profissionais de camião.">
+<meta name="keywords" content="calculadora autonomia camião, litros por 100km, consumo combustível camião, km por litro camionista, TruckHours">
+<link rel="canonical" href="https://truckhours.com/combustivel">
+<link rel="alternate" hreflang="pt" href="https://truckhours.com/combustivel">
+<link rel="alternate" hreflang="en" href="https://truckhours.com/combustivel">
+<link rel="alternate" hreflang="es" href="https://truckhours.com/combustivel">
+<link rel="alternate" hreflang="x-default" href="https://truckhours.com/combustivel">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#1A56DB">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TruckHours">
+<meta property="og:url" content="https://truckhours.com/combustivel">
+<meta property="og:title" content="Calculadora de Autonomia — Litros, Consumo e KM | TruckHours">
+<meta property="og:description" content="Calcula quantos km podes fazer com X litros de combustível. Calculadora gratuita para motoristas profissionais de camião.">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:image" content="https://truckhours.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculadora de Autonomia — Litros, Consumo e KM | TruckHours">
+<meta name="twitter:description" content="Calcula quantos km podes fazer com X litros de combustível. Calculadora gratuita para motoristas profissionais de camião.">
+<meta name="twitter:image" content="https://truckhours.com/og-image.png">
+<script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+[data-theme="light"] {
+  --bg-page: #F0F4FA; --bg-card: #FFFFFF; --bg-card2: #F1F5F9; --bg-input: #FFFFFF;
+  --border: #E2E8F0; --border2: #CBD5E1; --text-1: #1E293B; --text-2: #334155;
+  --text-3: #64748B; --text-4: #94A3B8;
+  --blue: #1A56DB; --blue-l: #EBF2FF; --blue-d: #1039A8; --blue-b: #BFDBFE;
+  --green: #059669; --green-l: #D1FAE5; --amber: #D97706; --amber-l: #FEF3C7;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+}
+[data-theme="dark"] {
+  --bg-page: #0A0F1E; --bg-card: #131C2E; --bg-card2: #1A2540; --bg-input: #131C2E;
+  --border: #1E2D45; --border2: #2A3F5E; --text-1: #F0F6FF; --text-2: #C8D8F0;
+  --text-3: #7A9ABE; --text-4: #4A6A8E;
+  --blue: #4B8EF7; --blue-l: #0F2040; --blue-d: #93C5FD; --blue-b: #1D3A6E;
+  --green: #10B981; --green-l: #052E1C; --amber: #F59E0B; --amber-l: #2A1800;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-1);
+  min-height: 100vh;
+  line-height: 1.5;
+  transition: background .2s, color .2s;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--blue);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(26,86,219,.35);
+}
+.logo em { color: var(--blue); font-style: normal; }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+.pill-group { display: flex; border: 1px solid var(--border2); border-radius: 7px; overflow: hidden; }
+.pill-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-3);
+  transition: all .15s;
+}
+.pill-btn.active { background: var(--blue); color: white; }
+.dark-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.dark-btn:hover { background: var(--bg-card2); }
+
+/* ── SUB-NAV ── */
+.sub-nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 1.5rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  position: sticky;
+  top: 58px;
+  z-index: 99;
+}
+.sub-nav .nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-3);
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.sub-nav .nav-link:hover { background: var(--bg-card2); color: var(--text-1); }
+.sub-nav .nav-link.active { color: var(--blue); background: var(--blue-l); font-weight: 600; }
+
+/* ── LAYOUT ── */
+.container { max-width: 820px; margin: 0 auto; padding: 1.75rem 1rem 4rem; }
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom: 1.5rem; }
+.page-header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+/* ── SECTION ── */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 1.25rem;
+}
+
+/* ── FORM ── */
+.form-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 12px; font-weight: 600; color: var(--text-3); }
+.field input[type="number"] {
+  padding: 9px 12px;
+  border: 1.5px solid var(--border2);
+  border-radius: 9px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-1);
+  background: var(--bg-input);
+  outline: none;
+  transition: border .15s, box-shadow .15s;
+  width: 100%;
+  -moz-appearance: textfield;
+}
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+.field input[type="number"]:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.13);
+}
+.input-error { border-color: #EF4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,.15) !important; }
+.field-error { font-size: 11px; color: #EF4444; }
+.field-helper { font-size: 11px; color: var(--text-4); line-height: 1.4; }
+
+/* ── CALC BUTTON ── */
+.calc-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+  transition: opacity .15s, transform .1s;
+  box-shadow: 0 4px 16px rgba(26,86,219,.3);
+}
+.calc-btn:hover { opacity: .92; transform: translateY(-1px); }
+.calc-btn:active { transform: translateY(0); }
+
+/* ── RESET BUTTON ── */
+.reset-btn {
+  width: 100%;
+  padding: 11px;
+  background: var(--bg-card);
+  border: 1px solid var(--border2);
+  color: var(--text-3);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  margin-top: .75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background .15s;
+}
+.reset-btn:hover { background: var(--bg-card2); }
+
+/* ── RESULT METRICS ── */
+.result-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.result-metric {
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+}
+.result-metric.primary { background: var(--blue-l); border-color: var(--blue-b); }
+.result-metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--text-4);
+  margin-bottom: 6px;
+}
+.result-metric.primary .result-metric-label { color: var(--blue); }
+.result-metric-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  color: var(--text-1);
+  line-height: 1.1;
+}
+.result-metric.primary .result-metric-value { color: var(--blue-d); }
+.result-metric-sub {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 3px;
+}
+.result-metric.primary .result-metric-sub { color: var(--blue); opacity: .85; }
+
+/* ── RESULT DISCLAIMER ── */
+.result-disclaimer {
+  font-size: 12px;
+  color: var(--text-4);
+  line-height: 1.5;
+  padding: 10px 12px;
+  background: var(--bg-card2);
+  border-radius: 8px;
+  margin-bottom: .75rem;
+}
+
+/* ── FOOTER ── */
+.page-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-weight: 400;
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+}
+.page-footer a { color: var(--blue); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .topbar { padding: 0 1rem; }
+  .sub-nav { padding: 8px 1rem; }
+}
+@media (max-width: 560px) {
+  .form-3 { grid-template-columns: 1fr; }
+  .result-metrics { grid-template-columns: 1fr; }
+  .result-metric-value { font-size: 2rem; }
+}
+</style>
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TruckHours Fuel Calculator",
+  "url": "https://truckhours.com/combustivel",
+  "image": "https://truckhours.com/og-image.png",
+  "description": "Calcula quantos km podes fazer com X litros de combustível. Calculadora gratuita para motoristas profissionais de camião.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "inLanguage": ["pt", "en", "es"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "featureList": [
+    "Cálculo de km possíveis com combustível disponível",
+    "Estimativa de tempo de viagem",
+    "Interface trilingue — Português, English, Español"
+  ],
+  "author": { "@type": "Person", "name": "Rui Lopes" }
+}
+</script>
+<!-- Vercel Web Analytics -->
+<script>
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    Truck<em>Hours</em>
+  </a>
+  <div class="topbar-right">
+    <div class="pill-group">
+      <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
+      <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+    </div>
+    <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
+      <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="iconMoon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="sub-nav">
+  <a class="nav-link" href="/">Calculadora</a>
+  <a class="nav-link" href="/codigos-postais">Códigos Postais</a>
+  <a class="nav-link active" href="/combustivel">Combustível</a>
+</div>
+
+<main>
+  <div class="container">
+
+    <div class="page-header">
+      <h1 data-i="page_subtitle">Quantos quilómetros posso fazer com o combustível disponível</h1>
+    </div>
+
+    <div class="section">
+      <div class="form-3">
+        <div class="field">
+          <label for="fuel" data-i="lbl_fuel">Combustível disponível (litros)</label>
+          <input type="number" id="fuel" min="1" max="1500"
+            data-i-placeholder="placeholder_fuel" placeholder="ex: 400"
+            inputmode="decimal" autocomplete="off">
+          <span class="field-error" id="fuelError" style="display:none"></span>
+        </div>
+        <div class="field">
+          <label for="consumption" data-i="lbl_consumption">Consumo médio (l/100km)</label>
+          <input type="number" id="consumption" min="10" max="80" value="35"
+            inputmode="decimal" autocomplete="off">
+          <span class="field-helper" data-i="helper_consumption">Camião pesado vazio: 25-30 l/100km. Carregado: 30-45 l/100km.</span>
+        </div>
+        <div class="field">
+          <label for="speed" data-i="lbl_speed">Velocidade média (km/h)</label>
+          <input type="number" id="speed" min="30" max="120" value="80"
+            inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calculate()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="13 2 13 9 20 9"/><path d="M20 14v5a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h7"/></svg>
+        <span data-i="btn_calculate">Calcular autonomia</span>
+      </button>
+    </div>
+
+    <div class="section" id="resultCard" style="display:none">
+      <div class="section-title" data-i="result_title">Resultado</div>
+      <div class="result-metrics">
+        <div class="result-metric primary">
+          <div class="result-metric-label" data-i="lbl_km_metric">Autonomia</div>
+          <div class="result-metric-value" id="resultKmVal">—</div>
+          <div class="result-metric-sub" id="resultKmSub" data-i="result_km_sub">km possíveis</div>
+        </div>
+        <div class="result-metric">
+          <div class="result-metric-label" data-i="lbl_time_metric">Tempo estimado</div>
+          <div class="result-metric-value" id="resultTimeVal">—</div>
+          <div class="result-metric-sub" id="resultTimeSub" data-i="result_time_sub">à velocidade definida</div>
+        </div>
+      </div>
+      <div class="result-disclaimer" data-i="result_disclaimer">Cálculo estimado. Real varia conforme carga, terreno e condução.</div>
+      <button class="reset-btn" onclick="newSim()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        <span data-i="btn_new_sim">Nova simulação</span>
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<footer class="page-footer">
+  TruckHours · CE 561/2006 · <span data-i="footer_disclaimer">Apenas para planeamento — confirme sempre com o tacógrafo digital</span>
+</footer>
+
+<script>
+let lang = 'pt';
+
+const T = {
+  pt: {
+    page_title:        'Calculadora de Autonomia — Litros, Consumo e KM | TruckHours',
+    page_subtitle:     'Quantos quilómetros posso fazer com o combustível disponível',
+    btn_dark_title:    'Modo escuro',
+    lbl_fuel:          'Combustível disponível (litros)',
+    lbl_consumption:   'Consumo médio (l/100km)',
+    lbl_speed:         'Velocidade média (km/h)',
+    helper_consumption:'Camião pesado vazio: 25-30 l/100km. Carregado: 30-45 l/100km.',
+    placeholder_fuel:  'ex: 400',
+    btn_calculate:     'Calcular autonomia',
+    btn_new_sim:       'Nova simulação',
+    result_title:      'Resultado',
+    lbl_km_metric:     'Autonomia',
+    lbl_time_metric:   'Tempo estimado',
+    result_km_sub:     'km possíveis',
+    result_time_sub:   'à velocidade definida',
+    result_disclaimer: 'Cálculo estimado. Real varia conforme carga, terreno e condução.',
+    footer_disclaimer: 'Apenas para planeamento — confirme sempre com o tacógrafo digital',
+    err_fuel_required: 'Introduz a quantidade de combustível.',
+  },
+  en: {
+    page_title:        'Fuel Range Calculator — Litres, Consumption & KM | TruckHours',
+    page_subtitle:     'How many kilometres can I drive with available fuel',
+    btn_dark_title:    'Dark mode',
+    lbl_fuel:          'Available fuel (litres)',
+    lbl_consumption:   'Average consumption (l/100km)',
+    lbl_speed:         'Average speed (km/h)',
+    helper_consumption:'Empty heavy truck: 25-30 l/100km. Loaded: 30-45 l/100km.',
+    placeholder_fuel:  'e.g. 400',
+    btn_calculate:     'Calculate range',
+    btn_new_sim:       'New simulation',
+    result_title:      'Result',
+    lbl_km_metric:     'Range',
+    lbl_time_metric:   'Estimated time',
+    result_km_sub:     'km possible',
+    result_time_sub:   'at the set speed',
+    result_disclaimer: 'Estimated calculation. Actual range varies with load, terrain and driving style.',
+    footer_disclaimer: 'For planning purposes only — always confirm with the digital tachograph',
+    err_fuel_required: 'Enter the amount of fuel.',
+  },
+  es: {
+    page_title:        'Calculadora de Autonomía — Litros, Consumo y KM | TruckHours',
+    page_subtitle:     'Cuántos kilómetros puedo hacer con el combustible disponible',
+    btn_dark_title:    'Modo oscuro',
+    lbl_fuel:          'Combustible disponible (litros)',
+    lbl_consumption:   'Consumo medio (l/100km)',
+    lbl_speed:         'Velocidad media (km/h)',
+    helper_consumption:'Camión pesado vacío: 25-30 l/100km. Cargado: 30-45 l/100km.',
+    placeholder_fuel:  'ej: 400',
+    btn_calculate:     'Calcular autonomía',
+    btn_new_sim:       'Nueva simulación',
+    result_title:      'Resultado',
+    lbl_km_metric:     'Autonomía',
+    lbl_time_metric:   'Tiempo estimado',
+    result_km_sub:     'km posibles',
+    result_time_sub:   'a la velocidad definida',
+    result_disclaimer: 'Cálculo estimado. El real varía según carga, terreno y conducción.',
+    footer_disclaimer: 'Solo para planificación — confirme siempre con el tacógrafo digital',
+    err_fuel_required: 'Introduce la cantidad de combustible.',
+  }
+};
+
+function tr(key, ...args) {
+  let s = (T[lang] || T.pt)[key] || key;
+  args.forEach((a, i) => { s = s.replaceAll(`{${i}}`, a); });
+  return s;
+}
+
+function setLang(l) {
+  if (!T[l]) return;
+  lang = l;
+  localStorage.setItem('truckhours.lang', l);
+  document.documentElement.lang = l;
+  document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
+  document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
+  document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.getAttribute('data-i');
+    if (T[l][key] !== undefined) el.textContent = T[l][key];
+  });
+  document.querySelectorAll('[data-i-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i-placeholder');
+    if (T[l][key] !== undefined) el.placeholder = T[l][key];
+  });
+  document.querySelectorAll('[data-i-title]').forEach(el => {
+    const key = el.getAttribute('data-i-title');
+    if (T[l][key] !== undefined) el.title = T[l][key];
+  });
+  document.title = tr('page_title');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const stored = localStorage.getItem('truckhours.lang');
+  if (stored && T[stored]) {
+    lang = stored;
+  } else {
+    const nav = (navigator.language || '').toLowerCase();
+    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+  }
+  setLang(lang);
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('iconSun').style.display = isDark ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = isDark ? 'none' : 'block';
+
+  document.getElementById('fuel').addEventListener('keydown', e => {
+    if (e.key === 'Enter') calculate();
+  });
+});
+
+function toggleDark() {
+  const goingDark = document.documentElement.getAttribute('data-theme') !== 'dark';
+  document.documentElement.setAttribute('data-theme', goingDark ? 'dark' : 'light');
+  document.getElementById('iconSun').style.display = goingDark ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = goingDark ? 'none' : 'block';
+  localStorage.setItem('truckhours.darkMode', goingDark);
+}
+
+function calculate() {
+  const fuelInput = document.getElementById('fuel');
+  const errEl = document.getElementById('fuelError');
+  const fuel = parseFloat(fuelInput.value);
+
+  if (!fuel || fuel <= 0) {
+    fuelInput.classList.add('input-error');
+    errEl.textContent = tr('err_fuel_required');
+    errEl.style.display = 'block';
+    return;
+  }
+
+  fuelInput.classList.remove('input-error');
+  errEl.style.display = 'none';
+
+  const consumption = parseFloat(document.getElementById('consumption').value) || 35;
+  const speed = parseFloat(document.getElementById('speed').value) || 80;
+
+  const km = (fuel / consumption) * 100;
+  const timeMin = (km / speed) * 60;
+  const h = Math.floor(timeMin / 60);
+  const m = Math.round(timeMin % 60);
+  const timeStr = h > 0 ? `${h}h ${m}min` : `${m}min`;
+
+  document.getElementById('resultKmVal').textContent = Math.round(km).toLocaleString();
+  document.getElementById('resultTimeVal').textContent = timeStr;
+
+  const resultCard = document.getElementById('resultCard');
+  resultCard.style.display = 'block';
+  resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function newSim() {
+  document.getElementById('fuel').value = '';
+  document.getElementById('fuel').classList.remove('input-error');
+  document.getElementById('fuelError').style.display = 'none';
+  document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('fuel').focus();
+}
+</script>
+</body>
+</html>
