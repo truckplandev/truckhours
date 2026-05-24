@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i="page_title">Termos de Utilização | TruckHours</title>
+<meta name="description" content="Termos de utilização da TruckHours. Disclaimer de planeamento, responsabilidade e dados de terceiros.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://truckhours.com/termos">
+<meta name="theme-color" content="#1A56DB">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+[data-theme="light"] {
+  --bg-page: #F0F4FA; --bg-card: #FFFFFF; --bg-card2: #F1F5F9;
+  --border: #E2E8F0; --border2: #CBD5E1; --text-1: #1E293B; --text-2: #334155;
+  --text-3: #64748B; --text-4: #94A3B8;
+  --blue: #1A56DB; --blue-l: #EBF2FF;
+  --amber: #D97706; --amber-l: #FEF3C7;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+}
+[data-theme="dark"] {
+  --bg-page: #0A0F1E; --bg-card: #131C2E; --bg-card2: #1A2540;
+  --border: #1E2D45; --border2: #2A3F5E; --text-1: #F0F6FF; --text-2: #C8D8F0;
+  --text-3: #7A9ABE; --text-4: #4A6A8E;
+  --blue: #4B8EF7; --blue-l: #0F2040;
+  --amber: #F59E0B; --amber-l: #2A1800;
+  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+}
+:root { --radius: 12px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background .2s, color .2s;
+}
+.topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  gap: 12px;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--blue);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(26,86,219,.35);
+}
+.logo em { color: var(--blue); font-style: normal; }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+.pill-group { display: flex; border: 1px solid var(--border2); border-radius: 7px; overflow: hidden; }
+.pill-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-3);
+  transition: all .15s;
+}
+.pill-btn.active { background: var(--blue); color: white; }
+.dark-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.dark-btn:hover { background: var(--bg-card2); }
+.sub-nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 8px 1.5rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  flex-shrink: 0;
+  position: sticky;
+  top: 58px;
+  z-index: 99;
+}
+.sub-nav .nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-3);
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.sub-nav .nav-link:hover { background: var(--bg-card2); color: var(--text-1); }
+.sub-nav .nav-link.active { color: var(--blue); background: var(--blue-l); font-weight: 600; }
+main {
+  flex: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2.5rem 1.5rem 3rem;
+}
+h1 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 0.35rem;
+}
+.page-meta {
+  font-size: 0.75rem;
+  color: var(--text-4);
+  margin-bottom: 2.25rem;
+  font-weight: 300;
+}
+.legal-section { margin-bottom: 1.75rem; }
+.legal-section h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+.legal-section p {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.disclaimer-box {
+  background: var(--amber-l);
+  border: 1px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.disclaimer-box p {
+  font-size: 0.875rem;
+  color: var(--text-1);
+  line-height: 1.65;
+  font-weight: 400;
+}
+.page-footer {
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-weight: 400;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+.page-footer a { color: var(--blue); text-decoration: none; }
+.page-footer .footer-legal {
+  margin-top: 3px;
+  font-size: 0.65rem;
+  color: var(--text-4);
+}
+.page-footer .footer-legal a { color: var(--text-3); }
+.page-footer .footer-legal a:hover { color: var(--blue); }
+@media (max-width: 600px) {
+  .topbar { padding: 0 1rem; }
+  .sub-nav { padding: 8px 1rem; }
+  main { padding: 1.5rem 1rem 2rem; }
+}
+</style>
+<script>
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="logo" href="/">
+    <div class="logo-icon">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    Truck<em>Hours</em>
+  </a>
+  <div class="topbar-right">
+    <div class="pill-group">
+      <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
+      <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+    </div>
+    <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
+      <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="iconMoon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="sub-nav">
+  <a class="nav-link" data-i="nav_calculator" href="/">Calculadora</a>
+  <a class="nav-link" data-i="nav_postal_codes" href="/codigos-postais">Códigos Postais</a>
+  <a class="nav-link" data-i="nav_fuel" href="/combustivel">Combustível</a>
+</div>
+
+<main>
+  <h1 data-i="terms_h1">Termos de Utilização</h1>
+  <p class="page-meta">TruckHours · Maio 2026</p>
+
+  <div class="disclaimer-box">
+    <p data-i="terms_planning">Esta ferramenta destina-se exclusivamente ao PLANEAMENTO de jornadas. Não substitui o tacógrafo digital nem qualquer obrigação legal. O utilizador é responsável pelo cumprimento do Regulamento CE 561/2006 e demais legislação aplicável.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2 data-i="terms_liability_h">Responsabilidade</h2>
+    <p data-i="terms_liability">Não nos responsabilizamos por multas, atrasos, acidentes ou quaisquer outros prejuízos resultantes do uso desta ferramenta. Os dados de APIs externas (geo.api.gouv.fr, OpenStreetMap, Nominatim) podem conter erros ou estar desactualizados — verifica sempre.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2 data-i="terms_avail_h">Disponibilidade</h2>
+    <p data-i="terms_avail">Não garantimos disponibilidade contínua do serviço. A ferramenta é fornecida "tal como está", sem garantias expressas ou implícitas.</p>
+  </div>
+</main>
+
+<footer class="page-footer">
+  TruckHours · CE 561/2006 · <span data-i="footer_disclaimer">Apenas para planeamento — confirme sempre com o tacógrafo digital</span>
+  <div class="footer-legal">
+    <a href="/privacidade">Privacidade</a> · <a href="/termos">Termos</a> · © 2026 Rui Lopes
+  </div>
+</footer>
+
+<script>
+let darkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+let lang = 'pt';
+
+const T = {
+  pt: {
+    page_title:       'Termos de Utilização | TruckHours',
+    btn_dark_title:   'Modo escuro',
+    nav_calculator:   'Calculadora',
+    nav_postal_codes: 'Códigos Postais',
+    nav_fuel:         'Combustível',
+    footer_disclaimer:'Apenas para planeamento — confirme sempre com o tacógrafo digital',
+    terms_h1:         'Termos de Utilização',
+    terms_planning:   'Esta ferramenta destina-se exclusivamente ao PLANEAMENTO de jornadas. Não substitui o tacógrafo digital nem qualquer obrigação legal. O utilizador é responsável pelo cumprimento do Regulamento CE 561/2006 e demais legislação aplicável.',
+    terms_liability_h:'Responsabilidade',
+    terms_liability:  'Não nos responsabilizamos por multas, atrasos, acidentes ou quaisquer outros prejuízos resultantes do uso desta ferramenta. Os dados de APIs externas (geo.api.gouv.fr, OpenStreetMap, Nominatim) podem conter erros ou estar desactualizados — verifica sempre.',
+    terms_avail_h:    'Disponibilidade',
+    terms_avail:      'Não garantimos disponibilidade contínua do serviço. A ferramenta é fornecida "tal como está", sem garantias expressas ou implícitas.',
+  },
+  en: {
+    page_title:       'Terms of Use | TruckHours',
+    btn_dark_title:   'Dark mode',
+    nav_calculator:   'Calculator',
+    nav_postal_codes: 'Postal Codes',
+    nav_fuel:         'Fuel',
+    footer_disclaimer:'For planning purposes only — always confirm with the digital tachograph',
+    terms_h1:         'Terms of Use',
+    terms_planning:   'This tool is intended solely for journey PLANNING. It does not replace the digital tachograph or any legal obligation. The user is responsible for complying with EC Regulation 561/2006 and any other applicable legislation.',
+    terms_liability_h:'Liability',
+    terms_liability:  'We are not liable for fines, delays, accidents or any other damages resulting from the use of this tool. Data from external APIs (geo.api.gouv.fr, OpenStreetMap, Nominatim) may contain errors or be outdated — always verify.',
+    terms_avail_h:    'Availability',
+    terms_avail:      'We do not guarantee continuous availability of the service. The tool is provided "as is", without express or implied warranties.',
+  },
+  es: {
+    page_title:       'Términos de Uso | TruckHours',
+    btn_dark_title:   'Modo oscuro',
+    nav_calculator:   'Calculadora',
+    nav_postal_codes: 'Códigos Postales',
+    nav_fuel:         'Combustible',
+    footer_disclaimer:'Solo para planificación — confirme siempre con el tacógrafo digital',
+    terms_h1:         'Términos de Uso',
+    terms_planning:   'Esta herramienta es exclusivamente para PLANIFICACIÓN de jornadas. No sustituye al tacógrafo digital ni a ninguna obligación legal. El usuario es responsable del cumplimiento del Reglamento CE 561/2006 y demás legislación aplicable.',
+    terms_liability_h:'Responsabilidad',
+    terms_liability:  'No nos responsabilizamos de multas, retrasos, accidentes ni perjuicios derivados del uso de esta herramienta. Los datos de APIs externas (geo.api.gouv.fr, OpenStreetMap, Nominatim) pueden contener errores o estar desactualizados — verifica siempre.',
+    terms_avail_h:    'Disponibilidad',
+    terms_avail:      'No garantizamos la disponibilidad continua del servicio. La herramienta se proporciona "tal cual", sin garantías expresas ni implícitas.',
+  }
+};
+
+function setLang(l) {
+  if (!T[l]) return;
+  lang = l;
+  localStorage.setItem('truckhours.lang', l);
+  document.documentElement.lang = l;
+  document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
+  document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
+  document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.getAttribute('data-i');
+    if (T[l][key] !== undefined) el.textContent = T[l][key];
+  });
+  document.querySelectorAll('[data-i-title]').forEach(el => {
+    const key = el.getAttribute('data-i-title');
+    if (T[l][key] !== undefined) el.title = T[l][key];
+  });
+  document.title = T[l].page_title || document.title;
+}
+
+function toggleDark() {
+  darkMode = !darkMode;
+  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = darkMode ? 'none' : 'block';
+  localStorage.setItem('truckhours.darkMode', darkMode);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const stored = localStorage.getItem('truckhours.lang');
+  if (stored && T[stored]) {
+    lang = stored;
+  } else {
+    const nav = (navigator.language || '').toLowerCase();
+    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+  }
+  setLang(lang);
+  document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = darkMode ? 'none' : 'block';
+});
+</script>
+</body>
+</html>

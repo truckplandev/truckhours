@@ -327,6 +327,9 @@ body {
   line-height: 1.5;
 }
 .page-footer a { color: var(--blue); text-decoration: none; }
+.page-footer .footer-legal { margin-top: 3px; font-size: 0.65rem; color: var(--text-4); }
+.page-footer .footer-legal a { color: var(--text-3); }
+.page-footer .footer-legal a:hover { color: var(--blue); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
@@ -454,6 +457,9 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
 
 <footer class="page-footer">
   TruckHours · CE 561/2006 · <span data-i="footer_disclaimer">Apenas para planeamento — confirme sempre com o tacógrafo digital</span>
+  <div class="footer-legal">
+    <a href="/privacidade">Privacidade</a> · <a href="/termos">Termos</a> · © 2026 Rui Lopes
+  </div>
 </footer>
 
 <script>

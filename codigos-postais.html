@@ -392,6 +392,9 @@ main {
   color: var(--text-4);
 }
 .page-footer a { color: var(--blue); text-decoration: none; }
+.page-footer .footer-legal { margin-top: 3px; font-size: 0.65rem; color: var(--text-4); }
+.page-footer .footer-legal a { color: var(--text-3); }
+.page-footer .footer-legal a:hover { color: var(--blue); }
 
 /* ── LEAFLET DARK MODE ── */
 [data-theme="dark"] .leaflet-tile-pane {
@@ -579,6 +582,9 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
     <span data-i="footer_data_fr">Dados FR:</span> <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
     <span data-i="footer_data_es">Dados ES:</span> <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
     <span data-i="footer_data_de">Dados DE:</span> <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
+  </div>
+  <div class="footer-legal">
+    <a href="/privacidade">Privacidade</a> · <a href="/termos">Termos</a> · © 2026 Rui Lopes
   </div>
 </footer>
 
