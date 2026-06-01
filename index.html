@@ -1268,11 +1268,7 @@ function calcAndShow(){
       const blockRem=Math.max(0,BLOCK-_block);
       const canDrive=Math.min(dayRem,blockRem,_remain);
       if(canDrive<=0){
-        if(_block>=BLOCK){
-          const bm=sb+lb;
-          _events.push({type:'pause',label:t.ev_pause+' '+pauseLabel+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
-          _now=addMin(_now,bm);_block=0;continue;
-        }
+        // Descanso diário tem prioridade: pausa de bloco só faz sentido se ainda há capacidade de dia
         if(_day>=dayMax){
           const isRed=_usedRed<reducedRests;
           const rm=isRed?540:660;
@@ -1280,6 +1276,11 @@ function calcAndShow(){
           if(dayMax===600)_daysExt++;
           _events.push({type:'rest',label:isRed?t.ev_rest_red:t.ev_rest_norm,detail:t.ev_rest_detail_a+(_day/60).toFixed(1)+t.ev_rest_detail_b,start:new Date(_now),end:addMin(_now,rm),dur:rm});
           _now=addMin(_now,rm);_day=0;_block=0;_rests++;continue;
+        }
+        if(_block>=BLOCK){
+          const bm=sb+lb;
+          _events.push({type:'pause',label:t.ev_pause+' '+pauseLabel+' min',detail:t.ev_pause_detail,start:new Date(_now),end:addMin(_now,bm),dur:bm});
+          _now=addMin(_now,bm);_block=0;continue;
         }
         break;
       }
@@ -1301,7 +1302,9 @@ function calcAndShow(){
   const simSem=simulateJourney(now, blockDriven, dayDriven, remainDrive, false);
 
   let chosen, usedExt=false;
-  if(extraTen>0 && simCom.arrival < simSem.arrival){
+  const savedMins30=Math.round((simSem.arrival-simCom.arrival)/60000);
+  // Extensão só vale se ganho real >= 30min (break-cost não deve superar drive-gain)
+  if(extraTen>0 && savedMins30>=30){
     chosen=simCom; usedExt=true;
   } else {
     chosen=simSem; usedExt=false;
