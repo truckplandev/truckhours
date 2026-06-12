@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i="page_title">Códigos Postais Camionistas — FR · ES · DE | TruckHours</title>
+<title data-i="page_title">Códigos Postais Camionistas — FR · ES · DE · NL · BE | TruckHours</title>
 <!-- SEO -->
-<meta name="description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
-<meta name="keywords" content="códigos postais camião, code postal France département, código postal España provincia, Postleitzahl Deutschland, PLZ, motorista camionista, TruckHours">
+<meta name="description" content="Pesquisa códigos postais de França, Espanha, Alemanha, Países Baixos e Bélgica no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta name="keywords" content="códigos postais camião, code postal France département, código postal España provincia, Postleitzahl Deutschland, PLZ, Postcode Nederland, code postal Belgique, motorista camionista, TruckHours">
 <link rel="canonical" href="https://truckhours.com/codigos-postais">
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/codigos-postais">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/codigos-postais">
@@ -20,8 +20,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TruckHours">
 <meta property="og:url" content="https://truckhours.com/codigos-postais">
-<meta property="og:title" content="Códigos Postais Camionistas — FR · ES · DE | TruckHours">
-<meta property="og:description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta property="og:title" content="Códigos Postais Camionistas — FR · ES · DE · NL · BE | TruckHours">
+<meta property="og:description" content="Pesquisa códigos postais de França, Espanha, Alemanha, Países Baixos e Bélgica no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
@@ -30,8 +30,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Códigos Postais Camionistas — FR · ES · DE | TruckHours">
-<meta name="twitter:description" content="Pesquisa códigos postais de França, Espanha e Alemanha no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
+<meta name="twitter:title" content="Códigos Postais Camionistas — FR · ES · DE · NL · BE | TruckHours">
+<meta name="twitter:description" content="Pesquisa códigos postais de França, Espanha, Alemanha, Países Baixos e Bélgica no mapa. Departamentos, províncias e zonas postais para motoristas profissionais. Grátis.">
 <meta name="twitter:image" content="https://truckhours.com/og-image.png">
 <script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="stylesheet" href="/lib/leaflet/leaflet.css"/>
@@ -64,6 +64,12 @@
   --accent-de: #1a3a5c;
   --accent-de-light: #ddeeff;
   --accent-de-mid: #2e6da4;
+  --accent-nl: #c8902c;
+  --accent-nl-light: #fff4e0;
+  --accent-nl-mid: #e8b658;
+  --accent-be: #6b3410;
+  --accent-be-light: #fde8d8;
+  --accent-be-mid: #c98c5a;
   --radius: 12px;
 }
 
@@ -211,6 +217,18 @@ body {
   color: var(--accent-de);
   font-weight: 500;
 }
+.tab.active-nl {
+  background: var(--accent-nl-light);
+  border-color: var(--accent-nl-mid);
+  color: var(--accent-nl);
+  font-weight: 500;
+}
+.tab.active-be {
+  background: var(--accent-be-light);
+  border-color: var(--accent-be-mid);
+  color: var(--accent-be);
+  font-weight: 500;
+}
 
 .search-area { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
 
@@ -280,6 +298,8 @@ input[type="text"]:focus {
 .pill.fr:hover { background: var(--accent-fr-light); border-color: var(--accent-fr-mid); color: var(--accent-fr); }
 .pill.es:hover { background: var(--accent-es-light); border-color: var(--accent-es-mid); color: var(--accent-es); }
 .pill.de:hover { background: var(--accent-de-light); border-color: var(--accent-de-mid); color: var(--accent-de); }
+.pill.nl:hover { background: var(--accent-nl-light); border-color: var(--accent-nl-mid); color: var(--accent-nl); }
+.pill.be:hover { background: var(--accent-be-light); border-color: var(--accent-be-mid); color: var(--accent-be); }
 
 main {
   flex: 1;
@@ -319,6 +339,8 @@ main {
 .info-badge.fr { background: var(--accent-fr-light); color: var(--accent-fr); }
 .info-badge.es { background: var(--accent-es-light); color: var(--accent-es); }
 .info-badge.de { background: var(--accent-de-light); color: var(--accent-de); }
+.info-badge.nl { background: var(--accent-nl-light); color: var(--accent-nl); }
+.info-badge.be { background: var(--accent-be-light); color: var(--accent-be); }
 
 .info-text { flex: 1; }
 .info-text strong { font-size: 0.92rem; font-weight: 500; }
@@ -483,6 +505,10 @@ main {
     "Códigos postais ES por 5 dígitos — Nominatim / OSM",
     "Leitzonen DE por prefixo 2 dígitos — dados yetzt/postleitzahlen (ODbL)",
     "PLZ DE por 5 dígitos — Nominatim / OSM",
+    "Zonas NL por prefixo 2 dígitos — polígonos Postcodevlakken PC2 (Esri Nederland)",
+    "Postcodes NL por 4 dígitos — Nominatim / OSM",
+    "Zonas BE por prefixo 2 dígitos — polígonos municípios StatBel / Belgium-Geographic-Data",
+    "Postcodes BE por 4 dígitos — Nominatim / OSM",
     "Mapa interativo Leaflet com polígonos reais",
     "Interface trilingue — Português, English, Español"
   ],
@@ -531,6 +557,8 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <button class="tab" id="tabES" onclick="switchCountry('es')" data-i="tab_es">🇪🇸 Espanha</button>
       <button class="tab active-fr" id="tabFR" onclick="switchCountry('fr')" data-i="tab_fr">🇫🇷 França</button>
       <button class="tab" id="tabDE" onclick="switchCountry('de')" data-i="tab_de">🇩🇪 Alemanha</button>
+      <button class="tab" id="tabNL" onclick="switchCountry('nl')" data-i="tab_nl">🇳🇱 Países Baixos</button>
+      <button class="tab" id="tabBE" onclick="switchCountry('be')" data-i="tab_be">🇧🇪 Bélgica</button>
     </div>
   </div>
   <div class="sh-section">
@@ -581,7 +609,9 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
   <div class="footer-credits">
     <span data-i="footer_data_fr">Dados FR:</span> <a href="https://france-geojson.gregoiredavid.fr" target="_blank">france-geojson</a> &nbsp;·&nbsp;
     <span data-i="footer_data_es">Dados ES:</span> <a href="https://nominatim.openstreetmap.org" target="_blank">Nominatim / OSM</a> &nbsp;·&nbsp;
-    <span data-i="footer_data_de">Dados DE:</span> <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM)
+    <span data-i="footer_data_de">Dados DE:</span> <a href="https://github.com/yetzt/postleitzahlen" target="_blank">yetzt/postleitzahlen</a> (ODbL via OSM) &nbsp;·&nbsp;
+    <span data-i="footer_data_nl">Dados NL:</span> <a href="https://www.arcgis.com/home/item.html?id=7fc4d35f8aca47b983fc921fd253e01e" target="_blank">Esri Nederland PC2</a> &nbsp;·&nbsp;
+    <span data-i="footer_data_be">Dados BE:</span> <a href="https://github.com/mathiasleroy/Belgium-Geographic-Data" target="_blank">Belgium-Geographic-Data</a> + <a href="https://statbel.fgov.be" target="_blank">StatBel</a> (CC BY 4.0)
   </div>
   <div class="footer-legal">
     <a href="/privacidade" data-i="footer_privacy">Privacidade</a> · <a href="/termos" data-i="footer_terms">Termos</a> · © 2026 Rui Lopes
@@ -599,7 +629,9 @@ let lang = 'pt';
 const VIEWS = {
   fr: { center: [46.6, 2.3], zoom: 6 },
   es: { center: [40.4, -3.7], zoom: 6 },
-  de: { center: [51.2, 10.4], zoom: 6 }
+  de: { center: [51.2, 10.4], zoom: 6 },
+  nl: { center: [52.2, 5.3], zoom: 7 },
+  be: { center: [50.6, 4.6], zoom: 8 }
 };
 
 const PILLS = {
@@ -623,6 +655,20 @@ const PILLS = {
     { code: '80', label: '80 München' },
     { code: '20', label: '20 Hamburg' },
     { code: '50', label: '50 Köln' },
+  ],
+  nl: [
+    { code: '10', label: '10 Amsterdam' },
+    { code: '30', label: '30 Rotterdam' },
+    { code: '25', label: '25 Den Haag' },
+    { code: '35', label: '35 Utrecht' },
+    { code: '57', label: '57 Eindhoven' },
+  ],
+  be: [
+    { code: '10', label: '10 Bruxelles' },
+    { code: '20', label: '20 Antwerpen' },
+    { code: '40', label: '40 Liège' },
+    { code: '90', label: '90 Gent' },
+    { code: '80', label: '80 Brugge' },
   ]
 };
 
@@ -642,7 +688,7 @@ const ES_PROVINCES = {
 
 const T = {
   pt: {
-    page_title:            'Códigos Postais Camionistas — FR · ES · DE | TruckHours',
+    page_title:            'Códigos Postais Camionistas — FR · ES · DE · NL · BE | TruckHours',
     btn_dark_title:        'Modo escuro',
     lbl_country:           'País',
     lbl_postal_code:       'Código postal',
@@ -650,22 +696,31 @@ const T = {
     tab_es:                '🇪🇸 Espanha',
     tab_fr:                '🇫🇷 França',
     tab_de:                '🇩🇪 Alemanha',
+    tab_nl:                '🇳🇱 Países Baixos',
+    tab_be:                '🇧🇪 Bélgica',
     btn_search:            'Localizar',
     loading_map_text:      'A carregar mapa…',
     status_initial:        'Escolhe o país e introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).',
     status_ready:          'Introduz um código postal de 2 dígitos (região) ou 5 dígitos (cidade).',
+    status_ready_4d:       'Introduz 2 dígitos (zona) ou 4 dígitos (localidade específica).',
     status_loading_map:    'A carregar divisões do mapa…',
     status_searching:      'A pesquisar…',
     err_generic:           'Código não encontrado.',
     err_api:               'Erro ao contactar o servidor.',
     err_fr_load:           'Erro ao carregar departamentos FR.',
     err_de_load:           'Erro ao carregar zonas postais DE.',
+    err_nl_load:           'Erro ao carregar zonas postais NL.',
+    err_be_load:           'Erro ao carregar zonas postais BE.',
     err_code_nf:           'Código "{0}" não encontrado.',
     err_fr_dept_nf:        'Departamento "{0}" não encontrado.',
     err_es_prov_nf:        'Província "{0}" não encontrada.',
     err_de_zone_nf:        'Zona postal "{0}" não encontrada.',
+    err_nl_zone_nf:        'Zona postal "{0}" não encontrada nos Países Baixos.',
+    err_be_zone_nf:        'Zona postal "{0}" não encontrada na Bélgica.',
     err_es_postal_nf:      'Código postal "{0}" não encontrado em Espanha.',
     err_de_postal_nf:      'Código postal "{0}" não encontrado na Alemanha.',
+    err_nl_postal_nf:      'Código postal "{0}" não encontrado nos Países Baixos.',
+    err_be_postal_nf:      'Código postal "{0}" não encontrado na Bélgica.',
     info_fr_dept:          'Departamento {0} — {1}',
     info_fr_dept_sub:      'Departamento: {0}',
     info_es_prov:          'Província {0} — {1}',
@@ -677,15 +732,23 @@ const T = {
     info_de_prefix_sub:    'Introduz 5 dígitos para localidade específica',
     info_de_popup:         'Zona postal',
     info_de_state_sub:     'Estado: {0}',
+    info_nl_prefix_title:  'Zona postal {0}',
+    info_nl_prefix_sub:    'Introduz 4 dígitos para localidade específica',
+    info_nl_postal_sub:    'Província: {0}',
+    info_be_prefix_title:  'Zona postal {0}',
+    info_be_prefix_sub:    'Introduz 4 dígitos para localidade específica',
+    info_be_postal_sub:    'Província: {0}',
     footer_disclaimer:     'Apenas para planeamento — confirme sempre com o tacógrafo digital',
     footer_data_fr:        'Dados FR:',
     footer_data_es:        'Dados ES:',
     footer_data_de:        'Dados DE:',
+    footer_data_nl:        'Dados NL:',
+    footer_data_be:        'Dados BE:',
     nav_calculator:        'Calculadora', nav_postal_codes: 'Códigos Postais', nav_fuel: 'Combustível',
     footer_privacy:        'Privacidade', footer_terms: 'Termos',
   },
   en: {
-    page_title:            'Postal Codes for Truckers — FR · ES · DE | TruckHours',
+    page_title:            'Postal Codes for Truckers — FR · ES · DE · NL · BE | TruckHours',
     btn_dark_title:        'Dark mode',
     lbl_country:           'Country',
     lbl_postal_code:       'Postal code',
@@ -693,22 +756,31 @@ const T = {
     tab_es:                '🇪🇸 Spain',
     tab_fr:                '🇫🇷 France',
     tab_de:                '🇩🇪 Germany',
+    tab_nl:                '🇳🇱 Netherlands',
+    tab_be:                '🇧🇪 Belgium',
     btn_search:            'Search',
     loading_map_text:      'Loading map…',
     status_initial:        'Select a country and enter a 2-digit (region) or 5-digit (city) postal code.',
     status_ready:          'Enter a 2-digit (region) or 5-digit (city) postal code.',
+    status_ready_4d:       'Enter 2 digits (zone) or 4 digits (specific locality).',
     status_loading_map:    'Loading map regions…',
     status_searching:      'Searching…',
     err_generic:           'Code not found.',
     err_api:               'Error contacting server.',
     err_fr_load:           'Error loading FR departments.',
     err_de_load:           'Error loading DE postal zones.',
+    err_nl_load:           'Error loading NL postal zones.',
+    err_be_load:           'Error loading BE postal zones.',
     err_code_nf:           'Code "{0}" not found.',
     err_fr_dept_nf:        'Department "{0}" not found.',
     err_es_prov_nf:        'Province "{0}" not found.',
     err_de_zone_nf:        'Postal zone "{0}" not found.',
+    err_nl_zone_nf:        'Postal zone "{0}" not found in the Netherlands.',
+    err_be_zone_nf:        'Postal zone "{0}" not found in Belgium.',
     err_es_postal_nf:      'Postal code "{0}" not found in Spain.',
     err_de_postal_nf:      'Postal code "{0}" not found in Germany.',
+    err_nl_postal_nf:      'Postal code "{0}" not found in the Netherlands.',
+    err_be_postal_nf:      'Postal code "{0}" not found in Belgium.',
     info_fr_dept:          'Department {0} — {1}',
     info_fr_dept_sub:      'Department: {0}',
     info_es_prov:          'Province {0} — {1}',
@@ -720,15 +792,23 @@ const T = {
     info_de_prefix_sub:    'Enter 5 digits for a specific locality',
     info_de_popup:         'Postal zone',
     info_de_state_sub:     'State: {0}',
+    info_nl_prefix_title:  'Postal zone {0}',
+    info_nl_prefix_sub:    'Enter 4 digits for a specific locality',
+    info_nl_postal_sub:    'Province: {0}',
+    info_be_prefix_title:  'Postal zone {0}',
+    info_be_prefix_sub:    'Enter 4 digits for a specific locality',
+    info_be_postal_sub:    'Province: {0}',
     footer_disclaimer:     'For planning purposes only — always confirm with the digital tachograph',
     footer_data_fr:        'FR data:',
     footer_data_es:        'ES data:',
     footer_data_de:        'DE data:',
+    footer_data_nl:        'NL data:',
+    footer_data_be:        'BE data:',
     nav_calculator:        'Calculator', nav_postal_codes: 'Postal Codes', nav_fuel: 'Fuel',
     footer_privacy:        'Privacy', footer_terms: 'Terms',
   },
   es: {
-    page_title:            'Códigos Postales Camionistas — FR · ES · DE | TruckHours',
+    page_title:            'Códigos Postales Camionistas — FR · ES · DE · NL · BE | TruckHours',
     btn_dark_title:        'Modo oscuro',
     lbl_country:           'País',
     lbl_postal_code:       'Código postal',
@@ -736,22 +816,31 @@ const T = {
     tab_es:                '🇪🇸 España',
     tab_fr:                '🇫🇷 Francia',
     tab_de:                '🇩🇪 Alemania',
+    tab_nl:                '🇳🇱 Países Bajos',
+    tab_be:                '🇧🇪 Bélgica',
     btn_search:            'Localizar',
     loading_map_text:      'Cargando mapa…',
     status_initial:        'Selecciona un país e introduce un código postal de 2 dígitos (región) o 5 dígitos (ciudad).',
     status_ready:          'Introduce un código postal de 2 dígitos (región) o 5 dígitos (ciudad).',
+    status_ready_4d:       'Introduce 2 dígitos (zona) o 4 dígitos (localidad específica).',
     status_loading_map:    'Cargando regiones del mapa…',
     status_searching:      'Buscando…',
     err_generic:           'Código no encontrado.',
     err_api:               'Error al contactar el servidor.',
     err_fr_load:           'Error al cargar departamentos FR.',
     err_de_load:           'Error al cargar zonas postales DE.',
+    err_nl_load:           'Error al cargar zonas postales NL.',
+    err_be_load:           'Error al cargar zonas postales BE.',
     err_code_nf:           'Código "{0}" no encontrado.',
     err_fr_dept_nf:        'Departamento "{0}" no encontrado.',
     err_es_prov_nf:        'Provincia "{0}" no encontrada.',
     err_de_zone_nf:        'Zona postal "{0}" no encontrada.',
+    err_nl_zone_nf:        'Zona postal "{0}" no encontrada en los Países Bajos.',
+    err_be_zone_nf:        'Zona postal "{0}" no encontrada en Bélgica.',
     err_es_postal_nf:      'Código postal "{0}" no encontrado en España.',
     err_de_postal_nf:      'Código postal "{0}" no encontrado en Alemania.',
+    err_nl_postal_nf:      'Código postal "{0}" no encontrado en los Países Bajos.',
+    err_be_postal_nf:      'Código postal "{0}" no encontrado en Bélgica.',
     info_fr_dept:          'Departamento {0} — {1}',
     info_fr_dept_sub:      'Departamento: {0}',
     info_es_prov:          'Provincia {0} — {1}',
@@ -763,10 +852,18 @@ const T = {
     info_de_prefix_sub:    'Introduce 5 dígitos para una localidad específica',
     info_de_popup:         'Zona postal',
     info_de_state_sub:     'Estado: {0}',
+    info_nl_prefix_title:  'Zona postal {0}',
+    info_nl_prefix_sub:    'Introduce 4 dígitos para una localidad específica',
+    info_nl_postal_sub:    'Provincia: {0}',
+    info_be_prefix_title:  'Zona postal {0}',
+    info_be_prefix_sub:    'Introduce 4 dígitos para una localidad específica',
+    info_be_postal_sub:    'Provincia: {0}',
     footer_disclaimer:     'Solo para planificación — confirme siempre con el tacógrafo digital',
     footer_data_fr:        'Datos FR:',
     footer_data_es:        'Datos ES:',
     footer_data_de:        'Datos DE:',
+    footer_data_nl:        'Datos NL:',
+    footer_data_be:        'Datos BE:',
     nav_calculator:        'Calculadora', nav_postal_codes: 'Códigos Postales', nav_fuel: 'Combustible',
     footer_privacy:        'Privacidad', footer_terms: 'Términos',
   }
@@ -850,10 +947,15 @@ function switchCountry(c) {
   document.getElementById('tabFR').className = 'tab' + (c === 'fr' ? ' active-fr' : '');
   document.getElementById('tabES').className = 'tab' + (c === 'es' ? ' active-es' : '');
   document.getElementById('tabDE').className = 'tab' + (c === 'de' ? ' active-de' : '');
+  document.getElementById('tabNL').className = 'tab' + (c === 'nl' ? ' active-nl' : '');
+  document.getElementById('tabBE').className = 'tab' + (c === 'be' ? ' active-be' : '');
 
   const inp = document.getElementById('cpInput');
-  inp.placeholder = c === 'fr' ? '75, 69, 75001…' : c === 'es' ? '28, 08, 28001…' : '86, 10115…';
-  inp.maxLength = 5;
+  if (c === 'fr') { inp.placeholder = '75, 69, 75001…'; inp.maxLength = 5; }
+  else if (c === 'es') { inp.placeholder = '28, 08, 28001…'; inp.maxLength = 5; }
+  else if (c === 'nl') { inp.placeholder = '10, 30, 1011…'; inp.maxLength = 4; }
+  else if (c === 'be') { inp.placeholder = '10, 20, 1000…'; inp.maxLength = 4; }
+  else { inp.placeholder = '86, 10115…'; inp.maxLength = 5; }
   document.getElementById('prefixLabel').textContent = c.toUpperCase();
 
   const pillsDiv = document.getElementById('hintPills');
@@ -871,7 +973,7 @@ function switchCountry(c) {
   clearMap();
   document.getElementById('infoCard').style.display = 'none';
   document.getElementById('statusMsg').className = 'status-msg';
-  document.getElementById('statusMsg').textContent = tr('status_ready');
+  document.getElementById('statusMsg').textContent = (c === 'nl' || c === 'be') ? tr('status_ready_4d') : tr('status_ready');
   map.setView(VIEWS[c].center, VIEWS[c].zoom);
   loadBaseLayer(c);
 }
@@ -889,20 +991,26 @@ const BASE_STYLES = {
   fr: { color: '#2d6a4f', weight: 0.8, fillColor: '#52b788', fillOpacity: 0.04, opacity: 0.5 },
   es: { color: '#8b1a1a', weight: 0.8, fillColor: '#c0392b', fillOpacity: 0.04, opacity: 0.5 },
   de: { color: '#1a3a5c', weight: 1.2, fillColor: '#2e6da4', fillOpacity: 0.0, opacity: 0.5 },
+  nl: { color: '#c8902c', weight: 0.8, fillColor: '#e8b658', fillOpacity: 0.04, opacity: 0.5 },
+  be: { color: '#6b3410', weight: 0.8, fillColor: '#c98c5a', fillOpacity: 0.04, opacity: 0.5 },
 };
 
 const HIGHLIGHT_STYLES = {
   fr: { color: '#2d6a4f', weight: 2, fillColor: '#52b788', fillOpacity: 0.28 },
   es: { color: '#8b1a1a', weight: 2, fillColor: '#c0392b', fillOpacity: 0.25 },
   de: { color: '#1a3a5c', weight: 2, fillColor: '#2e6da4', fillOpacity: 0.25 },
+  nl: { color: '#c8902c', weight: 2, fillColor: '#e8b658', fillOpacity: 0.25 },
+  be: { color: '#6b3410', weight: 2, fillColor: '#c98c5a', fillOpacity: 0.25 },
 };
 
 let baseGeoData = {};
 let frGeoCache = null;
 let esGeoCache = null;
 let deGeoCache = null;
+let nlGeoCache = null;
+let beGeoCache = null;
 
-const LABEL_FIELD = { fr: 'code', de: 'postcode2', es: 'cod_prov' };
+const LABEL_FIELD = { fr: 'code', de: 'postcode2', es: 'cod_prov', nl: 'postcode2', be: 'postcode2' };
 
 async function loadBaseLayer(c) {
   clearBaseLayer();
@@ -925,6 +1033,20 @@ async function loadBaseLayer(c) {
         deGeoCache = await res.json();
       }
       geoData = deGeoCache;
+    } else if (c === 'nl') {
+      if (!nlGeoCache) {
+        const res = await fetch('/data/postcodes-nl.geojson');
+        if (!res.ok) throw new Error();
+        nlGeoCache = await res.json();
+      }
+      geoData = nlGeoCache;
+    } else if (c === 'be') {
+      if (!beGeoCache) {
+        const res = await fetch('/data/postcodes-be.geojson');
+        if (!res.ok) throw new Error();
+        beGeoCache = await res.json();
+      }
+      geoData = beGeoCache;
     } else {
       if (!esGeoCache) {
         const res = await fetch('/data/provincias-es.json');
@@ -980,6 +1102,10 @@ async function searchPostal() {
       raw.length <= 2 ? await searchFRDept(raw.padStart(2,'0')) : await searchFRCommune(raw);
     } else if (country === 'es') {
       raw.length <= 2 ? await searchESProvince(raw.padStart(2,'0')) : await searchESPostal(raw);
+    } else if (country === 'nl') {
+      raw.length <= 2 ? await searchNLPrefix(raw.padStart(2,'0')) : await searchNLPostal(raw);
+    } else if (country === 'be') {
+      raw.length <= 2 ? await searchBEPrefix(raw.padStart(2,'0')) : await searchBEPostal(raw);
     } else {
       raw.length <= 2 ? await searchDEPrefix(raw.padStart(2, '0')) : await searchDEPostal(raw);
     }
@@ -1235,10 +1361,130 @@ async function searchDEPostal(code) {
   showInfo(code, title, state ? tr('info_de_state_sub', state) : `PLZ ${code}`, names.length > 1 ? names : [], 'de');
 }
 
+/* ---- NETHERLANDS ---- */
+
+async function searchNLPrefix(prefix) {
+  if (!nlGeoCache) {
+    const res = await fetch('/data/postcodes-nl.geojson');
+    if (!res.ok) throw new Error(tr('err_nl_load'));
+    nlGeoCache = await res.json();
+  }
+  const feature = nlGeoCache.features.find(f => f.properties.postcode2 === prefix);
+  if (!feature) throw new Error(tr('err_nl_zone_nf', prefix));
+
+  currentLayer = L.geoJSON(feature, { style: HIGHLIGHT_STYLES['nl'] }).addTo(map);
+
+  const b = currentLayer.getBounds();
+  const lat = (b.getSouth() + b.getNorth()) / 2;
+  const lon = (b.getWest() + b.getEast()) / 2;
+  currentMarker = createMarker([lat, lon], 'nl')
+    .addTo(map).bindPopup(`<b>${prefix}…</b>`);
+
+  showInfo(`${prefix}…`, tr('info_nl_prefix_title', prefix), tr('info_nl_prefix_sub'), [], 'nl');
+}
+
+async function searchNLPostal(code) {
+  const url = `https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(code)}&countrycodes=nl&format=geojson&limit=5&polygon_geojson=1&addressdetails=1`;
+  const res = await fetch(url, { headers: { 'Accept-Language': lang, 'User-Agent': 'PostalCodeFinder/1.0' } });
+  if (!res.ok) throw new Error(tr('err_api'));
+  const data = await res.json();
+
+  if (!data.features?.length) throw new Error(tr('err_nl_postal_nf', code));
+
+  const names = [...new Set(data.features.map(f => {
+    const addr = f.properties.address;
+    return addr?.city || addr?.town || addr?.village || addr?.municipality || f.properties.display_name?.split(',')[0];
+  }).filter(Boolean))];
+
+  const province = data.features[0].properties.address?.province || data.features[0].properties.address?.state || '';
+
+  const validPolys = data.features.filter(f => f.geometry && ['Polygon','MultiPolygon'].includes(f.geometry.type));
+  if (validPolys.length) {
+    currentLayer = L.geoJSON({ type: 'FeatureCollection', features: validPolys }, {
+      style: HIGHLIGHT_STYLES['nl'],
+      onEachFeature: (f, l) => {
+        const addr = f.properties.address;
+        const name = addr?.city || addr?.town || addr?.village || f.properties.display_name?.split(',')[0] || '';
+        l.bindPopup(`<b>${code}</b> — ${name}`);
+      }
+    }).addTo(map);
+  }
+
+  const bb = data.features[0].bbox;
+  const lat = bb ? (bb[1] + bb[3]) / 2 : parseFloat(data.features[0].properties.lat);
+  const lon = bb ? (bb[0] + bb[2]) / 2 : parseFloat(data.features[0].properties.lon);
+
+  currentMarker = createMarker([lat, lon], 'nl')
+    .addTo(map).bindPopup(`<b>${code}</b> — ${names[0] || ''}`);
+
+  const title = names.length === 1 ? names[0] : names.length > 1 ? `${names[0]} +${names.length - 1}` : code;
+  showInfo(code, title, province ? tr('info_nl_postal_sub', province) : code, names.length > 1 ? names : [], 'nl');
+}
+
+/* ---- BELGIUM ---- */
+
+async function searchBEPrefix(prefix) {
+  if (!beGeoCache) {
+    const res = await fetch('/data/postcodes-be.geojson');
+    if (!res.ok) throw new Error(tr('err_be_load'));
+    beGeoCache = await res.json();
+  }
+  const feature = beGeoCache.features.find(f => f.properties.postcode2 === prefix);
+  if (!feature) throw new Error(tr('err_be_zone_nf', prefix));
+
+  currentLayer = L.geoJSON(feature, { style: HIGHLIGHT_STYLES['be'] }).addTo(map);
+
+  const b = currentLayer.getBounds();
+  const lat = (b.getSouth() + b.getNorth()) / 2;
+  const lon = (b.getWest() + b.getEast()) / 2;
+  currentMarker = createMarker([lat, lon], 'be')
+    .addTo(map).bindPopup(`<b>${prefix}…</b>`);
+
+  showInfo(`${prefix}…`, tr('info_be_prefix_title', prefix), tr('info_be_prefix_sub'), [], 'be');
+}
+
+async function searchBEPostal(code) {
+  const url = `https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(code)}&countrycodes=be&format=geojson&limit=5&polygon_geojson=1&addressdetails=1`;
+  const res = await fetch(url, { headers: { 'Accept-Language': lang, 'User-Agent': 'PostalCodeFinder/1.0' } });
+  if (!res.ok) throw new Error(tr('err_api'));
+  const data = await res.json();
+
+  if (!data.features?.length) throw new Error(tr('err_be_postal_nf', code));
+
+  const names = [...new Set(data.features.map(f => {
+    const addr = f.properties.address;
+    return addr?.city || addr?.town || addr?.village || addr?.municipality || f.properties.display_name?.split(',')[0];
+  }).filter(Boolean))];
+
+  const province = data.features[0].properties.address?.province || data.features[0].properties.address?.state || '';
+
+  const validPolys = data.features.filter(f => f.geometry && ['Polygon','MultiPolygon'].includes(f.geometry.type));
+  if (validPolys.length) {
+    currentLayer = L.geoJSON({ type: 'FeatureCollection', features: validPolys }, {
+      style: HIGHLIGHT_STYLES['be'],
+      onEachFeature: (f, l) => {
+        const addr = f.properties.address;
+        const name = addr?.city || addr?.town || addr?.village || f.properties.display_name?.split(',')[0] || '';
+        l.bindPopup(`<b>${code}</b> — ${name}`);
+      }
+    }).addTo(map);
+  }
+
+  const bb = data.features[0].bbox;
+  const lat = bb ? (bb[1] + bb[3]) / 2 : parseFloat(data.features[0].properties.lat);
+  const lon = bb ? (bb[0] + bb[2]) / 2 : parseFloat(data.features[0].properties.lon);
+
+  currentMarker = createMarker([lat, lon], 'be')
+    .addTo(map).bindPopup(`<b>${code}</b> — ${names[0] || ''}`);
+
+  const title = names.length === 1 ? names[0] : names.length > 1 ? `${names[0]} +${names.length - 1}` : code;
+  showInfo(code, title, province ? tr('info_be_postal_sub', province) : code, names.length > 1 ? names : [], 'be');
+}
+
 /* ---- SHARED ---- */
 
 function createMarker(latlng, c) {
-  const color = c === 'fr' ? '#2d6a4f' : c === 'es' ? '#8b1a1a' : '#1a3a5c';
+  const color = c === 'fr' ? '#2d6a4f' : c === 'es' ? '#8b1a1a' : c === 'nl' ? '#c8902c' : c === 'be' ? '#6b3410' : '#1a3a5c';
   const icon = L.divIcon({
     className: '',
     html: `<div style="width:16px;height:16px;background:${color};border:3px solid white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>`,
