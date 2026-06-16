@@ -449,7 +449,7 @@ main {
   .subheader { padding: 0.5rem 1rem; gap: 0.5rem 0.75rem; }
   main { padding: 0.75rem 1rem; }
   input[type="text"] { width: 130px; }
-  .sh-section:has(.country-tabs) {
+  .sh-section-tabs {
     width: 100%;
     min-width: 0;
     flex-shrink: 1;
@@ -573,7 +573,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
 </div>
 
 <div class="subheader">
-  <div class="sh-section">
+  <div class="sh-section sh-section-tabs">
     <span class="sh-label" data-i="lbl_country">País</span>
     <div class="country-tabs">
       <button class="tab" id="tabES" onclick="switchCountry('es')" data-i="tab_es">🇪🇸 Espanha</button>
