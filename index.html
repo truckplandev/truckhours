@@ -1173,7 +1173,6 @@ function calcAndShow(){
   let blockDriven=0,dayDriven=0,usedReduced=0,daysExt=0,rests=0;
   const events=[];
   const totalDriveMin=Math.round((totalKm/speed)*60);
-  let kmDoneAlready=0; // km já percorridos ANTES de "agora"
   let now;
 
   if(status==='new'){
@@ -1190,10 +1189,6 @@ function calcAndShow(){
 
     dayDriven=dayMins;
     blockDriven=blockMins;
-
-    // km já percorridos hoje (baseado no total do dia)
-    // Estes km são subtraídos ao total da viagem
-    kmDoneAlready=Math.round((dayMins/60)*speed);
 
     // Determinar "agora" = fim do bloco atual
     let blockStart;
@@ -1245,14 +1240,8 @@ function calcAndShow(){
     }
   }
 
-  // km restantes a percorrer = total - km já feitos hoje
-  let remainDrive=Math.max(0, totalDriveMin - Math.round((kmDoneAlready/speed)*60));
-  // Versão correcta: subtrair minutos de condução já feitos
-  remainDrive=Math.max(0, totalDriveMin - Math.round((dayDriven>0?dayDriven:0)));
-  // Usar km: totalDriveMin são os minutos para os km TOTAIS da viagem
-  // se já foram percorridos kmDoneAlready km, restam totalKm-kmDoneAlready km
-  const kmRestantes=Math.max(0, totalKm-kmDoneAlready);
-  remainDrive=Math.round((kmRestantes/speed)*60);
+  // totalKm é a distância restante até ao destino — não subtrair nada
+  const remainDrive=totalDriveMin;
 
   // BUG 2 CORRIGIDO: simular com e sem extensões de 10h, usar a que chega mais cedo
   function simulateJourney(startNow, startBlockDriven, startDayDriven, startRemain, useExtensions){
