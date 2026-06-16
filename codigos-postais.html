@@ -484,6 +484,7 @@ main {
 @media (max-width: 600px) {
   .sub-nav { padding: 8px 1rem; }
 }
+img.emoji { height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -0.1em; }
 </style>
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
@@ -521,6 +522,7 @@ main {
 window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script>
 </head>
 <body>
 
@@ -895,7 +897,12 @@ function setLang(l) {
     const key = el.getAttribute('data-i-title');
     if (T[l][key] !== undefined) el.title = T[l][key];
   });
+  if (window.twemoji) twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
 }
+
+window.addEventListener('load', () => {
+  if (window.twemoji) twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const stored = localStorage.getItem('truckhours.lang');
