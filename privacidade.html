@@ -209,6 +209,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="pill-btn" id="btnIT" onclick="setLang('it')">IT</button>
     </div>
     <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -292,6 +293,20 @@ const T = {
     priv_gdpr_h:      'Tus derechos (RGPD)',
     priv_gdpr:        'Tienes derecho a acceder, rectificar y suprimir tus datos. Para cualquier solicitud, contacta:',
     footer_privacy:   'Privacidad', footer_terms: 'Términos',
+  },
+  it: {
+    page_title:       'Informativa sulla Privacy | TruckHours',
+    btn_dark_title:   'Modalità scura',
+    nav_calculator:   'Calcolatore',
+    nav_postal_codes: 'Codici Postali',
+    nav_fuel:         'Carburante',
+    footer_disclaimer:'Solo per pianificazione — confermare sempre con il tachigrafo digitale',
+    priv_h1:          'Informativa sulla Privacy',
+    priv_data_h:      'Dati',
+    priv_data:        'Raccogliamo Vercel Analytics (statistiche anonime: paese, dispositivo, referrer — senza identificazione personale) e Formspree (valutazioni e suggerimenti inviati volontariamente). Non raccogliamo dati personali, posizione precisa né dati di percorsi o itinerari. Il localStorage del browser salva solo le tue preferenze (lingua e modalità scura) — senza cookie di tracciamento.',
+    priv_gdpr_h:      'I tuoi diritti (GDPR)',
+    priv_gdpr:        'Hai il diritto di accedere, rettificare e cancellare i tuoi dati. Per qualsiasi richiesta, contatta:',
+    footer_privacy:   'Privacy', footer_terms: 'Termini',
   }
 };
 
@@ -303,6 +318,7 @@ function setLang(l) {
   document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
   document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
   document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.getElementById('btnIT').className = 'pill-btn' + (l === 'it' ? ' active' : '');
   document.querySelectorAll('[data-i]').forEach(el => {
     const key = el.getAttribute('data-i');
     if (T[l][key] !== undefined) el.textContent = T[l][key];
@@ -328,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lang = stored;
   } else {
     const nav = (navigator.language || '').toLowerCase();
-    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+    lang = nav.startsWith('it') ? 'it' : nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
   }
   setLang(lang);
   document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';

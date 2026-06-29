@@ -221,6 +221,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="pill-btn" id="btnIT" onclick="setLang('it')">IT</button>
     </div>
     <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -310,6 +311,21 @@ const T = {
     terms_avail_h:    'Disponibilidad',
     terms_avail:      'No garantizamos la disponibilidad continua del servicio. La herramienta se proporciona "tal cual", sin garantías expresas ni implícitas.',
     footer_privacy:   'Privacidad', footer_terms: 'Términos',
+  },
+  it: {
+    page_title:       'Termini di Utilizzo | TruckHours',
+    btn_dark_title:   'Modalità scura',
+    nav_calculator:   'Calcolatore',
+    nav_postal_codes: 'Codici Postali',
+    nav_fuel:         'Carburante',
+    footer_disclaimer:'Solo per pianificazione — confermare sempre con il tachigrafo digitale',
+    terms_h1:         'Termini di Utilizzo',
+    terms_planning:   'Questo strumento è destinato esclusivamente alla PIANIFICAZIONE delle giornate di lavoro. Non sostituisce il tachigrafo digitale né alcun obbligo di legge. L\'utente è responsabile del rispetto del Regolamento CE 561/2006 e della normativa applicabile.',
+    terms_liability_h:'Responsabilità',
+    terms_liability:  'Non siamo responsabili per sanzioni, ritardi, incidenti o qualsiasi altro danno derivante dall\'uso di questo strumento. I dati delle API esterne (geo.api.gouv.fr, OpenStreetMap, Nominatim) possono contenere errori o essere obsoleti — verifica sempre.',
+    terms_avail_h:    'Disponibilità',
+    terms_avail:      'Non garantiamo la disponibilità continuativa del servizio. Lo strumento è fornito "così com\'è", senza garanzie espresse o implicite.',
+    footer_privacy:   'Privacy', footer_terms: 'Termini',
   }
 };
 
@@ -321,6 +337,7 @@ function setLang(l) {
   document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
   document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
   document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.getElementById('btnIT').className = 'pill-btn' + (l === 'it' ? ' active' : '');
   document.querySelectorAll('[data-i]').forEach(el => {
     const key = el.getAttribute('data-i');
     if (T[l][key] !== undefined) el.textContent = T[l][key];
@@ -346,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lang = stored;
   } else {
     const nav = (navigator.language || '').toLowerCase();
-    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+    lang = nav.startsWith('it') ? 'it' : nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
   }
   setLang(lang);
   document.getElementById('iconSun').style.display = darkMode ? 'block' : 'none';
