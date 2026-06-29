@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/codigos-postais">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/codigos-postais">
 <link rel="alternate" hreflang="es" href="https://truckhours.com/codigos-postais">
+<link rel="alternate" hreflang="it" href="https://truckhours.com/codigos-postais">
 <link rel="alternate" hreflang="x-default" href="https://truckhours.com/codigos-postais">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#1A56DB">
@@ -25,6 +26,7 @@
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="it_IT">
 <meta property="og:image" content="https://truckhours.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -558,6 +560,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="pill-btn" id="btnIT" onclick="setLang('it')">IT</button>
     </div>
     <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -888,6 +891,66 @@ const T = {
     footer_data_be:        'Datos BE:',
     nav_calculator:        'Calculadora', nav_postal_codes: 'Códigos Postales', nav_fuel: 'Combustible',
     footer_privacy:        'Privacidad', footer_terms: 'Términos',
+  },
+  it: {
+    page_title:            'Codici Postali Camionisti — FR · ES · DE · NL · BE | TruckHours',
+    btn_dark_title:        'Modalità scura',
+    lbl_country:           'Paese',
+    lbl_postal_code:       'Codice postale',
+    lbl_examples:          'Esempi',
+    tab_es:                '🇪🇸 Spagna',
+    tab_fr:                '🇫🇷 Francia',
+    tab_de:                '🇩🇪 Germania',
+    tab_nl:                '🇳🇱 Paesi Bassi',
+    tab_be:                '🇧🇪 Belgio',
+    btn_search:            'Cerca',
+    loading_map_text:      'Caricamento mappa…',
+    status_initial:        'Seleziona un paese e inserisci un CAP a 2 cifre (regione) o 5 cifre (città).',
+    status_ready:          'Inserisci un CAP a 2 cifre (regione) o 5 cifre (città).',
+    status_ready_4d:       'Inserisci 2 cifre (zona) o 4 cifre (località specifica).',
+    status_loading_map:    'Caricamento regioni della mappa…',
+    status_searching:      'Ricerca in corso…',
+    err_generic:           'Codice non trovato.',
+    err_api:               'Errore nel contattare il server.',
+    err_fr_load:           'Errore nel caricamento dei dipartimenti FR.',
+    err_de_load:           'Errore nel caricamento delle zone postali DE.',
+    err_nl_load:           'Errore nel caricamento delle zone postali NL.',
+    err_be_load:           'Errore nel caricamento delle zone postali BE.',
+    err_code_nf:           'Codice "{0}" non trovato.',
+    err_fr_dept_nf:        'Dipartimento "{0}" non trovato.',
+    err_es_prov_nf:        'Provincia "{0}" non trovata.',
+    err_de_zone_nf:        'Zona postale "{0}" non trovata.',
+    err_nl_zone_nf:        'Zona postale "{0}" non trovata nei Paesi Bassi.',
+    err_be_zone_nf:        'Zona postale "{0}" non trovata in Belgio.',
+    err_es_postal_nf:      'Codice postale "{0}" non trovato in Spagna.',
+    err_de_postal_nf:      'Codice postale "{0}" non trovato in Germania.',
+    err_nl_postal_nf:      'Codice postale "{0}" non trovato nei Paesi Bassi.',
+    err_be_postal_nf:      'Codice postale "{0}" non trovato in Belgio.',
+    info_fr_dept:          'Dipartimento {0} — {1}',
+    info_fr_dept_sub:      'Dipartimento: {0}',
+    info_es_prov:          'Provincia {0} — {1}',
+    info_es_prov_sub_reg:  'Regione: {0}',
+    info_es_approx_sub:    'Posizione approssimativa (nessun confine disponibile)',
+    info_es_prov_sub_full: 'Regione: {0} · Provincia: {1} ({2})',
+    info_es_postal_prov:   'Provincia: {0} ({1})',
+    info_de_prefix_title:  'Zona postale {0}',
+    info_de_prefix_sub:    'Inserisci 5 cifre per una località specifica',
+    info_de_popup:         'Zona postale',
+    info_de_state_sub:     'Stato: {0}',
+    info_nl_prefix_title:  'Zona postale {0}',
+    info_nl_prefix_sub:    'Inserisci 4 cifre per una località specifica',
+    info_nl_postal_sub:    'Provincia: {0}',
+    info_be_prefix_title:  'Zona postale {0}',
+    info_be_prefix_sub:    'Inserisci 4 cifre per una località specifica',
+    info_be_postal_sub:    'Provincia: {0}',
+    footer_disclaimer:     'Solo per pianificazione — confermare sempre con il tachigrafo digitale',
+    footer_data_fr:        'Dati FR:',
+    footer_data_es:        'Dati ES:',
+    footer_data_de:        'Dati DE:',
+    footer_data_nl:        'Dati NL:',
+    footer_data_be:        'Dati BE:',
+    nav_calculator:        'Calcolatore', nav_postal_codes: 'Codici Postali', nav_fuel: 'Carburante',
+    footer_privacy:        'Privacy', footer_terms: 'Termini',
   }
 };
 
@@ -905,6 +968,7 @@ function setLang(l) {
   document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
   document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
   document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.getElementById('btnIT').className = 'pill-btn' + (l === 'it' ? ' active' : '');
   document.querySelectorAll('[data-i]').forEach(el => {
     const key = el.getAttribute('data-i');
     if (T[l][key] !== undefined) el.textContent = T[l][key];
@@ -930,7 +994,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lang = stored;
   } else {
     const nav = (navigator.language || '').toLowerCase();
-    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+    lang = nav.startsWith('it') ? 'it' : nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
   }
   setLang(lang);
 
