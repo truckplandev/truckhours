@@ -12,6 +12,7 @@
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/">
 <link rel="alternate" hreflang="es" href="https://truckhours.com/">
+<link rel="alternate" hreflang="it" href="https://truckhours.com/">
 <link rel="alternate" hreflang="x-default" href="https://truckhours.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="google-site-verification" content="dR4BHaa_4j9pvmUDzOeLbFwpyZ2tTh1-LHA7OATOx1E" />
@@ -28,6 +29,7 @@
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="it_IT">
 <meta property="og:image" content="https://truckhours.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -416,6 +418,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
       <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="pill-btn" id="btnIT" onclick="setLang('it')">IT</button>
     </div>
     <button class="dark-btn" id="darkToggle" onclick="toggleDark()" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -870,6 +873,76 @@ const T={
     err_rest_done_invalid:'El tiempo de descanso debe estar entre 0 y 12h',
     nav_calculator:'Calculadora',nav_postal_codes:'Códigos Postales',nav_fuel:'Combustible',
     footer_privacy:'Privacidad',footer_terms:'Términos'
+  },
+  it:{
+    card_status_title:'Situazione attuale del conducente',
+    status_new:'Inizia il percorso adesso',status_driving:'Sto già guidando',status_resting:'Sto completando il riposo',
+    sep_drive_when:'Quando hai iniziato a guidare oggi?',sep_drive_how:'Quanto hai guidato oggi?',
+    opt_drive_now:'Adesso (ora corrente)',opt_drive_pick:'Scegli l\'orario',
+    lbl_drive_date:'Data',lbl_drive_time:'Ora di inizio di questo blocco',
+    lbl_block_driven:'Blocco attuale (dall\'ultima pausa)',lbl_day_driven:'Totale guidato oggi',
+    lbl_block_driven_input:'Blocco attuale — ore e minuti',
+    lbl_day_driven_input:'Totale oggi — ore e minuti',
+    sep_rest_type:'Tipo di riposo',sep_rest_mode:'Come vuoi inserire il riposo?',
+    rest_normal:'Riposo normale (11h)',rest_reduced:'Riposo ridotto (9h)',
+    rest_mode_start:'So quando ho iniziato',rest_mode_done:'So quanto ho dormito',
+    lbl_rest_start_date:'Data di inizio del riposo',lbl_rest_start_time:'Ora di inizio del riposo',
+    lbl_rest_done:'Tempo di riposo già effettuato',
+    unit_h:'h',unit_min:'min',
+    lbl_date:'Data di inizio',lbl_time:'Ora di inizio',
+    card_limits_title:'Crediti settimanali disponibili',
+    lbl_reduced_rests:'Riposi ridotti (9h)',lbl_ext10:'Estensioni di 10h',
+    notice_limits:'Regolamento CE 561/2006: fino a 3 riposi giornalieri ridotti di 9h e 2 giornate di 10h a settimana. Il recupero deve avvenire entro la fine della 3.ª settimana successiva.',
+    card_trip_title:'Parametri del percorso',lbl_km:'Distanza totale (km)',lbl_speed:'Velocità media (km/h)',
+    lbl_break1:'1.ª pausa (min)',lbl_break2:'2.ª pausa (min)',
+    btn_calc:'Calcola la giornata',btn_new_sim:'Nuova simulazione',
+    footer_text:'TruckHours · CE 561/2006 · Solo per pianificazione — confermare sempre con il tachigrafo digitale',
+    res_summary:'Riepilogo della giornata',res_plan:'Piano dettagliato della giornata',
+    met_arrival:'Arrivo previsto',arrival_disclaimer:'Previsione stimata — soggetta a traffico, condizioni della strada e altri fattori imprevisti.',
+    met_total:'Giornata totale',met_drive:'Guida rimanente',met_pauses:'Pause',met_rests:'Riposi',met_nights:'Pernottamenti',
+    prog_label:'Tempo utile di guida',
+    ev_drive_prev:'Guida già effettuata',ev_drive_prev_det:' km percorsi',
+    ev_rest_ongoing:'Completamento riposo',ev_rest_ongoing_a:' effettuati · ',ev_rest_ongoing_b:' rimanenti',
+    ev_drive:'Guida',ev_pause:'Pausa obbligatoria',ev_pause_detail:'Raggiunte 4h30 di guida continua',
+    ev_rest_red:'Riposo giornaliero ridotto (9h)',ev_rest_norm:'Riposo giornaliero normale (11h)',
+    ev_rest_detail_a:'Fine giornata — ',ev_rest_detail_b:'h guidate',
+    ev_arrive:'Arrivo previsto',ev_arrive_detail:' km totali percorsi',
+    info_block:'Blocco attuale: ',info_day:'Totale oggi: ',info_rem_block:' · Resta nel blocco: ',info_rem_day:' · Resta nel giorno: ',
+    info_start_at:' · A partire da: ',
+    info_rest_start_a:'Riposo iniziato: ',info_rest_start_b:'. Tempo rimanente: ',info_rest_start_c:'. Viaggio previsto per: ',
+    info_rest_done_a:'Riposo effettuato: ',info_rest_done_b:'. Manca ancora: ',info_rest_done_c:'. Viaggio inizia in: ',
+    rating_title:'Valuta lo strumento',rating_sub_short:'La tua opinione aiuta a migliorare',
+    rating_thanks:'Grazie per la tua valutazione!',
+    rating_low:'Scarso',rating_high:'Eccellente',
+    lbl_rating_comment:'Commento (opzionale)',btn_submit_rating:'Invia valutazione',
+    suggestions_title:'Hai un suggerimento?',suggestions_sub_short:'Idea, problema o feedback',
+    suggestion_thanks:'Suggerimento inviato — grazie!',
+    lbl_suggest_type:'Tipo',lbl_suggest_msg:'Messaggio',lbl_suggest_email:'Email (opzionale)',
+    btn_submit_suggest:'Invia suggerimento',
+    submit_error:'Errore nell\'invio — riprova',submitting:'Invio in corso...',
+    opt_feature:'💡 Nuova funzionalità',opt_bug:'🐛 Segnala problema',opt_other:'💬 Altro',
+    ph_suggest_msg:'Descrivi la tua idea o problema...',
+    dsc_max:'Máx:',dsc_rem:'Rim.:',info_max_ext:' (máx ',
+    ev_drive_cur_block:'(blocco attuale)',
+    ext_used:'✓ Estensione 10h conveniente (risparmia {x} in totale)',
+    ext_skip:'✗ Estensione 10h non conviene (perderesti {x} in più)',
+    lbl_pause_section_title:'Pause durante la guida',
+    lbl_pause_single:'Pausa unica (min)',
+    note_legal_breaks:'Minimo legale: 45 min (CE 561/2006). Può essere suddivisa in 15+30 min (1.ª pausa min 15, 2.ª min 30, in quest\'ordine).',
+    btn_customize_breaks:'Personalizza pause',
+    cst_avail:'disponibili',locale:'it-IT',
+    err_km:'La distanza deve essere compresa tra 1 e 5000 km',
+    err_speed:'La velocità deve essere compresa tra 30 e 120 km/h',
+    err_single_break:'La pausa unica deve essere compresa tra 60 e 120 min',
+    err_short_break:'La 1.ª pausa deve essere compresa tra 15 e 60 min',
+    err_long_break:'La 2.ª pausa deve essere compresa tra 30 e 90 min',
+    err_drive_time_empty:'Indica l\'ora di inizio del blocco',
+    err_drive_time_range:'Orario fuori intervallo — máx 24h nel passato o futuro',
+    err_rest_time_empty:'Indica l\'ora di inizio del riposo',
+    err_rest_time_range:'Orario fuori intervallo (±24h)',
+    err_rest_done_invalid:'Il tempo di riposo deve essere compreso tra 0 e 12h',
+    nav_calculator:'Calcolatore',nav_postal_codes:'Codici Postali',nav_fuel:'Carburante',
+    footer_privacy:'Privacy',footer_terms:'Termini'
   }
 };
 
@@ -905,7 +978,7 @@ function getDayMins(){
   document.getElementById('driveStartTime').value=pad(n.getHours())+':'+pad(n.getMinutes());
   updateRestInfo();
   updateDriveInfo();
-  const VALID_LANGS=['pt','en','es'];
+  const VALID_LANGS=['pt','en','es','it'];
   const savedLang=localStorage.getItem('truckhours.lang');
   const navLang=(navigator.language||'').slice(0,2).toLowerCase();
   setLang(VALID_LANGS.includes(savedLang)?savedLang:VALID_LANGS.includes(navLang)?navLang:'pt');
@@ -991,7 +1064,7 @@ function toggleDark(){
 function setLang(l){
   lang=l;
   localStorage.setItem('truckhours.lang',l);
-  ['PT','EN','ES'].forEach(x=>document.getElementById('btn'+x).className='pill-btn'+(l===x.toLowerCase()?' active':''));
+  ['PT','EN','ES','IT'].forEach(x=>document.getElementById('btn'+x).className='pill-btn'+(l===x.toLowerCase()?' active':''));
   document.querySelectorAll('[data-i]').forEach(el=>{
     const k=el.getAttribute('data-i');
     if(T[l][k]!==undefined)el.textContent=T[l][k];
