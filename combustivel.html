@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/combustivel">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/combustivel">
 <link rel="alternate" hreflang="es" href="https://truckhours.com/combustivel">
+<link rel="alternate" hreflang="it" href="https://truckhours.com/combustivel">
 <link rel="alternate" hreflang="x-default" href="https://truckhours.com/combustivel">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#1A56DB">
@@ -25,6 +26,7 @@
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="it_IT">
 <meta property="og:image" content="https://truckhours.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -383,6 +385,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <button class="pill-btn active" id="btnPT" onclick="setLang('pt')">PT</button>
       <button class="pill-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="pill-btn" id="btnES" onclick="setLang('es')">ES</button>
+      <button class="pill-btn" id="btnIT" onclick="setLang('it')">IT</button>
     </div>
     <button class="dark-btn" id="darkToggle" onclick="toggleDark()" data-i-title="btn_dark_title" title="Modo escuro">
       <svg id="iconSun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -531,6 +534,28 @@ const T = {
     err_fuel_required: 'Introduce la cantidad de combustible.',
     nav_calculator: 'Calculadora', nav_postal_codes: 'Códigos Postales', nav_fuel: 'Combustible',
     footer_privacy: 'Privacidad', footer_terms: 'Términos',
+  },
+  it: {
+    page_title:        'Calcolatore di Autonomia — Litri, Consumo e KM | TruckHours',
+    page_subtitle:     'Quanti chilometri posso percorrere con il carburante disponibile',
+    btn_dark_title:    'Modalità scura',
+    lbl_fuel:          'Carburante disponibile (litri)',
+    lbl_consumption:   'Consumo medio (l/100km)',
+    lbl_speed:         'Velocità media (km/h)',
+    helper_consumption:'Camion pesante scarico: 25-30 l/100km. Carico: 30-45 l/100km.',
+    placeholder_fuel:  'es: 400',
+    btn_calculate:     'Calcola autonomia',
+    btn_new_sim:       'Nuova simulazione',
+    result_title:      'Risultato',
+    lbl_km_metric:     'Autonomia',
+    lbl_time_metric:   'Tempo stimato',
+    result_km_sub:     'km possibili',
+    result_time_sub:   'alla velocità impostata',
+    result_disclaimer: 'Calcolo stimato. Quello reale varia in base a carico, terreno e conduzione.',
+    footer_disclaimer: 'Solo per pianificazione — confermare sempre con il tachigrafo digitale',
+    err_fuel_required: 'Inserisci la quantità di carburante.',
+    nav_calculator: 'Calcolatore', nav_postal_codes: 'Codici Postali', nav_fuel: 'Carburante',
+    footer_privacy: 'Privacy', footer_terms: 'Termini',
   }
 };
 
@@ -548,6 +573,7 @@ function setLang(l) {
   document.getElementById('btnPT').className = 'pill-btn' + (l === 'pt' ? ' active' : '');
   document.getElementById('btnEN').className = 'pill-btn' + (l === 'en' ? ' active' : '');
   document.getElementById('btnES').className = 'pill-btn' + (l === 'es' ? ' active' : '');
+  document.getElementById('btnIT').className = 'pill-btn' + (l === 'it' ? ' active' : '');
   document.querySelectorAll('[data-i]').forEach(el => {
     const key = el.getAttribute('data-i');
     if (T[l][key] !== undefined) el.textContent = T[l][key];
@@ -569,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lang = stored;
   } else {
     const nav = (navigator.language || '').toLowerCase();
-    lang = nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
+    lang = nav.startsWith('it') ? 'it' : nav.startsWith('es') ? 'es' : nav.startsWith('en') ? 'en' : 'pt';
   }
   setLang(lang);
 
