@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Restrições de Circulação para Camiões DE/FR/ES | TruckHours</title>
+<title>Restrições de Circulação para Camiões DE/FR | TruckHours</title>
 <!-- SEO -->
-<meta name="description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha, França e Espanha. Consulta por data, hora e peso.">
-<meta name="keywords" content="restrições circulação camiões, Sonntagsfahrverbot, interdictions poids lourds, restricciones camiones, TruckHours">
+<meta name="description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha e França. Consulta por data, hora e peso.">
+<meta name="keywords" content="restrições circulação camiões, Sonntagsfahrverbot, interdictions poids lourds, TruckHours">
 <link rel="canonical" href="https://truckhours.com/restricoes-circulacao">
 <link rel="alternate" hreflang="pt" href="https://truckhours.com/restricoes-circulacao">
 <link rel="alternate" hreflang="en" href="https://truckhours.com/restricoes-circulacao">
@@ -21,8 +21,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TruckHours">
 <meta property="og:url" content="https://truckhours.com/restricoes-circulacao">
-<meta property="og:title" content="Restrições de Circulação para Camiões DE/FR/ES | TruckHours">
-<meta property="og:description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha, França e Espanha.">
+<meta property="og:title" content="Restrições de Circulação para Camiões DE/FR | TruckHours">
+<meta property="og:description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha e França.">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:locale:alternate" content="es_ES">
@@ -32,8 +32,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Restrições de Circulação para Camiões DE/FR/ES | TruckHours">
-<meta name="twitter:description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha, França e Espanha.">
+<meta name="twitter:title" content="Restrições de Circulação para Camiões DE/FR | TruckHours">
+<meta name="twitter:description" content="Verificador interactivo de proibições de circulação para camiões pesados na Alemanha e França.">
 <meta name="twitter:image" content="https://truckhours.com/og-image.png">
 <script>(function(){var s=localStorage.getItem('truckhours.darkMode');var d=s!==null?s==='true':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -285,21 +285,6 @@ body {
   color: var(--red);
 }
 .rule-card.no-ban .rule-card-list li::before { color: var(--amber); }
-
-/* ── ES ESTIMATE WARNING ── */
-.es-warning {
-  display: flex;
-  gap: 10px;
-  padding: 10px 13px;
-  background: var(--amber-l);
-  border: 1px solid var(--amber);
-  border-radius: 9px;
-  margin-top: 1rem;
-  font-size: 12px;
-  color: var(--amber);
-  line-height: 1.5;
-}
-.es-warning svg { flex-shrink: 0; margin-top: 1px; }
 
 /* ── CALENDAR + DETAIL STACKED ── */
 .cal-detail-layout {
@@ -585,13 +570,13 @@ body {
   "name": "TruckHours Restrictions Checker",
   "url": "https://truckhours.com/restricoes-circulacao",
   "image": "https://truckhours.com/og-image.png",
-  "description": "Verificador interactivo de proibições de circulação para camiões pesados na Alemanha, França e Espanha.",
+  "description": "Verificador interactivo de proibições de circulação para camiões pesados na Alemanha e França.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
   "inLanguage": ["pt", "en", "es", "it"],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
   "featureList": [
-    "Verificação de restrições de circulação DE/FR/ES",
+    "Verificação de restrições de circulação DE/FR",
     "Calendário visual de dias permitidos/proibidos",
     "Interface quadrilingue — Português, English, Español, Italiano"
   ],
@@ -638,7 +623,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
   <div class="container">
 
     <div class="page-header">
-      <h1 data-i="page_subtitle">Proibições de circulação para camiões pesados — DE / FR / ES</h1>
+      <h1 data-i="page_subtitle">Proibições de circulação para camiões pesados — DE / FR</h1>
     </div>
 
     <!-- DISCLAIMER — always visible -->
@@ -664,13 +649,6 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
         <button class="country-pill" id="pill-fr" onclick="selectCountry('fr')">
           <span class="flag">🇫🇷</span> France
         </button>
-        <button class="country-pill" id="pill-es" onclick="selectCountry('es')">
-          <span class="flag">🇪🇸</span> España
-        </button>
-      </div>
-      <div class="es-warning" id="esWarning" style="display:none">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span data-i="es_warning"></span>
       </div>
     </div>
 
@@ -829,53 +807,13 @@ const COUNTRIES = {
         { date: '2026-08-08', start: '07:00', end: '19:00' }
       ]
     }
-  },
-  es: {
-    code: 'es',
-    flag: '🇪🇸',
-    name: { pt:'Espanha', en:'Spain', es:'España', it:'Spagna' },
-    weightLimit: 7.5,
-    legalBasis: 'Resolución DGT anual',
-    sourceUrl: 'https://www.dgt.es/',
-    sourceName: 'Dirección General de Tráfico (DGT)',
-    notes: {
-      pt: 'Sem proibição dominical geral. Apenas datas específicas publicadas anualmente pela DGT.',
-      en: 'No general Sunday ban. Only specific dates published annually by the DGT.',
-      es: 'Sin prohibición dominical general. Solo fechas específicas publicadas anualmente por la DGT.',
-      it: 'Nessun divieto domenicale generale. Solo date specifiche pubblicate annualmente dalla DGT.'
-    },
-    holidays: { 2026: [] },
-    specialDates: {
-      2026: [
-        { date:'2026-01-01', start:'08:00', end:'24:00', note:{ pt:'Ano Novo — horários DGT a confirmar', en:"New Year's Day — DGT timetable to confirm", es:'Año Nuevo — horarios DGT a confirmar', it:'Capodanno — orari DGT da confermare' } },
-        { date:'2026-01-06', start:'08:00', end:'24:00', note:{ pt:'Reis Magos — horários DGT a confirmar', en:'Epiphany — DGT timetable to confirm', es:'Reyes Magos — horarios DGT a confirmar', it:'Epifania — orari DGT da confermare' } },
-        { date:'2026-04-03', start:'08:00', end:'24:00', note:{ pt:'Sexta-Feira Santa — horários DGT a confirmar', en:'Good Friday — DGT timetable to confirm', es:'Viernes Santo — horarios DGT a confirmar', it:'Venerdì Santo — orari DGT da confermare' } },
-        { date:'2026-05-01', start:'08:00', end:'24:00', note:{ pt:'Dia do Trabalho — horários DGT a confirmar', en:'Labour Day — DGT timetable to confirm', es:'Fiesta del Trabajo — horarios DGT a confirmar', it:'Festa del Lavoro — orari DGT da confermare' } },
-        { date:'2026-08-15', start:'08:00', end:'24:00', note:{ pt:'Assunção — horários DGT a confirmar', en:'Assumption Day — DGT timetable to confirm', es:'Asunción — horarios DGT a confirmar', it:'Assunzione — orari DGT da confermare' } },
-        { date:'2026-10-12', start:'08:00', end:'24:00', note:{ pt:'Día de la Hispanidad — horários DGT a confirmar', en:'National Day — DGT timetable to confirm', es:'Día de la Hispanidad — horarios DGT a confirmar', it:'Giornata Nazionale — orari DGT da confermare' } },
-        { date:'2026-11-01', start:'08:00', end:'24:00', note:{ pt:'Todos os Santos — horários DGT a confirmar', en:"All Saints' Day — DGT timetable to confirm", es:'Todos los Santos — horarios DGT a confirmar', it:'Tutti i Santi — orari DGT da confermare' } },
-        { date:'2026-12-06', start:'08:00', end:'24:00', note:{ pt:'Dia da Constituição — horários DGT a confirmar', en:'Constitution Day — DGT timetable to confirm', es:'Día de la Constitución — horarios DGT a confirmar', it:'Giorno della Costituzione — orari DGT da confermare' } },
-        { date:'2026-12-08', start:'08:00', end:'24:00', note:{ pt:'Imaculada Conceição — horários DGT a confirmar', en:'Immaculate Conception — DGT timetable to confirm', es:'Inmaculada Concepción — horarios DGT a confirmar', it:'Immacolata Concezione — orari DGT da confermare' } },
-        { date:'2026-12-25', start:'08:00', end:'24:00', note:{ pt:'Natal — horários DGT a confirmar', en:'Christmas Day — DGT timetable to confirm', es:'Navidad — horarios DGT a confirmar', it:'Natale — orari DGT da confermare' } },
-      ]
-    },
-    rules: [
-      { type: 'special_dates_only' }
-    ],
-    ruleCardType: 'amber',
-    ruleCardLines: {
-      pt: ['Sem proibição sabatina ou dominical geral', 'Restrições em feriados nacionais e datas específicas', 'DGT publica o calendário anualmente — consultar dgt.es'],
-      en: ['No general Saturday or Sunday ban', 'Restrictions on national holidays and specific dates', 'DGT publishes the calendar annually — check dgt.es'],
-      es: ['Sin prohibición sabatina ni dominical general', 'Restricciones en festivos nacionales y fechas específicas', 'DGT publica el calendario anualmente — consultar dgt.es'],
-      it: ['Nessun divieto sabatino o domenicale generale', 'Restrizioni nei giorni festivi nazionali e date specifiche', 'DGT pubblica il calendario annualmente — verificare dgt.es']
-    }
   }
 };
 
 /* ─────────────────────────────────────────────
    TIMEZONE MAP  (unchanged)
 ───────────────────────────────────────────── */
-const TZ = { de: 'Europe/Berlin', fr: 'Europe/Paris', es: 'Europe/Madrid' };
+const TZ = { de: 'Europe/Berlin', fr: 'Europe/Paris' };
 
 /* ─────────────────────────────────────────────
    CORE LOGIC  (unchanged)
@@ -911,11 +849,6 @@ function localizeDate(isoString, countryCode) {
 function isHoliday(dateStr, countryCode, year) {
   const h = (COUNTRIES[countryCode].holidays[year] || []);
   return h.includes(dateStr);
-}
-
-function getSpecialDate(dateStr, countryCode, year) {
-  const sd = (COUNTRIES[countryCode].specialDates[year] || []);
-  return sd.find(x => x.date === dateStr) || null;
 }
 
 function getSummerRestriction(dateStr, countryCode, year) {
@@ -988,27 +921,6 @@ function checkFR(isoString, local, weightTons) {
   return { allowed: true, reason: null };
 }
 
-function checkES(local, weightTons) {
-  if (weightTons <= 7.5) return { allowed: true, reason: null };
-
-  const sd = getSpecialDate(local.dateStr, 'es', local.year);
-  if (!sd) return { allowed: true, reason: null };
-
-  const startMin = hmToMin(sd.start);
-  const endMin = sd.end === '24:00' ? 24 * 60 : hmToMin(sd.end);
-
-  if (local.minuteOfDay >= startMin && local.minuteOfDay < endMin) {
-    return {
-      allowed: false,
-      type: 'special',
-      banStart: startMin,
-      banEnd: endMin,
-      note: sd.note
-    };
-  }
-  return { allowed: true, reason: null };
-}
-
 function addMinutes(isoString, mins) {
   return new Date(new Date(isoString).getTime() + mins * 60000).toISOString();
 }
@@ -1024,8 +936,7 @@ function checkCountry(countryCode, isoString, weightTons) {
   const local = localizeDate(isoString, countryCode);
   let result;
   if (countryCode === 'de') result = checkDE(local, weightTons);
-  else if (countryCode === 'fr') result = checkFR(isoString, local, weightTons);
-  else result = checkES(local, weightTons);
+  else result = checkFR(isoString, local, weightTons);
   return { ...result, local };
 }
 
@@ -1129,8 +1040,8 @@ let currentMonthOffset = 0;
 
 const T = {
   pt: {
-    page_title:           'Restrições de Circulação para Camiões DE/FR/ES | TruckHours',
-    page_subtitle:        'Proibições de circulação para camiões pesados — DE / FR / ES',
+    page_title:           'Restrições de Circulação para Camiões DE/FR | TruckHours',
+    page_subtitle:        'Proibições de circulação para camiões pesados — DE / FR',
     btn_dark_title:       'Modo escuro',
     label_country:        'País',
     result_allowed:       '✓ Pode circular',
@@ -1141,10 +1052,8 @@ const T = {
     restriction_holiday:  'Feriado nacional — proibição aplicável',
     restriction_holiday_eve: 'Véspera de feriado — proibição 22:00 → feriado 22:00',
     restriction_sunday:   'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special:  'Data especial DGT',
     restriction_summer:   'Restrição estival — consultar vias aplicáveis',
     disclaimer:           'Apenas para planeamento. Feriados regionais não incluídos. Consulte sempre a fonte oficial antes de circular.',
-    es_warning:           'Mostrados apenas feriados nacionais confirmados. A DGT publica datas operacionais completas anualmente — confirmar sempre em dgt.es antes de circular.',
     source_title:         'Fonte oficial',
     cal_title:            'Calendário',
     cal_legend_allowed:   'Permitido',
@@ -1161,8 +1070,8 @@ const T = {
     months: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
   },
   en: {
-    page_title:           'Truck Circulation Restrictions DE/FR/ES | TruckHours',
-    page_subtitle:        'Heavy truck circulation bans — DE / FR / ES',
+    page_title:           'Truck Circulation Restrictions DE/FR | TruckHours',
+    page_subtitle:        'Heavy truck circulation bans — DE / FR',
     btn_dark_title:       'Dark mode',
     label_country:        'Country',
     result_allowed:       '✓ May circulate',
@@ -1173,10 +1082,8 @@ const T = {
     restriction_holiday:  'National holiday — ban applies',
     restriction_holiday_eve: 'Holiday eve — ban 22:00 → holiday 22:00',
     restriction_sunday:   'Sunday — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special:  'Special DGT date',
     restriction_summer:   'Summer restriction — check applicable roads',
     disclaimer:           'For planning purposes only. Regional holidays not included. Always check official source before travelling.',
-    es_warning:           'Only confirmed national holidays shown. DGT publishes full operational dates annually — always confirm at dgt.es before travel.',
     source_title:         'Official source',
     cal_title:            'Calendar',
     cal_legend_allowed:   'Allowed',
@@ -1193,8 +1100,8 @@ const T = {
     months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
   },
   es: {
-    page_title:           'Restricciones de Circulación para Camiones DE/FR/ES | TruckHours',
-    page_subtitle:        'Prohibiciones de circulación para camiones pesados — DE / FR / ES',
+    page_title:           'Restricciones de Circulación para Camiones DE/FR | TruckHours',
+    page_subtitle:        'Prohibiciones de circulación para camiones pesados — DE / FR',
     btn_dark_title:       'Modo oscuro',
     label_country:        'País',
     result_allowed:       '✓ Puede circular',
@@ -1205,10 +1112,8 @@ const T = {
     restriction_holiday:  'Festivo nacional — prohibición aplicable',
     restriction_holiday_eve: 'Víspera de festivo — prohibición 22:00 → festivo 22:00',
     restriction_sunday:   'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special:  'Fecha especial DGT',
     restriction_summer:   'Restricción estival — consultar vías aplicables',
     disclaimer:           'Solo para planificación. Festivos regionales no incluidos. Consulte siempre la fuente oficial antes de circular.',
-    es_warning:           'Solo festivos nacionales confirmados. La DGT publica fechas operativas completas anualmente — confirmar siempre en dgt.es antes de circular.',
     source_title:         'Fuente oficial',
     cal_title:            'Calendario',
     cal_legend_allowed:   'Permitido',
@@ -1225,8 +1130,8 @@ const T = {
     months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
   },
   it: {
-    page_title:           'Restrizioni di Circolazione per Camion DE/FR/ES | TruckHours',
-    page_subtitle:        'Divieti di circolazione per veicoli pesanti — DE / FR / ES',
+    page_title:           'Restrizioni di Circolazione per Camion DE/FR | TruckHours',
+    page_subtitle:        'Divieti di circolazione per veicoli pesanti — DE / FR',
     btn_dark_title:       'Modalità scura',
     label_country:        'Paese',
     result_allowed:       '✓ Può circolare',
@@ -1237,10 +1142,8 @@ const T = {
     restriction_holiday:  'Festività nazionale — divieto applicabile',
     restriction_holiday_eve: 'Vigilia di festività — divieto 22:00 → festività 22:00',
     restriction_sunday:   'Domenica — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special:  'Data speciale DGT',
     restriction_summer:   'Restrizione estiva — verificare le strade applicabili',
     disclaimer:           'Solo per pianificazione. Festività regionali non incluse. Consultare sempre la fonte ufficiale prima di partire.',
-    es_warning:           'Solo festività nazionali confermate. La DGT pubblica le date operative complete annualmente — verificare sempre su dgt.es prima di partire.',
     source_title:         'Fonte ufficiale',
     cal_title:            'Calendario',
     cal_legend_allowed:   'Consentito',
@@ -1317,12 +1220,6 @@ function getDayBanWindows(countryCode, year, month, day) {
     return [];
   }
 
-  if (countryCode === 'es') {
-    const sd = getSpecialDate(dateStr, 'es', year);
-    if (!sd) return [];
-    return [{ startH: hmToMin(sd.start) / 60, endH: sd.end === '24:00' ? 24 : hmToMin(sd.end) / 60 }];
-  }
-
   return [];
 }
 
@@ -1372,10 +1269,9 @@ function renderRuleCard() {
 
 function selectCountry(code) {
   selectedCountry = code;
-  ['de','fr','es'].forEach(c => {
+  ['de','fr'].forEach(c => {
     document.getElementById('pill-' + c).className = 'country-pill' + (c === code ? ' selected' : '');
   });
-  document.getElementById('esWarning').style.display = code === 'es' ? 'flex' : 'none';
   renderCalendar();
   if (selectedDay) showDayDetail(selectedDay.year, selectedDay.month, selectedDay.day);
   renderSourceCard();
@@ -1389,9 +1285,6 @@ function buildReasonText(result) {
     case 'holiday':     return tr('restriction_holiday');
     case 'holiday_eve': return tr('restriction_holiday_eve');
     case 'sunday':      return tr('restriction_sunday');
-    case 'special': {
-      return result.note && result.note[lang] ? result.note[lang] : tr('restriction_special');
-    }
     case 'summer': {
       return result.note && result.note[lang] ? result.note[lang] : tr('restriction_summer');
     }
