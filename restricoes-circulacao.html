@@ -163,10 +163,10 @@ body {
 .sub-nav .nav-link.active { color: var(--blue); background: var(--blue-l); font-weight: 600; }
 
 /* ── LAYOUT ── */
-.container { max-width: 820px; margin: 0 auto; padding: 1.75rem 1rem 4rem; }
+.container { max-width: 900px; margin: 0 auto; padding: 1.75rem 1rem 4rem; }
 
 /* ── PAGE HEADER ── */
-.page-header { margin-bottom: 1.5rem; }
+.page-header { margin-bottom: 1.25rem; }
 .page-header h1 {
   font-size: 1.1rem;
   font-weight: 600;
@@ -192,7 +192,7 @@ body {
   color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: .08em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 /* ── COUNTRY PILLS ── */
@@ -200,7 +200,6 @@ body {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 1.25rem;
 }
 .country-pill {
   display: flex;
@@ -221,134 +220,6 @@ body {
 .country-pill.selected { border-color: var(--blue); background: var(--blue-l); color: var(--blue); }
 .country-pill .flag { font-size: 20px; line-height: 1; }
 
-/* ── FORM INPUTS ── */
-.form-inputs {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 1rem;
-}
-.field { display: flex; flex-direction: column; gap: 5px; }
-.field label { font-size: 12px; font-weight: 600; color: var(--text-3); }
-.field-inner { position: relative; }
-.field-inner input {
-  width: 100%;
-  padding: 9px 12px;
-  border: 1.5px solid var(--border2);
-  border-radius: 9px;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text-1);
-  background: var(--bg-input);
-  outline: none;
-  transition: border .15s, box-shadow .15s;
-}
-.field-inner input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(59,130,246,.13);
-}
-.field-suffix {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-3);
-  pointer-events: none;
-}
-.field-inner input[type="number"] {
-  padding-right: 30px;
-  -moz-appearance: textfield;
-}
-.field-inner input[type="number"]::-webkit-inner-spin-button,
-.field-inner input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
-
-/* datetime-local calendar icon dark mode fix */
-input[type="datetime-local"] {
-  color-scheme: light;
-}
-[data-theme="dark"] input[type="datetime-local"] {
-  color-scheme: dark;
-}
-
-.check-btn {
-  width: 100%;
-  padding: 15px;
-  background: var(--blue);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 1rem;
-  transition: opacity .15s, transform .1s;
-  box-shadow: 0 4px 16px rgba(26,86,219,.3);
-}
-.check-btn:hover { opacity: .92; transform: translateY(-1px); }
-.check-btn:active { transform: translateY(0); }
-
-/* ── RESULT CARD ── */
-.result-banner {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 1.1rem 1.25rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  font-size: 15px;
-  font-weight: 600;
-}
-.result-banner.allowed {
-  background: var(--green-l);
-  border: 1.5px solid var(--green);
-  color: var(--green);
-}
-.result-banner.banned {
-  background: var(--red-l);
-  border: 1.5px solid var(--red);
-  color: var(--red);
-}
-.result-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-.result-banner.allowed .result-icon { background: var(--green); color: white; }
-.result-banner.banned .result-icon { background: var(--red); color: white; }
-.result-text { flex: 1; }
-.result-label { font-size: 16px; font-weight: 700; }
-.result-reason {
-  font-size: 13px;
-  font-weight: 400;
-  margin-top: 2px;
-  opacity: .9;
-}
-
-.result-next {
-  font-size: 13px;
-  color: var(--text-3);
-  padding: 10px 14px;
-  background: var(--bg-card2);
-  border-radius: 9px;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 /* ── DISCLAIMER BANNER ── */
 .disclaimer-banner {
   display: flex;
@@ -364,6 +235,57 @@ input[type="datetime-local"] {
 }
 .disclaimer-banner svg { flex-shrink: 0; margin-top: 1px; }
 
+/* ── RULE CARD ── */
+.rule-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--red-b);
+  border-left: 4px solid var(--red);
+  border-radius: 11px;
+  padding: 13px 16px;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+.rule-card.no-ban {
+  border-color: var(--amber);
+  border-left-color: var(--amber);
+}
+.rule-card-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 7px;
+}
+.rule-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 5px;
+}
+.rule-card.no-ban .rule-card-label { color: var(--amber); }
+.rule-card-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.rule-card-list li {
+  font-size: 13px;
+  color: var(--text-2);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.45;
+}
+.rule-card-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+}
+.rule-card.no-ban .rule-card-list li::before { color: var(--amber); }
+
 /* ── ES ESTIMATE WARNING ── */
 .es-warning {
   display: flex;
@@ -372,58 +294,61 @@ input[type="datetime-local"] {
   background: var(--amber-l);
   border: 1px solid var(--amber);
   border-radius: 9px;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
   font-size: 12px;
   color: var(--amber);
   line-height: 1.5;
 }
 .es-warning svg { flex-shrink: 0; margin-top: 1px; }
 
-/* ── SOURCES ── */
-.sources-list {
+/* ── CALENDAR + DETAIL STACKED ── */
+.cal-detail-layout {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: .5rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
-.source-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 13px;
-}
-.source-item a {
-  color: var(--blue);
-  text-decoration: none;
-  word-break: break-all;
-}
-.source-item a:hover { text-decoration: underline; }
-.source-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-4);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  white-space: nowrap;
-  margin-top: 1px;
-}
+.cal-section { margin-bottom: 0; }
+.detail-section { margin-bottom: 0; }
 
 /* ── CALENDAR ── */
 .cal-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
-.cal-month {}
-.cal-month-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: .07em;
+.cal-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 8px;
 }
+.cal-month-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+.cal-nav-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  background: var(--bg-card);
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+  font-family: inherit;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.cal-nav-btn:hover:not(:disabled) { background: var(--bg-card2); color: var(--text-1); }
+.cal-nav-btn:disabled { opacity: .25; cursor: default; }
 .cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -438,42 +363,193 @@ input[type="datetime-local"] {
   text-transform: uppercase;
 }
 .cal-day {
-  aspect-ratio: 1;
-  border-radius: 6px;
+  min-height: 72px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 4px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform .1s;
+  position: relative;
+  user-select: none;
+}
+.cal-day:hover { transform: scale(1.08); }
+.cal-day.empty { cursor: default; min-height: 72px; }
+.cal-day.empty:hover { transform: none; }
+.cal-day-num {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: transform .1s, opacity .1s;
-  position: relative;
+  line-height: 1;
 }
-.cal-day:hover { transform: scale(1.1); }
-.cal-day.empty { cursor: default; }
-.cal-day.empty:hover { transform: none; }
+.cal-time-bar {
+  width: calc(100% - 8px);
+  height: 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  opacity: .85;
+}
 .cal-day.allowed { background: var(--green-l); color: var(--green); }
 .cal-day.banned { background: var(--red-l); color: var(--red); }
 .cal-day.partial { background: var(--amber-l); color: var(--amber); }
 .cal-day.today { outline: 2px solid var(--blue); outline-offset: 1px; font-weight: 700; }
-
-/* day tooltip */
-.cal-tooltip {
-  position: absolute;
-  bottom: calc(100% + 5px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--text-1);
-  color: var(--bg-card);
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 200;
-  display: none;
+.cal-day.selected-day {
+  outline: 2.5px solid var(--text-2);
+  outline-offset: 1px;
+  font-weight: 700;
+  transform: scale(1.12);
 }
-.cal-day:hover .cal-tooltip { display: block; }
+
+.cal-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: .85rem;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.cal-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cal-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.cal-legend-dot.allowed { background: var(--green-l); border: 1px solid var(--green); }
+.cal-legend-dot.banned  { background: var(--red-l);   border: 1px solid var(--red); }
+.cal-legend-dot.partial { background: var(--amber-l); border: 1px solid var(--amber); }
+
+/* ── DETAIL PANEL ── */
+.detail-date-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.result-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  margin-bottom: .85rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+.result-banner.allowed {
+  background: var(--green-l);
+  border: 1.5px solid var(--green);
+  color: var(--green);
+}
+.result-banner.banned {
+  background: var(--red-l);
+  border: 1.5px solid var(--red);
+  color: var(--red);
+}
+.result-banner.partial {
+  background: var(--amber-l);
+  border: 1.5px solid var(--amber);
+  color: var(--amber);
+}
+.result-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.result-banner.allowed .result-icon { background: var(--green); color: white; }
+.result-banner.banned  .result-icon { background: var(--red);   color: white; }
+.result-banner.partial .result-icon { background: var(--amber); color: white; }
+.result-text { flex: 1; min-width: 0; }
+.result-label { font-size: 14px; font-weight: 700; line-height: 1.2; }
+.result-reason {
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 3px;
+  opacity: .9;
+  line-height: 1.4;
+}
+
+.result-next {
+  font-size: 12px;
+  color: var(--text-3);
+  padding: 9px 12px;
+  background: var(--bg-card2);
+  border-radius: 9px;
+  margin-bottom: .85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  line-height: 1.45;
+}
+.result-next svg { flex-shrink: 0; margin-top: 1px; }
+
+/* ── INTERVALS ── */
+.intervals-block { margin-top: .25rem; }
+.intervals-block .section-title { margin-bottom: .6rem; }
+.interval-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+.interval-row.allowed { background: var(--green-l); color: var(--green); }
+.interval-row.banned  { background: var(--red-l);   color: var(--red); }
+.interval-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.interval-label { font-weight: 500; }
+
+/* ── SOURCE CARD ── */
+.source-card-content {
+  font-size: 13px;
+  color: var(--text-2);
+}
+.source-basis {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-4);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 3px;
+}
+.source-card-content a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+.source-card-content a:hover { text-decoration: underline; }
+.source-note {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 5px;
+  line-height: 1.45;
+}
 
 /* ── FOOTER ── */
 .page-footer {
@@ -491,10 +567,10 @@ input[type="datetime-local"] {
 .page-footer .footer-legal a:hover { color: var(--blue); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .topbar { padding: 0 1rem; }
   .sub-nav { padding: 8px 1rem; }
-  .cal-wrapper { grid-template-columns: 1fr; }
+  .cal-day, .cal-day.empty { min-height: 56px; }
 }
 @media (max-width: 420px) {
   .country-pills { gap: 6px; }
@@ -565,10 +641,22 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
       <h1 data-i="page_subtitle">Proibições de circulação para camiões pesados — DE / FR / ES</h1>
     </div>
 
-    <!-- INPUT SECTION -->
+    <!-- DISCLAIMER — always visible -->
+    <div class="disclaimer-banner">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <span data-i="disclaimer"></span>
+    </div>
+
+    <!-- RULE CARD -->
+    <div class="rule-card" id="ruleCard">
+      <div class="rule-card-header" id="ruleCardHeader"></div>
+      <div class="rule-card-label" id="ruleCardLabel"></div>
+      <ul class="rule-card-list" id="ruleCardList"></ul>
+    </div>
+
+    <!-- COUNTRY SELECTOR -->
     <div class="section">
       <div class="section-title" data-i="label_country">País</div>
-
       <div class="country-pills">
         <button class="country-pill selected" id="pill-de" onclick="selectCountry('de')">
           <span class="flag">🇩🇪</span> Deutschland
@@ -580,66 +668,52 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
           <span class="flag">🇪🇸</span> España
         </button>
       </div>
-
-      <div class="form-inputs">
-        <div class="field">
-          <label for="inputDatetime" data-i="label_datetime">Data e hora</label>
-          <div class="field-inner">
-            <input type="datetime-local" id="inputDatetime">
-          </div>
-        </div>
-      </div>
-
-      <button class="check-btn" onclick="runCheck()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span data-i="btn_check">Verificar circulação</span>
-      </button>
-    </div>
-
-    <!-- RESULT SECTION -->
-    <div class="section" id="resultSection" style="display:none">
-
-      <!-- DISCLAIMER always at top -->
-      <div class="disclaimer-banner">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span data-i="disclaimer"></span>
-      </div>
-
-      <!-- ES estimate warning (hidden for DE/FR) -->
       <div class="es-warning" id="esWarning" style="display:none">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <span data-i="es_warning"></span>
       </div>
+    </div>
 
-      <!-- Result banner -->
-      <div class="result-banner" id="resultBanner">
-        <div class="result-icon" id="resultIcon"></div>
-        <div class="result-text">
-          <div class="result-label" id="resultLabel"></div>
-          <div class="result-reason" id="resultReason"></div>
+    <!-- CALENDAR + DETAIL — side by side on desktop -->
+    <div class="cal-detail-layout">
+
+      <!-- Left: calendar -->
+      <div class="section cal-section">
+        <div class="section-title" data-i="cal_title">Calendário do mês</div>
+        <div class="cal-wrapper" id="calWrapper"></div>
+        <div class="cal-legend">
+          <div class="cal-legend-item"><div class="cal-legend-dot allowed"></div><span data-i="cal_legend_allowed">Permitido</span></div>
+          <div class="cal-legend-item"><div class="cal-legend-dot banned"></div><span data-i="cal_legend_banned">Proibido</span></div>
+          <div class="cal-legend-item"><div class="cal-legend-dot partial"></div><span data-i="cal_legend_partial">Parcial</span></div>
         </div>
       </div>
 
-      <!-- Next window -->
-      <div class="result-next" id="resultNext" style="display:none">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span id="resultNextText"></span>
+      <!-- Right: day detail -->
+      <div class="section detail-section">
+        <div class="detail-date-header" id="detailDateHeader"></div>
+        <div class="result-banner allowed" id="resultBanner">
+          <div class="result-icon" id="resultIcon">✓</div>
+          <div class="result-text">
+            <div class="result-label" id="resultLabel"></div>
+            <div class="result-reason" id="resultReason"></div>
+          </div>
+        </div>
+        <div class="result-next" id="resultNext" style="display:none">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="resultNextText"></span>
+        </div>
+        <div class="intervals-block" id="intervalsBlock" style="display:none">
+          <div class="section-title" data-i="intervals_title">Horários</div>
+          <div id="intervalsList"></div>
+        </div>
       </div>
 
-      <!-- Sources -->
-      <div class="section-title" style="margin-top:1.25rem" data-i="sources_title">Fontes oficiais</div>
-      <div class="sources-list" id="sourcesList"></div>
     </div>
 
-    <!-- CALENDAR SECTION -->
-    <div class="section" id="calSection" style="display:none">
-      <div class="section-title" data-i="cal_title">Calendário do mês</div>
-      <div class="cal-wrapper" id="calWrapper"></div>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:1rem;font-size:12px;color:var(--text-3)">
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:var(--green-l);border:1px solid var(--green);display:inline-block"></span><span data-i="cal_legend_allowed">Permitido</span></span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:var(--red-l);border:1px solid var(--red);display:inline-block"></span><span data-i="cal_legend_banned">Proibido</span></span>
-        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:var(--amber-l);border:1px solid var(--amber);display:inline-block"></span><span data-i="cal_legend_partial">Parcial</span></span>
-      </div>
+    <!-- SOURCE CARD — one country -->
+    <div class="section">
+      <div class="section-title" data-i="source_title">Fonte oficial</div>
+      <div class="source-card-content" id="sourceContent"></div>
     </div>
 
   </div>
@@ -654,7 +728,7 @@ window.va = window.va || function () { (window.vaq = window.vaq || []).push(argu
 
 <script>
 /* ─────────────────────────────────────────────
-   DATA MODEL
+   DATA MODEL  (unchanged)
 ───────────────────────────────────────────── */
 const COUNTRIES = {
   de: {
@@ -680,7 +754,33 @@ const COUNTRIES = {
     specialDates: { 2026: [] },
     rules: [
       { type: 'sunday_holiday', start: '00:00', end: '22:00' }
-    ]
+    ],
+    ruleCardType: 'red',
+    ruleCardLines: {
+      pt: ['Domingos e feriados nacionais: 00:00 → 22:00', 'Verão (4 Jul–29 Ago): Sáb 07:00 → 20:00 (apenas em Autobahnen)', 'Veículos >7,5 t.'],
+      en: ['Sundays and national holidays: 00:00 → 22:00', 'Summer (4 Jul–29 Aug): Sat 07:00 → 20:00 (specific Autobahnen only)', 'Vehicles >7.5t.'],
+      es: ['Domingos y festivos nacionales: 00:00 → 22:00', 'Verano (4 Jul–29 Ago): Sáb 07:00 → 20:00 (solo Autobahnen específicas)', 'Vehículos >7,5t.'],
+      it: ['Domeniche e festività nazionali: 00:00 → 22:00', 'Estate (4 Lug–29 Ago): Sab 07:00 → 20:00 (solo specifiche Autobahnen)', 'Veicoli >7,5t.']
+    },
+    summerNote: {
+      pt: 'Ferienreiseverordnung — apenas em Autobahnen específicas. Consultar bmdv.bund.de.',
+      en: 'Ferienreiseverordnung — specific Autobahnen only. See bmdv.bund.de.',
+      es: 'Ferienreiseverordnung — solo en Autobahnen específicas. Ver bmdv.bund.de.',
+      it: 'Ferienreiseverordnung — solo su specifiche Autobahnen. Vedere bmdv.bund.de.'
+    },
+    summerRestrictions: {
+      2026: [
+        { date: '2026-07-04', start: '07:00', end: '20:00' },
+        { date: '2026-07-11', start: '07:00', end: '20:00' },
+        { date: '2026-07-18', start: '07:00', end: '20:00' },
+        { date: '2026-07-25', start: '07:00', end: '20:00' },
+        { date: '2026-08-01', start: '07:00', end: '20:00' },
+        { date: '2026-08-08', start: '07:00', end: '20:00' },
+        { date: '2026-08-15', start: '07:00', end: '20:00' },
+        { date: '2026-08-22', start: '07:00', end: '20:00' },
+        { date: '2026-08-29', start: '07:00', end: '20:00' }
+      ]
+    }
   },
   fr: {
     code: 'fr',
@@ -706,7 +806,29 @@ const COUNTRIES = {
     specialDates: { 2026: [] },
     rules: [
       { type: 'weekend_window', startDay: 6, startHour: 22, endDay: 0, endHour: 22 }
-    ]
+    ],
+    ruleCardType: 'red',
+    ruleCardLines: {
+      pt: ['Sábado 22:00 → Domingo 22:00', 'Véspera de feriado 22:00 → feriado 22:00', 'Verão (11 Jul–8 Ago, 5 sáb): 07:00 → 19:00 — todo o réseau national', 'Veículos >7,5 t.'],
+      en: ['Saturday 22:00 → Sunday 22:00', 'Holiday eve 22:00 → holiday 22:00', 'Summer (11 Jul–8 Aug, 5 Sat): 07:00 → 19:00 — entire French road network', 'Vehicles >7.5t.'],
+      es: ['Sábado 22:00 → Domingo 22:00', 'Víspera de festivo 22:00 → festivo 22:00', 'Verano (11 Jul–8 Ago, 5 sáb): 07:00 → 19:00 — toda la red vial francesa', 'Vehículos >7,5t.'],
+      it: ['Sabato 22:00 → Domenica 22:00', 'Vigilia di festività 22:00 → festività 22:00', 'Estate (11 Lug–8 Ago, 5 sab): 07:00 → 19:00 — intera rete stradale francese', 'Veicoli >7,5t.']
+    },
+    summerNote: {
+      pt: 'Restrição estival — todo o réseau national francês (arr. 26 Dez 2025).',
+      en: 'Summer ban — entire French road network (arrêté 26 Dec 2025).',
+      es: 'Restricción estival — toda la red vial francesa (arr. 26 Dic 2025).',
+      it: 'Restrizione estiva — intera rete stradale francese (arr. 26 Dic 2025).'
+    },
+    summerRestrictions: {
+      2026: [
+        { date: '2026-07-11', start: '07:00', end: '19:00' },
+        { date: '2026-07-18', start: '07:00', end: '19:00' },
+        { date: '2026-07-25', start: '07:00', end: '19:00' },
+        { date: '2026-08-01', start: '07:00', end: '19:00' },
+        { date: '2026-08-08', start: '07:00', end: '19:00' }
+      ]
+    }
   },
   es: {
     code: 'es',
@@ -725,52 +847,45 @@ const COUNTRIES = {
     holidays: { 2026: [] },
     specialDates: {
       2026: [
-        // Semana Santa
-        { date:'2026-04-02', start:'13:00', end:'24:00', note:{ pt:'Quinta-Feira Santa', en:'Holy Thursday', es:'Jueves Santo', it:'Giovedì Santo' } },
-        { date:'2026-04-03', start:'00:00', end:'24:00', note:{ pt:'Sexta-Feira Santa', en:'Good Friday', es:'Viernes Santo', it:'Venerdì Santo' } },
-        { date:'2026-04-05', start:'16:00', end:'24:00', note:{ pt:'Domingo de Páscoa', en:'Easter Sunday', es:'Domingo de Pascua', it:'Domenica di Pasqua' } },
-        // Verão — Sábados julho/agosto em rotas específicas (estimado)
-        { date:'2026-07-04', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-07-11', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-07-18', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-07-25', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-08-01', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-08-08', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-08-15', start:'00:00', end:'24:00', note:{ pt:'Assunção (variável)', en:'Assumption (variable)', es:'Asunción (variable)', it:'Assunzione (variabile)' } },
-        { date:'2026-08-22', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        { date:'2026-08-29', start:'08:00', end:'15:00', note:{ pt:'Sábado verão (rotas específicas)', en:'Summer Saturday (specific routes)', es:'Sábado verano (rutas específicas)', it:'Sabato estivo (percorsi specifici)' } },
-        // Puente Constitución
-        { date:'2026-12-06', start:'00:00', end:'24:00', note:{ pt:'Dia da Constituição (puente)', en:'Constitution Day (bridge holiday)', es:'Día de la Constitución (puente)', it:'Giorno della Costituzione (ponte)' } },
-        { date:'2026-12-07', start:'00:00', end:'24:00', note:{ pt:'Imaculada Conceição (puente)', en:'Immaculate Conception (bridge)', es:'Inmaculada Concepción (puente)', it:'Immacolata Concezione (ponte)' } },
-        { date:'2026-12-08', start:'00:00', end:'24:00', note:{ pt:'Imaculada Conceição', en:'Immaculate Conception', es:'Inmaculada Concepción', it:'Immacolata Concezione' } },
-        // Operação Natal
-        { date:'2026-12-25', start:'00:00', end:'24:00', note:{ pt:'Natal (Operação Natal)', en:'Christmas (Operation Christmas)', es:'Navidad (Operación Navidad)', it:'Natale (Operazione Natale)' } },
-        { date:'2026-12-31', start:'00:00', end:'24:00', note:{ pt:'Véspera de Ano Novo', en:'New Year\'s Eve', es:'Nochevieja', it:'San Silvestro' } },
-        { date:'2027-01-01', start:'00:00', end:'24:00', note:{ pt:'Ano Novo', en:'New Year\'s Day', es:'Año Nuevo', it:'Capodanno' } },
+        { date:'2026-01-01', start:'08:00', end:'24:00', note:{ pt:'Ano Novo — horários DGT a confirmar', en:"New Year's Day — DGT timetable to confirm", es:'Año Nuevo — horarios DGT a confirmar', it:'Capodanno — orari DGT da confermare' } },
+        { date:'2026-01-06', start:'08:00', end:'24:00', note:{ pt:'Reis Magos — horários DGT a confirmar', en:'Epiphany — DGT timetable to confirm', es:'Reyes Magos — horarios DGT a confirmar', it:'Epifania — orari DGT da confermare' } },
+        { date:'2026-04-03', start:'08:00', end:'24:00', note:{ pt:'Sexta-Feira Santa — horários DGT a confirmar', en:'Good Friday — DGT timetable to confirm', es:'Viernes Santo — horarios DGT a confirmar', it:'Venerdì Santo — orari DGT da confermare' } },
+        { date:'2026-05-01', start:'08:00', end:'24:00', note:{ pt:'Dia do Trabalho — horários DGT a confirmar', en:'Labour Day — DGT timetable to confirm', es:'Fiesta del Trabajo — horarios DGT a confirmar', it:'Festa del Lavoro — orari DGT da confermare' } },
+        { date:'2026-08-15', start:'08:00', end:'24:00', note:{ pt:'Assunção — horários DGT a confirmar', en:'Assumption Day — DGT timetable to confirm', es:'Asunción — horarios DGT a confirmar', it:'Assunzione — orari DGT da confermare' } },
+        { date:'2026-10-12', start:'08:00', end:'24:00', note:{ pt:'Día de la Hispanidad — horários DGT a confirmar', en:'National Day — DGT timetable to confirm', es:'Día de la Hispanidad — horarios DGT a confirmar', it:'Giornata Nazionale — orari DGT da confermare' } },
+        { date:'2026-11-01', start:'08:00', end:'24:00', note:{ pt:'Todos os Santos — horários DGT a confirmar', en:"All Saints' Day — DGT timetable to confirm", es:'Todos los Santos — horarios DGT a confirmar', it:'Tutti i Santi — orari DGT da confermare' } },
+        { date:'2026-12-06', start:'08:00', end:'24:00', note:{ pt:'Dia da Constituição — horários DGT a confirmar', en:'Constitution Day — DGT timetable to confirm', es:'Día de la Constitución — horarios DGT a confirmar', it:'Giorno della Costituzione — orari DGT da confermare' } },
+        { date:'2026-12-08', start:'08:00', end:'24:00', note:{ pt:'Imaculada Conceição — horários DGT a confirmar', en:'Immaculate Conception — DGT timetable to confirm', es:'Inmaculada Concepción — horarios DGT a confirmar', it:'Immacolata Concezione — orari DGT da confermare' } },
+        { date:'2026-12-25', start:'08:00', end:'24:00', note:{ pt:'Natal — horários DGT a confirmar', en:'Christmas Day — DGT timetable to confirm', es:'Navidad — horarios DGT a confirmar', it:'Natale — orari DGT da confermare' } },
       ]
     },
     rules: [
       { type: 'special_dates_only' }
-    ]
+    ],
+    ruleCardType: 'amber',
+    ruleCardLines: {
+      pt: ['Sem proibição sabatina ou dominical geral', 'Restrições em feriados nacionais e datas específicas', 'DGT publica o calendário anualmente — consultar dgt.es'],
+      en: ['No general Saturday or Sunday ban', 'Restrictions on national holidays and specific dates', 'DGT publishes the calendar annually — check dgt.es'],
+      es: ['Sin prohibición sabatina ni dominical general', 'Restricciones en festivos nacionales y fechas específicas', 'DGT publica el calendario anualmente — consultar dgt.es'],
+      it: ['Nessun divieto sabatino o domenicale generale', 'Restrizioni nei giorni festivi nazionali e date specifiche', 'DGT pubblica il calendario annualmente — verificare dgt.es']
+    }
   }
 };
 
 /* ─────────────────────────────────────────────
-   TIMEZONE MAP
+   TIMEZONE MAP  (unchanged)
 ───────────────────────────────────────────── */
 const TZ = { de: 'Europe/Berlin', fr: 'Europe/Paris', es: 'Europe/Madrid' };
 
 /* ─────────────────────────────────────────────
-   CORE LOGIC
+   CORE LOGIC  (unchanged)
 ───────────────────────────────────────────── */
 
-// Parse "HH:MM" into minutes-since-midnight
 function hmToMin(hm) {
   const [h, m] = hm.split(':').map(Number);
   return h * 60 + m;
 }
 
-// Shift datetime to country local time, return a plain object with fields
 function localizeDate(isoString, countryCode) {
   const tz = TZ[countryCode];
   const d = new Date(isoString);
@@ -788,7 +903,6 @@ function localizeDate(isoString, countryCode) {
     hour:    parseInt(parts.hour === '24' ? '0' : parts.hour),
     minute:  parseInt(parts.minute),
     weekday: new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short' }).format(d),
-    // ISO date string in local tz
     dateStr: `${parts.year}-${parts.month}-${parts.day}`,
     minuteOfDay: parseInt(parts.hour === '24' ? '0' : parts.hour) * 60 + parseInt(parts.minute)
   };
@@ -799,19 +913,32 @@ function isHoliday(dateStr, countryCode, year) {
   return h.includes(dateStr);
 }
 
-// Returns a special date entry or null
 function getSpecialDate(dateStr, countryCode, year) {
   const sd = (COUNTRIES[countryCode].specialDates[year] || []);
   return sd.find(x => x.date === dateStr) || null;
 }
 
-// DE: banned Sun+holidays 00:00-22:00 for >7.5t
+function getSummerRestriction(dateStr, countryCode, year) {
+  const sr = ((COUNTRIES[countryCode].summerRestrictions || {})[year] || []);
+  return sr.find(x => x.date === dateStr) || null;
+}
+
 function checkDE(local, weightTons) {
   if (weightTons <= 7.5) return { allowed: true, reason: null };
-  const wd = local.weekday; // 'Sun', 'Mon'…
+  const wd = local.weekday;
   const isSun = wd === 'Sun';
   const iHol = isHoliday(local.dateStr, 'de', local.year);
-  if (!isSun && !iHol) return { allowed: true, reason: null };
+  if (!isSun && !iHol) {
+    const sr = getSummerRestriction(local.dateStr, 'de', local.year);
+    if (sr) {
+      const startMin = hmToMin(sr.start);
+      const endMin = hmToMin(sr.end);
+      if (local.minuteOfDay >= startMin && local.minuteOfDay < endMin) {
+        return { allowed: false, type: 'summer', banStart: startMin, banEnd: endMin, note: COUNTRIES.de.summerNote };
+      }
+    }
+    return { allowed: true, reason: null };
+  }
   const startMin = 0, endMin = 22 * 60;
   if (local.minuteOfDay >= startMin && local.minuteOfDay < endMin) {
     return {
@@ -823,28 +950,31 @@ function checkDE(local, weightTons) {
   return { allowed: true, reason: null };
 }
 
-// FR: banned Sat 22:00→Sun 22:00 + holiday eve 22:00→holiday 22:00
 function checkFR(isoString, local, weightTons) {
   if (weightTons <= 7.5) return { allowed: true, reason: null };
 
-  const tz = TZ.fr;
   const d = new Date(isoString);
   const wd = local.weekday;
   const min = local.minuteOfDay;
   const dateStr = local.dateStr;
   const year = local.year;
 
-  // Saturday after 22:00 — banned
   if (wd === 'Sat' && min >= 22 * 60) {
     return { allowed: false, type: 'weekend', banStart: 22 * 60, banEnd: 24 * 60, nextDayEnd: 22 * 60 };
   }
-
-  // Sunday before 22:00 — banned (continuation of Sat→Sun window)
   if (wd === 'Sun' && min < 22 * 60) {
     return { allowed: false, type: 'weekend', banStart: 0, banEnd: 22 * 60 };
   }
-
-  // Holiday eve after 22:00 — check if tomorrow is a holiday
+  if (wd === 'Sat') {
+    const sr = getSummerRestriction(dateStr, 'fr', year);
+    if (sr) {
+      const startMin = hmToMin(sr.start);
+      const endMin = hmToMin(sr.end);
+      if (min >= startMin && min < endMin) {
+        return { allowed: false, type: 'summer', banStart: startMin, banEnd: endMin, note: COUNTRIES.fr.summerNote };
+      }
+    }
+  }
   if (min >= 22 * 60) {
     const tomorrow = new Date(d.getTime() + 24 * 3600000);
     const tomorrowLocal = localizeDate(tomorrow.toISOString(), 'fr');
@@ -852,16 +982,12 @@ function checkFR(isoString, local, weightTons) {
       return { allowed: false, type: 'holiday_eve', banStart: 22 * 60, banEnd: 24 * 60, nextDayEnd: 22 * 60 };
     }
   }
-
-  // Holiday day before 22:00
   if (isHoliday(dateStr, 'fr', year) && min < 22 * 60) {
     return { allowed: false, type: 'holiday', banStart: 0, banEnd: 22 * 60 };
   }
-
   return { allowed: true, reason: null };
 }
 
-// ES: only specific dates
 function checkES(local, weightTons) {
   if (weightTons <= 7.5) return { allowed: true, reason: null };
 
@@ -883,17 +1009,8 @@ function checkES(local, weightTons) {
   return { allowed: true, reason: null };
 }
 
-// Advance isoString by 15 minutes
 function addMinutes(isoString, mins) {
   return new Date(new Date(isoString).getTime() + mins * 60000).toISOString();
-}
-
-// Format local time HH:MM for a country
-function fmtLocalTime(isoString, countryCode) {
-  return new Intl.DateTimeFormat('pt-PT', {
-    timeZone: TZ[countryCode],
-    hour: '2-digit', minute: '2-digit'
-  }).format(new Date(isoString));
 }
 
 function fmtLocalDateTime(isoString, countryCode) {
@@ -912,7 +1029,6 @@ function checkCountry(countryCode, isoString, weightTons) {
   return { ...result, local };
 }
 
-// Search forward up to 7 days (in 15-min steps) for next allowed moment
 function findNextAllowed(countryCode, isoString, weightTons) {
   const limit = new Date(isoString).getTime() + 7 * 24 * 3600000;
   let cursor = addMinutes(isoString, 15);
@@ -925,37 +1041,119 @@ function findNextAllowed(countryCode, isoString, weightTons) {
 }
 
 /* ─────────────────────────────────────────────
+   CALENDAR HELPERS  (unchanged)
+───────────────────────────────────────────── */
+
+function dayStatus(countryCode, year, month, day, weightTons) {
+  const pad = n => String(n).padStart(2, '0');
+  const dateStr = `${year}-${pad(month)}-${pad(day)}`;
+  const tz = TZ[countryCode];
+
+  const t1 = new Date(`${dateStr}T00:30:00`);
+  const t2 = new Date(`${dateStr}T12:00:00`);
+  const t3 = new Date(`${dateStr}T20:00:00`);
+
+  const offset = getLocalOffset(tz, t1);
+
+  const iso1 = new Date(t1.getTime() - offset).toISOString();
+  const iso2 = new Date(t2.getTime() - offset).toISOString();
+  const iso3 = new Date(t3.getTime() - offset).toISOString();
+
+  const r1 = checkCountry(countryCode, iso1, weightTons);
+  const r2 = checkCountry(countryCode, iso2, weightTons);
+  const r3 = checkCountry(countryCode, iso3, weightTons);
+
+  const allAllowed = r1.allowed && r2.allowed && r3.allowed;
+  if (allAllowed) return 'allowed';
+  if (!r1.allowed && !r2.allowed && !r3.allowed) return 'banned';
+  return 'partial';
+}
+
+function getLocalOffset(tz, date) {
+  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  const localDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
+  return localDate - utcDate;
+}
+
+/* ─────────────────────────────────────────────
+   NEW: INTERVAL HELPERS
+───────────────────────────────────────────── */
+
+// Build an ISO string for a specific local time in a country (same pattern as dayStatus)
+function getISOForLocalTime(countryCode, year, month, day, hour, minute) {
+  const pad = n => String(n).padStart(2, '0');
+  const t = new Date(`${year}-${pad(month)}-${pad(day)}T${pad(hour)}:${pad(minute)}:00`);
+  const offset = getLocalOffset(TZ[countryCode], t);
+  return new Date(t.getTime() - offset).toISOString();
+}
+
+// Scan a day in 30-min steps, return [{state, startMin, endMin}]
+function getDayIntervals(countryCode, year, month, day) {
+  const intervals = [];
+  let currentState = null;
+  let currentStart = 0;
+
+  for (let min = 0; min < 24 * 60; min += 30) {
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    const iso = getISOForLocalTime(countryCode, year, month, day, h, m);
+    const r = checkCountry(countryCode, iso, 40);
+    const state = r.allowed ? 'allowed' : 'banned';
+
+    if (state !== currentState) {
+      if (currentState !== null) {
+        intervals.push({ state: currentState, startMin: currentStart, endMin: min });
+      }
+      currentState = state;
+      currentStart = min;
+    }
+  }
+  if (currentState !== null) {
+    intervals.push({ state: currentState, startMin: currentStart, endMin: 24 * 60 });
+  }
+  return intervals;
+}
+
+function minToHHMM(min) {
+  if (min >= 1440) return '24:00';
+  return String(Math.floor(min / 60)).padStart(2, '0') + ':' + String(min % 60).padStart(2, '0');
+}
+
+/* ─────────────────────────────────────────────
    i18n
 ───────────────────────────────────────────── */
 let lang = 'pt';
 let selectedCountry = 'de';
+let selectedDay = null;
+let currentMonthOffset = 0;
 
 const T = {
   pt: {
-    page_title:        'Restrições de Circulação para Camiões DE/FR/ES | TruckHours',
-    page_subtitle:     'Proibições de circulação para camiões pesados — DE / FR / ES',
-    btn_dark_title:    'Modo escuro',
-    label_country:     'País',
-    label_datetime:    'Data e hora',
-    label_weight:      'Peso total do veículo',
-    btn_check:         'Verificar circulação',
-    result_allowed:    '✓ Pode circular',
-    result_banned:     '✗ Proibido circular',
-    result_next_window:'Próxima janela permitida',
-    restriction_weekend: 'Fim de semana — ban Sáb 22:00 → Dom 22:00',
-    restriction_holiday: 'Feriado nacional — proibição aplicável',
+    page_title:           'Restrições de Circulação para Camiões DE/FR/ES | TruckHours',
+    page_subtitle:        'Proibições de circulação para camiões pesados — DE / FR / ES',
+    btn_dark_title:       'Modo escuro',
+    label_country:        'País',
+    result_allowed:       '✓ Pode circular',
+    result_banned:        '✗ Proibido circular',
+    result_partial:       '⚠ Restrição parcial',
+    result_next_window:   'Próxima janela permitida',
+    restriction_weekend:  'Fim de semana — ban Sáb 22:00 → Dom 22:00',
+    restriction_holiday:  'Feriado nacional — proibição aplicável',
     restriction_holiday_eve: 'Véspera de feriado — proibição 22:00 → feriado 22:00',
-    restriction_sunday:  'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special: 'Data especial DGT',
-    below_limit:       'Peso abaixo do limite ({0}t) — sem restrição de peso',
-    disclaimer:        'Apenas para planeamento. Feriados regionais não incluídos. Consulte sempre a fonte oficial antes de circular.',
-    es_warning:        'Datas ES baseadas em padrão histórico. Confirmar calendário oficial DGT 2026 antes de viagem. Sábados de verão referem-se a rotas específicas — consultar DGT.',
-    sources_title:     'Fontes oficiais',
-    cal_title:         'Calendário do mês',
-    cal_legend_allowed:'Permitido',
-    cal_legend_banned: 'Proibido',
-    cal_legend_partial:'Parcial',
-    no_restriction:    'Sem restrição de circulação nesta data/hora.',
+    restriction_sunday:   'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
+    restriction_special:  'Data especial DGT',
+    restriction_summer:   'Restrição estival — consultar vias aplicáveis',
+    disclaimer:           'Apenas para planeamento. Feriados regionais não incluídos. Consulte sempre a fonte oficial antes de circular.',
+    es_warning:           'Mostrados apenas feriados nacionais confirmados. A DGT publica datas operacionais completas anualmente — confirmar sempre em dgt.es antes de circular.',
+    source_title:         'Fonte oficial',
+    cal_title:            'Calendário',
+    cal_legend_allowed:   'Permitido',
+    cal_legend_banned:    'Proibido',
+    cal_legend_partial:   'Parcial',
+    intervals_title:      'Horários',
+    no_restriction:       'Sem restrição de circulação neste dia.',
+    rule_card_banned:     'PROIBIDO CIRCULAR:',
+    rule_card_info:       'ATENÇÃO:',
     nav_calculator:'Calculadora', nav_postal_codes:'Códigos Postais', nav_fuel:'Combustível', nav_restrictions:'Restrições',
     footer_disclaimer:'Apenas para planeamento — confirme sempre com a fonte oficial',
     footer_privacy:'Privacidade', footer_terms:'Termos',
@@ -963,30 +1161,31 @@ const T = {
     months: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
   },
   en: {
-    page_title:        'Truck Circulation Restrictions DE/FR/ES | TruckHours',
-    page_subtitle:     'Heavy truck circulation bans — DE / FR / ES',
-    btn_dark_title:    'Dark mode',
-    label_country:     'Country',
-    label_datetime:    'Date and time',
-    label_weight:      'Total vehicle weight',
-    btn_check:         'Check circulation',
-    result_allowed:    '✓ May circulate',
-    result_banned:     '✗ Circulation banned',
-    result_next_window:'Next allowed window',
-    restriction_weekend: 'Weekend — ban Sat 22:00 → Sun 22:00',
-    restriction_holiday: 'National holiday — ban applies',
+    page_title:           'Truck Circulation Restrictions DE/FR/ES | TruckHours',
+    page_subtitle:        'Heavy truck circulation bans — DE / FR / ES',
+    btn_dark_title:       'Dark mode',
+    label_country:        'Country',
+    result_allowed:       '✓ May circulate',
+    result_banned:        '✗ Circulation banned',
+    result_partial:       '⚠ Partial restriction',
+    result_next_window:   'Next allowed window',
+    restriction_weekend:  'Weekend — ban Sat 22:00 → Sun 22:00',
+    restriction_holiday:  'National holiday — ban applies',
     restriction_holiday_eve: 'Holiday eve — ban 22:00 → holiday 22:00',
-    restriction_sunday:  'Sunday — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special: 'Special DGT date',
-    below_limit:       'Weight below limit ({0}t) — no weight restriction',
-    disclaimer:        'For planning purposes only. Regional holidays not included. Always check official source before travelling.',
-    es_warning:        'ES dates based on historical patterns. Confirm official DGT 2026 calendar before travel. Summer Saturdays refer to specific routes — consult DGT.',
-    sources_title:     'Official sources',
-    cal_title:         'Monthly calendar',
-    cal_legend_allowed:'Allowed',
-    cal_legend_banned: 'Banned',
-    cal_legend_partial:'Partial',
-    no_restriction:    'No circulation restriction on this date/time.',
+    restriction_sunday:   'Sunday — Sonn- und Feiertagsfahrverbot 00:00–22:00',
+    restriction_special:  'Special DGT date',
+    restriction_summer:   'Summer restriction — check applicable roads',
+    disclaimer:           'For planning purposes only. Regional holidays not included. Always check official source before travelling.',
+    es_warning:           'Only confirmed national holidays shown. DGT publishes full operational dates annually — always confirm at dgt.es before travel.',
+    source_title:         'Official source',
+    cal_title:            'Calendar',
+    cal_legend_allowed:   'Allowed',
+    cal_legend_banned:    'Banned',
+    cal_legend_partial:   'Partial',
+    intervals_title:      'Schedule',
+    no_restriction:       'No circulation restriction on this day.',
+    rule_card_banned:     'BANNED:',
+    rule_card_info:       'NOTE:',
     nav_calculator:'Calculator', nav_postal_codes:'Postal Codes', nav_fuel:'Fuel', nav_restrictions:'Restrictions',
     footer_disclaimer:'For planning purposes only — always confirm with official source',
     footer_privacy:'Privacy', footer_terms:'Terms',
@@ -994,30 +1193,31 @@ const T = {
     months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
   },
   es: {
-    page_title:        'Restricciones de Circulación para Camiones DE/FR/ES | TruckHours',
-    page_subtitle:     'Prohibiciones de circulación para camiones pesados — DE / FR / ES',
-    btn_dark_title:    'Modo oscuro',
-    label_country:     'País',
-    label_datetime:    'Fecha y hora',
-    label_weight:      'Peso total del vehículo',
-    btn_check:         'Verificar circulación',
-    result_allowed:    '✓ Puede circular',
-    result_banned:     '✗ Circulación prohibida',
-    result_next_window:'Próxima ventana permitida',
-    restriction_weekend: 'Fin de semana — prohibición Sáb 22:00 → Dom 22:00',
-    restriction_holiday: 'Festivo nacional — prohibición aplicable',
+    page_title:           'Restricciones de Circulación para Camiones DE/FR/ES | TruckHours',
+    page_subtitle:        'Prohibiciones de circulación para camiones pesados — DE / FR / ES',
+    btn_dark_title:       'Modo oscuro',
+    label_country:        'País',
+    result_allowed:       '✓ Puede circular',
+    result_banned:        '✗ Circulación prohibida',
+    result_partial:       '⚠ Restricción parcial',
+    result_next_window:   'Próxima ventana permitida',
+    restriction_weekend:  'Fin de semana — prohibición Sáb 22:00 → Dom 22:00',
+    restriction_holiday:  'Festivo nacional — prohibición aplicable',
     restriction_holiday_eve: 'Víspera de festivo — prohibición 22:00 → festivo 22:00',
-    restriction_sunday:  'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special: 'Fecha especial DGT',
-    below_limit:       'Peso por debajo del límite ({0}t) — sin restricción de peso',
-    disclaimer:        'Solo para planificación. Festivos regionales no incluidos. Consulte siempre la fuente oficial antes de circular.',
-    es_warning:        'Fechas ES basadas en patrón histórico. Confirmar calendario oficial DGT 2026 antes del viaje. Sábados de verano se refieren a rutas específicas — consultar DGT.',
-    sources_title:     'Fuentes oficiales',
-    cal_title:         'Calendario del mes',
-    cal_legend_allowed:'Permitido',
-    cal_legend_banned: 'Prohibido',
-    cal_legend_partial:'Parcial',
-    no_restriction:    'Sin restricción de circulación en esta fecha/hora.',
+    restriction_sunday:   'Domingo — Sonn- und Feiertagsfahrverbot 00:00–22:00',
+    restriction_special:  'Fecha especial DGT',
+    restriction_summer:   'Restricción estival — consultar vías aplicables',
+    disclaimer:           'Solo para planificación. Festivos regionales no incluidos. Consulte siempre la fuente oficial antes de circular.',
+    es_warning:           'Solo festivos nacionales confirmados. La DGT publica fechas operativas completas anualmente — confirmar siempre en dgt.es antes de circular.',
+    source_title:         'Fuente oficial',
+    cal_title:            'Calendario',
+    cal_legend_allowed:   'Permitido',
+    cal_legend_banned:    'Prohibido',
+    cal_legend_partial:   'Parcial',
+    intervals_title:      'Horarios',
+    no_restriction:       'Sin restricción de circulación en este día.',
+    rule_card_banned:     'PROHIBIDO CIRCULAR:',
+    rule_card_info:       'AVISO:',
     nav_calculator:'Calculadora', nav_postal_codes:'Códigos Postales', nav_fuel:'Combustible', nav_restrictions:'Restricciones',
     footer_disclaimer:'Solo para planificación — confirme siempre con la fuente oficial',
     footer_privacy:'Privacidad', footer_terms:'Términos',
@@ -1025,30 +1225,31 @@ const T = {
     months: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
   },
   it: {
-    page_title:        'Restrizioni di Circolazione per Camion DE/FR/ES | TruckHours',
-    page_subtitle:     'Divieti di circolazione per veicoli pesanti — DE / FR / ES',
-    btn_dark_title:    'Modalità scura',
-    label_country:     'Paese',
-    label_datetime:    'Data e ora',
-    label_weight:      'Peso totale del veicolo',
-    btn_check:         'Verifica circolazione',
-    result_allowed:    '✓ Può circolare',
-    result_banned:     '✗ Circolazione vietata',
-    result_next_window:'Prossima finestra consentita',
-    restriction_weekend: 'Fine settimana — divieto Sab 22:00 → Dom 22:00',
-    restriction_holiday: 'Festività nazionale — divieto applicabile',
+    page_title:           'Restrizioni di Circolazione per Camion DE/FR/ES | TruckHours',
+    page_subtitle:        'Divieti di circolazione per veicoli pesanti — DE / FR / ES',
+    btn_dark_title:       'Modalità scura',
+    label_country:        'Paese',
+    result_allowed:       '✓ Può circolare',
+    result_banned:        '✗ Circolazione vietata',
+    result_partial:       '⚠ Restrizione parziale',
+    result_next_window:   'Prossima finestra consentita',
+    restriction_weekend:  'Fine settimana — divieto Sab 22:00 → Dom 22:00',
+    restriction_holiday:  'Festività nazionale — divieto applicabile',
     restriction_holiday_eve: 'Vigilia di festività — divieto 22:00 → festività 22:00',
-    restriction_sunday:  'Domenica — Sonn- und Feiertagsfahrverbot 00:00–22:00',
-    restriction_special: 'Data speciale DGT',
-    below_limit:       'Peso sotto il limite ({0}t) — nessuna restrizione di peso',
-    disclaimer:        'Solo per pianificazione. Festività regionali non incluse. Consultare sempre la fonte ufficiale prima di partire.',
-    es_warning:        'Date ES basate su schema storico. Confermare il calendario ufficiale DGT 2026 prima del viaggio. I sabati estivi si riferiscono a percorsi specifici — consultare DGT.',
-    sources_title:     'Fonti ufficiali',
-    cal_title:         'Calendario del mese',
-    cal_legend_allowed:'Consentito',
-    cal_legend_banned: 'Vietato',
-    cal_legend_partial:'Parziale',
-    no_restriction:    'Nessuna restrizione di circolazione in questa data/ora.',
+    restriction_sunday:   'Domenica — Sonn- und Feiertagsfahrverbot 00:00–22:00',
+    restriction_special:  'Data speciale DGT',
+    restriction_summer:   'Restrizione estiva — verificare le strade applicabili',
+    disclaimer:           'Solo per pianificazione. Festività regionali non incluse. Consultare sempre la fonte ufficiale prima di partire.',
+    es_warning:           'Solo festività nazionali confermate. La DGT pubblica le date operative complete annualmente — verificare sempre su dgt.es prima di partire.',
+    source_title:         'Fonte ufficiale',
+    cal_title:            'Calendario',
+    cal_legend_allowed:   'Consentito',
+    cal_legend_banned:    'Vietato',
+    cal_legend_partial:   'Parziale',
+    intervals_title:      'Orari',
+    no_restriction:       'Nessuna restrizione di circolazione in questo giorno.',
+    rule_card_banned:     'VIETATO CIRCOLARE:',
+    rule_card_info:       'ATTENZIONE:',
     nav_calculator:'Calcolatore', nav_postal_codes:'Codici Postali', nav_fuel:'Carburante', nav_restrictions:'Restrizioni',
     footer_disclaimer:'Solo per pianificazione — confermare sempre con la fonte ufficiale',
     footer_privacy:'Privacy', footer_terms:'Termini',
@@ -1080,88 +1281,188 @@ function setLang(l) {
     if (T[l][key] !== undefined) el.title = T[l][key];
   });
   document.title = tr('page_title');
-  // Re-render calendar and result if visible
-  if (document.getElementById('resultSection').style.display !== 'none') {
-    renderCalendar();
-  }
+  renderCalendar();
+  if (selectedDay) showDayDetail(selectedDay.year, selectedDay.month, selectedDay.day);
+  renderRuleCard();
 }
 
 /* ─────────────────────────────────────────────
-   UI INTERACTIONS
+   BAR HELPERS  (display only, no canDrive logic)
 ───────────────────────────────────────────── */
+
+function getDayBanWindows(countryCode, year, month, day) {
+  const pad = n => String(n).padStart(2, '0');
+  const dateStr = `${year}-${pad(month)}-${pad(day)}`;
+  const tz = TZ[countryCode];
+  const noon = new Date(`${dateStr}T12:00:00`);
+  const wd = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short' }).format(noon);
+
+  if (countryCode === 'de') {
+    if (wd === 'Sun' || isHoliday(dateStr, 'de', year)) return [{ startH: 0, endH: 22 }];
+    const sr = getSummerRestriction(dateStr, 'de', year);
+    if (sr) return [{ startH: hmToMin(sr.start) / 60, endH: hmToMin(sr.end) / 60 }];
+    return [];
+  }
+
+  if (countryCode === 'fr') {
+    if (wd === 'Sat') {
+      const windows = [{ startH: 22, endH: 24 }];
+      const sr = getSummerRestriction(dateStr, 'fr', year);
+      if (sr) windows.push({ startH: hmToMin(sr.start) / 60, endH: hmToMin(sr.end) / 60 });
+      return windows;
+    }
+    if (wd === 'Sun' || isHoliday(dateStr, 'fr', year)) return [{ startH: 0, endH: 22 }];
+    const tomorrow = localizeDate(new Date(noon.getTime() + 86400000).toISOString(), 'fr');
+    if (isHoliday(tomorrow.dateStr, 'fr', tomorrow.year)) return [{ startH: 22, endH: 24 }];
+    return [];
+  }
+
+  if (countryCode === 'es') {
+    const sd = getSpecialDate(dateStr, 'es', year);
+    if (!sd) return [];
+    return [{ startH: hmToMin(sd.start) / 60, endH: sd.end === '24:00' ? 24 : hmToMin(sd.end) / 60 }];
+  }
+
+  return [];
+}
+
+function buildBarGradient(banWindows) {
+  if (!banWindows.length) return 'var(--green)';
+  const sorted = [...banWindows].sort((a, b) => a.startH - b.startH);
+  const stops = [];
+  let pos = 0;
+  for (const w of sorted) {
+    const s = (w.startH / 24 * 100).toFixed(1);
+    const e = (w.endH / 24 * 100).toFixed(1);
+    if (w.startH > pos) {
+      stops.push(`var(--green) ${(pos / 24 * 100).toFixed(1)}%`, `var(--green) ${s}%`);
+    }
+    stops.push(`var(--red) ${s}%`, `var(--red) ${e}%`);
+    pos = w.endH;
+  }
+  if (pos < 24) {
+    stops.push(`var(--green) ${(pos / 24 * 100).toFixed(1)}%`, `var(--green) 100%`);
+  }
+  return `linear-gradient(to right, ${stops.join(',')})`;
+}
+
+function navMonth(delta) {
+  const next = currentMonthOffset + delta;
+  if (next < 0) return;
+  currentMonthOffset = next;
+  renderCalendar();
+}
+
+function renderRuleCard() {
+  const c = COUNTRIES[selectedCountry];
+  const card  = document.getElementById('ruleCard');
+  const hdr   = document.getElementById('ruleCardHeader');
+  const lbl   = document.getElementById('ruleCardLabel');
+  const list  = document.getElementById('ruleCardList');
+  card.className = 'rule-card' + (c.ruleCardType === 'amber' ? ' no-ban' : '');
+  hdr.textContent = c.flag + ' ' + c.name[lang];
+  lbl.textContent = c.ruleCardType === 'red' ? tr('rule_card_banned') : tr('rule_card_info');
+  const lines = c.ruleCardLines[lang] || c.ruleCardLines.pt;
+  list.innerHTML = lines.map(l => `<li>${l}</li>`).join('');
+}
+
+/* ─────────────────────────────────────────────
+   UI
+───────────────────────────────────────────── */
+
 function selectCountry(code) {
   selectedCountry = code;
   ['de','fr','es'].forEach(c => {
     document.getElementById('pill-' + c).className = 'country-pill' + (c === code ? ' selected' : '');
   });
+  document.getElementById('esWarning').style.display = code === 'es' ? 'flex' : 'none';
+  renderCalendar();
+  if (selectedDay) showDayDetail(selectedDay.year, selectedDay.month, selectedDay.day);
+  renderSourceCard();
+  renderRuleCard();
 }
 
-function getInputISO() {
-  const val = document.getElementById('inputDatetime').value;
-  if (!val) return null;
-  // datetime-local gives "YYYY-MM-DDTHH:MM" — treat as local browser time
-  return new Date(val).toISOString();
-}
-
-function buildReasonText(result, countryCode) {
+function buildReasonText(result) {
   if (result.allowed) return tr('no_restriction');
   switch (result.type) {
-    case 'weekend':      return tr('restriction_weekend');
-    case 'holiday':      return tr('restriction_holiday');
-    case 'holiday_eve':  return tr('restriction_holiday_eve');
-    case 'sunday':       return tr('restriction_sunday');
+    case 'weekend':     return tr('restriction_weekend');
+    case 'holiday':     return tr('restriction_holiday');
+    case 'holiday_eve': return tr('restriction_holiday_eve');
+    case 'sunday':      return tr('restriction_sunday');
     case 'special': {
-      const note = result.note && result.note[lang] ? result.note[lang] : tr('restriction_special');
-      return note;
+      return result.note && result.note[lang] ? result.note[lang] : tr('restriction_special');
+    }
+    case 'summer': {
+      return result.note && result.note[lang] ? result.note[lang] : tr('restriction_summer');
     }
     default: return '';
   }
 }
 
-function runCheck() {
-  const isoString = getInputISO();
-  if (!isoString) return;
-  const countryCode = selectedCountry;
-  const country = COUNTRIES[countryCode];
+function showDayDetail(year, month, day) {
+  selectedDay = { year, month, day };
 
-  const result = checkCountry(countryCode, isoString, 40);
-  const effectivelyAllowed = result.allowed;
+  // Highlight selected cell
+  document.querySelectorAll('.cal-day.selected-day').forEach(el => el.classList.remove('selected-day'));
+  const pad = n => String(n).padStart(2, '0');
+  const key = `${year}-${pad(month)}-${pad(day)}`;
+  const cell = document.querySelector(`.cal-day[data-date="${key}"]`);
+  if (cell) cell.classList.add('selected-day');
 
-  // Show result section
-  const rs = document.getElementById('resultSection');
-  rs.style.display = 'block';
+  // Date header — formatted in display language
+  const localeMap = { pt:'pt-PT', en:'en-GB', es:'es-ES', it:'it-IT' };
+  const dateObj = new Date(year, month - 1, day, 12, 0, 0);
+  document.getElementById('detailDateHeader').textContent =
+    dateObj.toLocaleDateString(localeMap[lang] || 'pt-PT', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    });
 
-  // Disclaimer always visible (already in DOM via data-i)
-  // ES warning
-  const esWarn = document.getElementById('esWarning');
-  esWarn.style.display = countryCode === 'es' ? 'flex' : 'none';
+  // Full interval scan (accurate, 30-min steps)
+  const intervals = getDayIntervals(selectedCountry, year, month, day);
+  const hasBanned  = intervals.some(i => i.state === 'banned');
+  const hasAllowed = intervals.some(i => i.state === 'allowed');
+  const detailStatus = hasBanned && hasAllowed ? 'partial' : hasBanned ? 'banned' : 'allowed';
 
   // Banner
   const banner = document.getElementById('resultBanner');
-  const icon = document.getElementById('resultIcon');
-  const label = document.getElementById('resultLabel');
+  const icon   = document.getElementById('resultIcon');
+  const label  = document.getElementById('resultLabel');
   const reason = document.getElementById('resultReason');
 
-  if (effectivelyAllowed) {
-    banner.className = 'result-banner allowed';
+  banner.className = 'result-banner ' + detailStatus;
+
+  if (detailStatus === 'allowed') {
     icon.textContent = '✓';
     label.textContent = tr('result_allowed');
-  } else {
-    banner.className = 'result-banner banned';
+    reason.textContent = tr('no_restriction');
+  } else if (detailStatus === 'banned') {
     icon.textContent = '✗';
     label.textContent = tr('result_banned');
+    // Get reason from a point inside the ban
+    const firstBanned = intervals.find(i => i.state === 'banned');
+    const mid = firstBanned ? Math.floor((firstBanned.startMin + Math.min(firstBanned.endMin, firstBanned.startMin + 60)) / 2) : 720;
+    const isoMid = getISOForLocalTime(selectedCountry, year, month, day, Math.floor(mid / 60), mid % 60);
+    reason.textContent = buildReasonText(checkCountry(selectedCountry, isoMid, 40));
+  } else {
+    icon.textContent = '⚠';
+    label.textContent = tr('result_partial');
+    const firstBanned = intervals.find(i => i.state === 'banned');
+    if (firstBanned) {
+      const mid = Math.floor((firstBanned.startMin + Math.min(firstBanned.endMin, firstBanned.startMin + 60)) / 2);
+      const isoMid = getISOForLocalTime(selectedCountry, year, month, day, Math.floor(mid / 60), mid % 60);
+      reason.textContent = buildReasonText(checkCountry(selectedCountry, isoMid, 40));
+    }
   }
-  reason.textContent = buildReasonText(result, countryCode);
 
-  // Next window
-  const nextEl = document.getElementById('resultNext');
+  // Next allowed window (only for fully banned days)
+  const nextEl  = document.getElementById('resultNext');
   const nextTxt = document.getElementById('resultNextText');
-  if (!effectivelyAllowed) {
-    const next = findNextAllowed(countryCode, isoString, 40);
+  if (detailStatus === 'banned') {
+    const isoStart = getISOForLocalTime(selectedCountry, year, month, day, 0, 15);
+    const next = findNextAllowed(selectedCountry, isoStart, 40);
     if (next) {
       nextEl.style.display = 'flex';
-      const localStr = fmtLocalDateTime(next, countryCode);
-      nextTxt.textContent = tr('result_next_window') + ': ' + localStr + ' (' + TZ[countryCode] + ')';
+      nextTxt.textContent = tr('result_next_window') + ': ' + fmtLocalDateTime(next, selectedCountry) + ' (' + TZ[selectedCountry] + ')';
     } else {
       nextEl.style.display = 'none';
     }
@@ -1169,148 +1470,129 @@ function runCheck() {
     nextEl.style.display = 'none';
   }
 
-  // Sources
-  const sl = document.getElementById('sourcesList');
-  sl.innerHTML = `
-    <div class="source-item">
-      <span class="source-label">${country.flag} ${country.name[lang]}</span>
-      <div>
-        <div>${country.legalBasis}</div>
-        <div><a href="${country.sourceUrl}" target="_blank" rel="noopener noreferrer">${country.sourceName}</a></div>
-        <div style="font-size:12px;color:var(--text-3);margin-top:3px">${country.notes[lang]}</div>
-      </div>
-    </div>
+  // Intervals list (only when there's more than one state in the day)
+  const intBlock = document.getElementById('intervalsBlock');
+  const intList  = document.getElementById('intervalsList');
+
+  if (intervals.length > 1) {
+    intBlock.style.display = 'block';
+    intList.innerHTML = intervals.map(iv => `
+      <div class="interval-row ${iv.state}">
+        <span class="interval-time">${minToHHMM(iv.startMin)}–${minToHHMM(iv.endMin)}</span>
+        <span class="interval-label">${tr('cal_legend_' + iv.state)}</span>
+      </div>`).join('');
+  } else {
+    intBlock.style.display = 'none';
+  }
+}
+
+function renderSourceCard() {
+  const c = COUNTRIES[selectedCountry];
+  document.getElementById('sourceContent').innerHTML = `
+    <div class="source-basis">${c.legalBasis}</div>
+    <div><a href="${c.sourceUrl}" target="_blank" rel="noopener noreferrer">${c.sourceName}</a></div>
+    <div class="source-note">${c.notes[lang]}</div>
   `;
-
-  // Calendar
-  renderCalendar();
-  document.getElementById('calSection').style.display = 'block';
-
-  rs.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-/* ─────────────────────────────────────────────
-   CALENDAR RENDERING
-───────────────────────────────────────────── */
-
-// Returns status for a full day (checking noon and midnight extremes)
-function dayStatus(countryCode, year, month, day, weightTons) {
-  const pad = n => String(n).padStart(2, '0');
-  const dateStr = `${year}-${pad(month)}-${pad(day)}`;
-  const tz = TZ[countryCode];
-
-  // We check midnight (00:01) and midday (12:00) in country local time
-  // We use ISO strings that represent those local times
-  const t1 = new Date(`${dateStr}T00:30:00`);
-  const t2 = new Date(`${dateStr}T12:00:00`);
-  const t3 = new Date(`${dateStr}T20:00:00`);
-
-  // Adjust from assumed UTC to get actual local midnight
-  const offset = getLocalOffset(tz, t1);
-
-  const iso1 = new Date(t1.getTime() - offset).toISOString();
-  const iso2 = new Date(t2.getTime() - offset).toISOString();
-  const iso3 = new Date(t3.getTime() - offset).toISOString();
-
-  const r1 = checkCountry(countryCode, iso1, weightTons);
-  const r2 = checkCountry(countryCode, iso2, weightTons);
-  const r3 = checkCountry(countryCode, iso3, weightTons);
-
-  const allAllowed = r1.allowed && r2.allowed && r3.allowed;
-  const anyBanned  = !r1.allowed || !r2.allowed || !r3.allowed;
-
-  if (allAllowed) return 'allowed';
-  if (!r1.allowed && !r2.allowed && !r3.allowed) return 'banned';
-  return 'partial';
-}
-
-// Get local UTC offset for a timezone at a given date
-function getLocalOffset(tz, date) {
-  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-  const localDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
-  return localDate - utcDate;
 }
 
 function renderCalendar() {
-  const isoString = getInputISO();
-  const countryCode = selectedCountry;
-
   const wrapper = document.getElementById('calWrapper');
   wrapper.innerHTML = '';
 
-  const refDate = isoString ? new Date(isoString) : new Date();
   const today = new Date();
+  const pad = n => String(n).padStart(2, '0');
 
-  const months = [
-    { year: refDate.getFullYear(), month: refDate.getMonth() + 1 },
-  ];
-  // Add next month
-  const d2 = new Date(refDate.getFullYear(), refDate.getMonth() + 1, 1);
-  months.push({ year: d2.getFullYear(), month: d2.getMonth() + 1 });
+  const ref = new Date(today.getFullYear(), today.getMonth() + currentMonthOffset, 1);
+  const year = ref.getFullYear();
+  const month = ref.getMonth() + 1;
+  const title = tr('months')[month - 1] + ' ' + year;
+  const firstDay = new Date(year, month - 1, 1).getDay();
+  const daysInMonth = new Date(year, month, 0).getDate();
 
-  months.forEach(({ year, month }) => {
-    const title = tr('months')[month - 1] + ' ' + year;
-    const firstDay = new Date(year, month - 1, 1).getDay(); // 0=Sun
-    const daysInMonth = new Date(year, month, 0).getDate();
+  const col = document.createElement('div');
+  col.className = 'cal-month';
 
-    const col = document.createElement('div');
-    col.className = 'cal-month';
+  const header = document.createElement('div');
+  header.className = 'cal-month-header';
 
-    const titleEl = document.createElement('div');
-    titleEl.className = 'cal-month-title';
-    titleEl.textContent = title;
-    col.appendChild(titleEl);
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'cal-nav-btn';
+  prevBtn.textContent = '‹';
+  prevBtn.disabled = currentMonthOffset === 0;
+  prevBtn.onclick = () => navMonth(-1);
 
-    const grid = document.createElement('div');
-    grid.className = 'cal-grid';
+  const titleEl = document.createElement('span');
+  titleEl.className = 'cal-month-title';
+  titleEl.textContent = title;
 
-    // Day headers
-    const days = tr('days_short');
-    days.forEach(d => {
-      const h = document.createElement('div');
-      h.className = 'cal-day-header';
-      h.textContent = d;
-      grid.appendChild(h);
-    });
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'cal-nav-btn';
+  nextBtn.textContent = '›';
+  nextBtn.onclick = () => navMonth(1);
 
-    // Empty cells before first day
-    for (let i = 0; i < firstDay; i++) {
-      const e = document.createElement('div');
-      e.className = 'cal-day empty';
-      grid.appendChild(e);
-    }
+  header.appendChild(prevBtn);
+  header.appendChild(titleEl);
+  header.appendChild(nextBtn);
+  col.appendChild(header);
 
-    for (let d = 1; d <= daysInMonth; d++) {
-      const status = dayStatus(countryCode, year, month, d, 40);
+  const grid = document.createElement('div');
+  grid.className = 'cal-grid';
 
-      const isToday = today.getFullYear() === year &&
-                      today.getMonth() + 1 === month &&
-                      today.getDate() === d;
-
-      const cell = document.createElement('div');
-      cell.className = 'cal-day ' + status + (isToday ? ' today' : '');
-      cell.textContent = d;
-
-      // Tooltip
-      const tip = document.createElement('div');
-      tip.className = 'cal-tooltip';
-      const pad = n => String(n).padStart(2, '0');
-      tip.textContent = `${year}-${pad(month)}-${pad(d)}: ${tr('cal_legend_' + status)}`;
-      cell.appendChild(tip);
-
-      grid.appendChild(cell);
-    }
-
-    col.appendChild(grid);
-    wrapper.appendChild(col);
+  tr('days_short').forEach(d => {
+    const h = document.createElement('div');
+    h.className = 'cal-day-header';
+    h.textContent = d;
+    grid.appendChild(h);
   });
+
+  for (let i = 0; i < firstDay; i++) {
+    const e = document.createElement('div');
+    e.className = 'cal-day empty';
+    grid.appendChild(e);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const status = dayStatus(selectedCountry, year, month, d, 40);
+    const dateKey = `${year}-${pad(month)}-${pad(d)}`;
+
+    const isToday = today.getFullYear() === year &&
+                    today.getMonth() + 1 === month &&
+                    today.getDate() === d;
+
+    const isSelected = selectedDay &&
+                       selectedDay.year === year &&
+                       selectedDay.month === month &&
+                       selectedDay.day === d;
+
+    const cell = document.createElement('div');
+    cell.className = 'cal-day ' + status +
+                     (isToday ? ' today' : '') +
+                     (isSelected ? ' selected-day' : '');
+    cell.dataset.date = dateKey;
+    cell.addEventListener('click', () => showDayDetail(year, month, d));
+
+    const numEl = document.createElement('span');
+    numEl.className = 'cal-day-num';
+    numEl.textContent = d;
+    cell.appendChild(numEl);
+
+    const banWindows = getDayBanWindows(selectedCountry, year, month, d);
+    const bar = document.createElement('div');
+    bar.className = 'cal-time-bar';
+    bar.style.background = buildBarGradient(banWindows);
+    cell.appendChild(bar);
+
+    grid.appendChild(cell);
+  }
+
+  col.appendChild(grid);
+  wrapper.appendChild(col);
 }
 
 /* ─────────────────────────────────────────────
    BOOT
 ───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Lang
   const stored = localStorage.getItem('truckhours.lang');
   if (stored && T[stored]) {
     lang = stored;
@@ -1320,16 +1602,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setLang(lang);
 
-  // Dark mode icon
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   document.getElementById('iconSun').style.display = isDark ? 'block' : 'none';
   document.getElementById('iconMoon').style.display = isDark ? 'none' : 'block';
 
-  // Default datetime = now (browser local time)
+  // Show today by default
   const now = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  const dtLocal = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
-  document.getElementById('inputDatetime').value = dtLocal;
+  renderCalendar();
+  showDayDetail(now.getFullYear(), now.getMonth() + 1, now.getDate());
+  renderSourceCard();
+  renderRuleCard();
 });
 
 function toggleDark() {
