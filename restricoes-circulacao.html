@@ -561,6 +561,22 @@ body {
   .country-pills { gap: 6px; }
   .country-pill { padding: 8px 13px; font-size: 13px; }
 }
+
+/* ── TABLET LANDSCAPE (>=900px): calendar + detail side by side, bigger tap targets ── */
+@media (min-width: 900px) {
+  .container { max-width: 1200px; }
+  .cal-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(380px, 1.15fr) minmax(320px, 0.85fr);
+    align-items: start;
+    gap: 1.25rem;
+  }
+  .dark-btn { width: 44px; height: 44px; }
+  .pill-btn { padding: 9px 14px; }
+  .sub-nav .nav-link { padding: 10px 16px; }
+  .country-pill { padding: 12px 20px; }
+  .cal-nav-btn { width: 40px; height: 40px; }
+}
 </style>
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json">

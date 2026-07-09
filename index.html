@@ -211,6 +211,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 /* ── RESULTS ── */
 .results{display:none;margin-top:1rem;}
 .results.show{display:block;}
+
+/* ── RESULTS EMPTY STATE (landscape only — hidden on mobile below) ── */
+.results-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;text-align:center;color:var(--text-3);padding:40px 20px;background:var(--bg-card);border-radius:14px;border:2px dashed var(--border);}
+.results-empty.is-hidden{display:none;}
+.results-empty-icon{font-size:48px;margin-bottom:12px;opacity:0.6;}
+.results-empty-title{font-size:16px;margin:0 0 4px;font-weight:600;color:var(--text-2);}
+.results-empty-hint{font-size:14px;margin:0;}
 .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;}
 .metric{background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;}
 .metric-label{font-size:10px;font-weight:700;color:var(--text-4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;min-height:26px;display:flex;align-items:center;}
@@ -265,6 +272,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
   .drive-state-grid{grid-template-columns:1fr;}
   .topbar{padding:0 1rem;}
   .reg-badge{display:none;}
+}
+@media(max-width:899px){
+  .results-empty{display:none;}
 }
 
 /* ── RATING ── */
@@ -401,6 +411,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 .sub-nav .nav-link:hover{background:var(--bg-card2);color:var(--text-1);}
 .sub-nav .nav-link.active{color:var(--blue);background:var(--blue-l);font-weight:600;}
 @media(max-width:600px){.sub-nav{padding:8px 1rem;}}
+
+/* ── TABLET LANDSCAPE (>=900px): 2-col layout, bigger tap targets ── */
+@media(min-width:900px){
+  .container{max-width:1360px;}
+  .layout-grid{display:grid;grid-template-columns:minmax(360px,42%) minmax(0,58%);gap:1.5rem;align-items:start;}
+  .form-col{min-width:0;}
+  .results-col{min-width:0;}
+  .results{margin-top:0;}
+  .dark-btn{width:44px;height:44px;}
+  .pill-btn{padding:9px 14px;}
+  .sub-nav .nav-link{padding:10px 16px;}
+  .mode-btn{padding:12px 10px;}
+}
 </style>
 </head>
 <body>
@@ -436,6 +459,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
 </div>
 
 <div class="container">
+<div class="layout-grid">
+<div class="form-col">
 
   <!-- ══ SECÇÃO 1: ESTADO ══ -->
   <div class="section">
@@ -626,6 +651,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
     <span data-i="btn_calc">Calcular jornada</span>
   </button>
 
+</div><!-- /form-col -->
+
+<div class="results-col">
+  <div class="results-empty" id="resultsEmpty">
+    <div class="results-empty-icon">📋</div>
+    <p class="results-empty-title" data-i="results_empty_title">O plano da jornada aparece aqui</p>
+    <p class="results-empty-hint" data-i="results_empty_hint">Preenche os campos à esquerda e clica em Calcular.</p>
+  </div>
   <!-- ══ RESULTADOS ══ -->
   <div class="results" id="results">
     <div class="section" style="margin-top:1rem;">
@@ -652,7 +685,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg-page);color:var(--text
     </button>
 
   </div><!-- /results -->
+</div><!-- /results-col -->
 
+</div><!-- /layout-grid -->
 
   <div class="footer">
     <span data-i="footer_text">TruckHours · CE 561/2006 · Apenas para planeamento — confirme sempre com o tacógrafo digital</span>
@@ -689,6 +724,7 @@ const T={
     btn_calc:'Calcular jornada',btn_new_sim:'Nova simulação',
     footer_text:'TruckHours · CE 561/2006 · Apenas para planeamento — confirme sempre com o tacógrafo digital',
     res_summary:'Resumo da jornada',res_plan:'Plano detalhado da jornada',
+    results_empty_title:'O plano da jornada aparece aqui',results_empty_hint:'Preenche os campos à esquerda e clica em Calcular.',
     met_arrival:'Chegada prevista',arrival_disclaimer:'Previsão estimada — sujeita a trânsito, condições da via e outros fatores imprevistos.',
     met_total:'Jornada total',met_drive:'Condução restante',met_pauses:'Pausas',met_rests:'Descansos',met_nights:'Pernoitas',
     prog_label:'Tempo útil de condução',
@@ -760,6 +796,7 @@ const T={
     btn_calc:'Calculate journey',btn_new_sim:'New simulation',
     footer_text:'TruckHours · EC 561/2006 · For planning only — always verify with digital tachograph',
     res_summary:'Journey summary',res_plan:'Detailed journey plan',
+    results_empty_title:'Your journey plan appears here',results_empty_hint:'Fill the fields on the left and click Calculate.',
     met_arrival:'Est. arrival',arrival_disclaimer:'Estimated forecast — subject to traffic, road conditions and other unforeseen factors.',
     met_total:'Total journey',met_drive:'Remaining drive',met_pauses:'Breaks',met_rests:'Rest periods',met_nights:'Overnight stops',
     prog_label:'Effective driving time',
@@ -830,6 +867,7 @@ const T={
     btn_calc:'Calcular jornada',btn_new_sim:'Nueva simulación',
     footer_text:'TruckHours · CE 561/2006 · Solo para planificación — confirme siempre con el tacógrafo digital',
     res_summary:'Resumen de la jornada',res_plan:'Plan detallado de la jornada',
+    results_empty_title:'El plan del viaje aparece aquí',results_empty_hint:'Rellena los campos de la izquierda y haz clic en Calcular.',
     met_arrival:'Llegada prevista',arrival_disclaimer:'Previsión estimada — sujeta a tráfico, condiciones de la vía y otros factores imprevistos.',
     met_total:'Jornada total',met_drive:'Conducción restante',met_pauses:'Pausas',met_rests:'Descansos',met_nights:'Pernoctaciones',
     prog_label:'Tiempo útil de conducción',
@@ -900,6 +938,7 @@ const T={
     btn_calc:'Calcola la giornata',btn_new_sim:'Nuova simulazione',
     footer_text:'TruckHours · CE 561/2006 · Solo per pianificazione — confermare sempre con il tachigrafo digitale',
     res_summary:'Riepilogo della giornata',res_plan:'Piano dettagliato della giornata',
+    results_empty_title:'Il piano del viaggio appare qui',results_empty_hint:'Compila i campi a sinistra e clicca su Calcola.',
     met_arrival:'Arrivo previsto',arrival_disclaimer:'Previsione stimata — soggetta a traffico, condizioni della strada e altri fattori imprevisti.',
     met_total:'Giornata totale',met_drive:'Guida rimanente',met_pauses:'Pause',met_rests:'Riposi',met_nights:'Pernottamenti',
     prog_label:'Tempo utile di guida',
@@ -1218,6 +1257,7 @@ function updateRestInfo(){
 function resetForm(){
   document.getElementById('totalKm').value='';
   document.getElementById('results').className='results';
+  document.getElementById('resultsEmpty').classList.remove('is-hidden');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1447,6 +1487,7 @@ function calcAndShow(){
   }).join('');
 
   document.getElementById('results').className='results show';
+  document.getElementById('resultsEmpty').classList.add('is-hidden');
   document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
