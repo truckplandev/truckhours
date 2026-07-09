@@ -961,9 +961,9 @@ function dayStatus(countryCode, year, month, day, weightTons) {
   const dateStr = `${year}-${pad(month)}-${pad(day)}`;
   const tz = TZ[countryCode];
 
-  const t1 = new Date(`${dateStr}T00:30:00`);
-  const t2 = new Date(`${dateStr}T12:00:00`);
-  const t3 = new Date(`${dateStr}T20:00:00`);
+  const t1 = new Date(Date.UTC(year, month - 1, day, 0, 30));
+  const t2 = new Date(Date.UTC(year, month - 1, day, 12, 0));
+  const t3 = new Date(Date.UTC(year, month - 1, day, 20, 0));
 
   const offset = getLocalOffset(tz, t1);
 
@@ -993,8 +993,7 @@ function getLocalOffset(tz, date) {
 
 // Build an ISO string for a specific local time in a country (same pattern as dayStatus)
 function getISOForLocalTime(countryCode, year, month, day, hour, minute) {
-  const pad = n => String(n).padStart(2, '0');
-  const t = new Date(`${year}-${pad(month)}-${pad(day)}T${pad(hour)}:${pad(minute)}:00`);
+  const t = new Date(Date.UTC(year, month - 1, day, hour, minute));
   const offset = getLocalOffset(TZ[countryCode], t);
   return new Date(t.getTime() - offset).toISOString();
 }
@@ -1209,13 +1208,15 @@ function getDayBanWindows(countryCode, year, month, day) {
   }
 
   if (countryCode === 'fr') {
+    const isHol = isHoliday(dateStr, 'fr', year);
+    if (wd === 'Sun' || (isHol && wd !== 'Sat')) return [{ startH: 0, endH: 22 }];
     if (wd === 'Sat') {
+      if (isHol) return [{ startH: 0, endH: 24 }];
       const windows = [{ startH: 22, endH: 24 }];
       const sr = getSummerRestriction(dateStr, 'fr', year);
       if (sr) windows.push({ startH: hmToMin(sr.start) / 60, endH: hmToMin(sr.end) / 60 });
       return windows;
     }
-    if (wd === 'Sun' || isHoliday(dateStr, 'fr', year)) return [{ startH: 0, endH: 22 }];
     const tomorrow = localizeDate(new Date(noon.getTime() + 86400000).toISOString(), 'fr');
     if (isHoliday(tomorrow.dateStr, 'fr', tomorrow.year)) return [{ startH: 22, endH: 24 }];
     return [];
